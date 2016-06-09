@@ -1,0 +1,368 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage<dynamic>" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
+    <link href="/content/css/bootstrap.css" rel="stylesheet" />
+    <link href="/content/css/style.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <div class="wrapper-main">
+        <header class="app-header">
+            <h1><span class="header-icon"></span>Case Management Assistant</h1>
+            <div class="header-window-btn" style="display:none;">
+                <ul>
+                    <li class="w-minimz"><a href="#">minimize</a></li>
+                    <li class="w-maxmiz"><a href="#">Maximize</a></li>
+                    <li class="w-close"><a href="#">Close</a></li>
+                </ul>
+            </div>
+        </header>
+        <nav class="app-nav">
+            <div class="main-nav col-xs-12">
+                <ul class="main-nav-list">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">File</a>
+                        <%--<ul role="menu" class="dropdown-menu">
+                            <li><a href="#">Manage Case</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Manage Review <span class="caret"></span></a>
+                                <ul role="menu" class="dropdown-submenu">
+                                    <li><a href="#">Manage Case</a></li>
+                                    <li><a href="#">Manage Review</a></li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Add Document <span class="caret"></span></a>
+                                        <ul role="menu" class="dropdown-submenu-inner">
+                                            <li><a href="#">Manage Case</a></li>
+                                            <li><a href="#">Manage Review</a></li>
+                                            <li><a href="#">Add Document</a></li>
+                                            <li><a href="#">Add Note</a></li>
+                                            <li><a href="#">Add Task</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Add Note</a></li>
+                                    <li><a href="#">Add Task</a></li>
+                                </ul>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="#">Manage Activity</a></li>
+                            <li><a href="#">Manage Billing</a></li>
+                            <li><a href="#">Manage Document</a></li>
+                            <li><a href="#">Manage Notes</a></li>
+                            <li><a href="#">Manage Tasks</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Add Activity</a></li>
+                            <li><a href="#">Add Document</a></li>
+                            <li><a href="#">Add Note</a></li>
+                            <li><a href="#">Add Task</a></li>
+                        </ul>--%>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Edit</a>
+                        <%--<ul role="menu" class="dropdown-menu">
+                            <li><a href="#">Manage Case</a></li>
+                            <li><a href="#">Manage Review</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Manage Activity</a></li>
+                            <li><a href="#">Manage Billing</a></li>
+                            <li><a href="#">Manage Document</a></li>
+                            <li><a href="#">Manage Notes</a></li>
+                            <li><a href="#">Manage Tasks</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Add Activity</a></li>
+                            <li><a href="#">Add Document</a></li>
+                            <li><a href="#">Add Note</a></li>
+                            <li><a href="#">Add Task</a></li>
+                        </ul>--%>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Record</a>
+                        <%--<ul role="menu" class="dropdown-menu">
+                            <li><a href="#">Manage Case</a></li>
+                            <li><a href="#">Manage Review</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Manage Activity</a></li>
+                            <li><a href="#">Manage Billing</a></li>
+                            <li><a href="#">Manage Document</a></li>
+                            <li><a href="#">Manage Notes</a></li>
+                            <li><a href="#">Manage Tasks</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Add Activity</a></li>
+                            <li><a href="#">Add Document</a></li>
+                            <li><a href="#">Add Note</a></li>
+                            <li><a href="#">Add Task</a></li>
+                        </ul>--%>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activities</a>
+                        <%--<ul role="menu" class="dropdown-menu">
+                            <li><a href="#">Manage Case</a></li>
+                            <li><a href="#">Manage Review</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Manage Activity</a></li>
+                            <li><a href="#">Manage Billing</a></li>
+                            <li><a href="#">Manage Document</a></li>
+                            <li><a href="#">Manage Notes</a></li>
+                            <li><a href="#">Manage Tasks</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Add Activity</a></li>
+                            <li><a href="#">Add Document</a></li>
+                            <li><a href="#">Add Note</a></li>
+                            <li><a href="#">Add Task</a></li>
+                        </ul>--%>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Maintain</a>
+                        <ul role="menu" class="dropdown-menu">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Episode Codes <span class="caret"></span></a>
+                                <ul role="menu" class="dropdown-submenu">
+                                    <li><a href="#">Declined/Closed Reason</a></li>
+                                    <li><a href="#">Diagnosis Category</a></li>
+                                    <li><a href="#">Level of Care/Bed Type</a></li>
+                                    <li><a href="#">Profile Type</a></li>
+                                    <li><a href="#">Profile</a></li>
+                                    <li><a href="#">Pended Reason</a></li>
+                                    <li><a href="#">Services</a></li>
+                                    <li><a href="#">Service Type</a></li>
+                                    <li><a href="#">Term Relation</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Codes <span class="caret"></span></a>
+                                <ul role="menu" class="dropdown-submenu">
+                                    <li><a href="#">Activity Type</a></li>
+                                    <li><a href="#">Assesment Type</a></li>
+                                    <li><a href="#">Countries</a></li>
+                                    <li><a href="#">Ethencity</a></li>
+                                    <li><a href="#">Exception Criteria</a></li>
+                                    <li><a href="#">Fee Schedule</a></li>
+                                    <li><a href="#">Group/Client LOB</a></li>
+                                    <li><a href="#">Group/Client Type</a></li>
+                                    <li><a href="#">Language</a></li>
+                                    <li><a href="#">Name Type</a></li>
+                                    <li><a href="#">Note Type</a></li>
+                                    <li><a href="#">Payor Type</a></li>
+                                    <li><a href="#">Phone Type</a></li>
+                                    <li><a href="#">Plan Item Type</a></li>
+                                    <li><a href="#">Plan/LOB Type</a></li>
+                                    <li><a href="#">Plan/LOB Contract Status</a></li>
+                                    <li><a href="#">Psychological Stressors</a></li>
+                                    <li><a href="#">Region</a></li>
+                                    <li><a href="#">Resource Services</a></li>
+                                    <li><a href="#">States</a></li>
+                                    <li><a href="#">User Group</a></li>
+                                    <li><a href="#">Work Activity</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Review Codes <span class="caret"></span></a>
+                                <ul role="menu" class="dropdown-submenu">
+                                    <li><a href="#">Additional Info Reason</a></li>
+                                    <li><a href="#">Care Category</a></li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Item Codes <span class="caret"></span></a>
+                                        <ul role="menu" class="dropdown-submenu-inner">
+                                            <li><a href="#">AAA</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Mode</a></li>
+                                    <li><a href="#">Request Reason</a></li>
+                                    <li><a href="#">Request Status</a></li>
+                                    <li><a href="#">Review Type</a></li>
+                                    <li><a href="#">Second Review Reason</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Maternity Codes <span class="caret"></span></a>
+                                <ul role="menu" class="dropdown-submenu">
+                                    <li><a href="#">Manage Case</a></li>
+                                    <li><a href="#">Manage Review</a></li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Add Document <span class="caret"></span></a>
+                                        <ul role="menu" class="dropdown-submenu-inner">
+                                            <li><a href="#">Manage Case</a></li>
+                                            <li><a href="#">Manage Review</a></li>
+                                            <li><a href="#">Add Document</a></li>
+                                            <li><a href="#">Add Note</a></li>
+                                            <li><a href="#">Add Task</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Add Note</a></li>
+                                    <li><a href="#">Add Task</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">CPT-4-CM</a></li>
+                            <li><a href="#">HCPC</a></li>
+                            <li><a href="#">DSM-4</a></li>
+                            <li><a href="#">DRG</a></li>
+                            <li><a href="/manage/list?menu=ICD">ICD-9-CM</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Names</a></li>
+                            <li><a href="#">Organizations</a></li>
+                            <li><a href="#">Plan/LOB ID</a></li>
+                            <li><a href="#">Standard</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Activity Codes</a></li>
+                            <li><a href="#">Activity Overrides</a></li>
+                            <li><a href="#">Assesment Codes</a></li>
+                            <li class="divider"></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Resources <span class="caret"></span></a>
+                                <ul role="menu" class="dropdown-submenu">
+                                    <li><a href="#">Manage Case</a></li>
+                                    <li><a href="#">Manage Review</a></li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Add Document <span class="caret"></span></a>
+                                        <ul role="menu" class="dropdown-submenu-inner">
+                                            <li><a href="#">Manage Case</a></li>
+                                            <li><a href="#">Manage Review</a></li>
+                                            <li><a href="#">Add Document</a></li>
+                                            <li><a href="#">Add Note</a></li>
+                                            <li><a href="#">Add Task</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Add Note</a></li>
+                                    <li><a href="#">Add Task</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Networks</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Users</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reports</a>
+                        <ul role="menu" class="dropdown-menu">
+                            <li><a href="#">Manage Case</a></li>
+                            <li><a href="#">Manage Review</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Manage Activity</a></li>
+                            <li><a href="#">Manage Billing</a></li>
+                            <li><a href="#">Manage Document</a></li>
+                            <li><a href="#">Manage Notes</a></li>
+                            <li><a href="#">Manage Tasks</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Add Activity</a></li>
+                            <li><a href="#">Add Document</a></li>
+                            <li><a href="#">Add Note</a></li>
+                            <li><a href="#">Add Task</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Help</a>
+                        <ul role="menu" class="dropdown-menu">
+                            <li><a href="#">Manage Case</a></li>
+                            <li><a href="#">Manage Review</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Manage Activity</a></li>
+                            <li><a href="#">Manage Billing</a></li>
+                            <li><a href="#">Manage Document</a></li>
+                            <li><a href="#">Manage Notes</a></li>
+                            <li><a href="#">Manage Tasks</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Add Activity</a></li>
+                            <li><a href="#">Add Document</a></li>
+                            <li><a href="#">Add Note</a></li>
+                            <li><a href="#">Add Task</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="sub-nav col-xs-12">
+                <ul class="sub-nav-list">
+                    <li><a href="#">
+                        <img src="/content/images/folder.png" alt="Previous" /></a></li>
+                    <li><a href="#">
+                        <img src="/content/images/icn-folder1.png" alt="Next"/></a></li>
+                    <li><a href="#">
+                        <img src="/content/:images/icn-file-search.png" alt="Add"/></a></li>
+                    <li class="ver-divider"><a href="#">
+                        <img src="/content/images/icn-notes.png" alt="Delete"/></a></li>
+                    <li><a href="#">
+                        <img src="/content/images/icn-print.png" alt="Cancel"/></a></li>
+                    <li><a href="#">
+                        <img src="/content/images/icn-file1.png" alt=""/></a></li>
+                    <li><a href="#">
+                        <img src="/content/images/icn-edit.png" alt=""/></a></li>
+                    <li><a href="#">
+                        <img src="/content/images/folder.png" alt=""/></a></li>
+                    <li><a href="#">
+                        <img src="/content/images/icn-folder1.png" alt=""/></a></li>
+                    <li><a href="#">
+                        <img src="/content/images/icn-file-search.png" alt=""/></a></li>
+                    <li class="ver-divider"><a href="#">
+                        <img src="/content/images/icn-notes.png" alt=""/></a></li>
+                    <li><a href="#">
+                        <img src="/content/images/icn-print.png" alt=""/></a></li>
+                    <li><a href="#">
+                        <img src="/content/images/icn-file1.png" alt=""/></a></li>
+                    <li><a href="#">
+                        <img src="/content/images/icn-edit.png" alt=""/></a></li>
+                </ul>
+            </div>
+        </nav>
+        <div>
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/content/js/jquery-2.0.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/content/js/bootstrap.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/content/js/cma.js"></script>
+    <script>
+        $(document).ready(function () {
+            function setHeight() {
+                windowHeight = $(window).innerHeight();
+                $('.wrapper-main').css('min-height', windowHeight);
+            };
+            setHeight();
+
+            $(window).resize(function () {
+                setHeight();
+            });
+        });
+    </script>
+    <script>
+        $('.dropdown').hover(function () {
+            $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeIn(200);
+            $(this).addClass('open');
+        }, function () {
+            $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeOut(100);
+            $(this).removeClass('open');
+        });
+    </script>
+    <script>
+        $('.dropdown-menu .dropdown .dropdown-submenu .dropdown').hover(function () {
+            $(this).find('.dropdown-submenu').stop(true, true).delay(100).fadeIn(200);
+            $(this).addClass('open');
+        }, function () {
+            $(this).find('.dropdown-submenu').stop(true, true).delay(100).fadeOut(100);
+            $(this).removeClass('open');
+        });
+    </script>
+    <script>
+        $('.dropdown-menu .dropdown .dropdown-submenu .dropdown .dropdown-submenu-inner').hover(function () {
+            $(this).find('.dropdown-submenu-inner').stop(true, true).delay(100).fadeIn(200);
+            $(this).addClass('open');
+        }, function () {
+            $(this).find('.dropdown-submenu-inner').stop(true, true).delay(100).fadeOut(100);
+            $(this).removeClass('open');
+        });
+    </script>
+    <div id="ajax-Page-overlay">
+        <span><br /><br /><br /><img src="/content/images/2.gif" style="width:80px;" /><br />
+            <span id="overlayText"></span>
+        </span>
+    </div>
+</body>
+</html>
