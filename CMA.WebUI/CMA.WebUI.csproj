@@ -114,10 +114,13 @@
     <Content Include="content\js\bootstrap.min.js" />
     <Content Include="content\js\cma.js" />
     <Content Include="Global.asax" />
+    <Content Include="Views\Manage\Case.aspx" />
     <Content Include="Views\Manage\Controls\Add.ascx" />
     <Content Include="Views\Manage\Controls\List.ascx" />
+    <Content Include="Views\Manage\Documents.aspx" />
     <Content Include="Views\Manage\Home.aspx" />
     <Content Include="Views\Manage\List.aspx" />
+    <Content Include="Views\Manage\Notes.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

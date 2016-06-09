@@ -1053,7 +1053,6 @@ th {
 .table {
   width: 100%;
   max-width: 100%;
-  margin-bottom: 20px;
 }
 .table > thead > tr > th,
 .table > tbody > tr > th,
@@ -1233,6 +1232,8 @@ table th[class*="col-"] {
   overflow-x: auto;
   min-height: 0.01%;
 }
+
+
 @media screen and (max-width: 767px) {
   .table-responsive {
     width: 100%;
@@ -1299,7 +1300,7 @@ label {
   display: inline-block;
   max-width: 100%;
   margin-bottom: 5px;
-  font-weight: bold;
+  font-weight: normal;
 }
 input[type="search"] {
   -webkit-box-sizing: border-box;
@@ -3188,4 +3189,137 @@ button.close {
 }
 .affix {
   position: fixed;
+}
+
+
+.nav {
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    display: block;
+    width: 100%;
+    float: left;
+}
+.nav > li {
+  position: relative;
+  display: block;
+}
+.nav > li > a {
+  position: relative;
+  display: block;
+  padding: 4px 15px;
+}
+.nav > li > a:hover,
+.nav > li > a:focus {
+  text-decoration: none;
+  background-color: #eee;
+}
+.nav > li.disabled > a {
+  color: #777;
+}
+.nav > li.disabled > a:hover,
+.nav > li.disabled > a:focus {
+  color: #777;
+  text-decoration: none;
+  cursor: not-allowed;
+  background-color: transparent;
+}
+.nav .open > a,
+.nav .open > a:hover,
+.nav .open > a:focus {
+  background-color: #eee;
+  border-color: #337ab7;
+}
+.nav .nav-divider {
+  height: 1px;
+  margin: 9px 0;
+  overflow: hidden;
+  background-color: #e5e5e5;
+}
+.nav > li > a > img {
+  max-width: none;
+}
+.nav-tabs {
+	border-bottom:solid 1px #fff;
+}
+
+.nav-tabs > li {
+  float: left;
+  margin-bottom: -1px;
+}
+.nav-tabs > li > a {
+    margin-right: 0;
+    line-height: 1.42857143;
+    border-right: solid 1px #aaa;
+    border-top: #fff solid 1px;
+    border-left: none;
+	color:#333;
+}
+.nav-tabs > li > a:hover {
+	color:#111;
+}
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+    color: #111;
+    cursor: default;
+    border-bottom-color: transparent;
+	position:relative;
+}
+.nav-tabs > li.active > a:after, .nav-tabs > li.active > a:hover:after, .nav-tabs > li.active > a:focus:after {
+    content: "";
+    top: -3px;
+    height: 4px;
+    border-right: solid 1px #aaa;
+    border-top: #fff solid 1px;
+    background-color: #eee;
+    width: 100%;
+    left: 1px;
+    position: absolute;
+}
+.nav-tabs > li.active > a:before, .nav-tabs > li.active > a:hover:before, .nav-tabs > li.active > a:focus:before {
+    content: "";
+    bottom: -3px;
+    height: 4px;
+    border-right: none;
+    background-color: #eee;
+    width: 101%;
+    left: 0;
+    position: absolute;
+}
+.nav-tabs.nav-justified {
+  width: 100%;
+  border-bottom: 0;
+}
+.nav-tabs.nav-justified > li {
+  float: none;
+}
+.nav-tabs > li > a {
+  margin-right: 0;
+}
+.tab-content > .tab-pane {
+  display: none;
+}
+.tab-content > .active {
+  display: block;
+}
+.nav-tabs .dropdown-menu {
+  margin-top: -1px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.navbar {
+  position: relative;
+  min-height: 50px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+}
+.tab-content {
+    float: left;
+    width: 100%;
+  border-top: 1px solid #e7e7e7;
+}
+.tab-content > .tab-pane {
+    display: none;
+}
+.tab-content > .active {
+    display: block;
 }

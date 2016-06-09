@@ -20,6 +20,20 @@ namespace CMA.WebUI.Controllers
             return View();
         }
 
+        public ActionResult Case()
+        {
+            return View();
+        }
+
+        public ActionResult Documents()
+        {
+            return View();
+        }
+        public ActionResult Notes()
+        {
+            return View();
+        }
+
         public ActionResult List()
         {   
             string tableName = "CPT";
