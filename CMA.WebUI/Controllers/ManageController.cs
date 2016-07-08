@@ -16,7 +16,7 @@ namespace CMA.WebUI.Controllers
     public class ManageController : Controller
     {
         public ActionResult Home()
-        {   
+        {
             return View();
         }
 
@@ -34,36 +34,104 @@ namespace CMA.WebUI.Controllers
             return View();
         }
 
+        
         public ActionResult List()
-        {   
+        {
             string tableName = "CPT";
-            if (Request.QueryString["menu"] != null)
-                tableName = Request.QueryString["menu"].ToString();
-            string searchText = Request.Form["searchText"] != null ? Request.Form["searchText"].ToString().Trim() : string.Empty;
+            string codeType = "CTRY";
 
+            if (Request.QueryString["menu"] != null)
+            {
+                tableName = Request.QueryString["menu"].ToString();
+            }
+
+
+            if (Request.QueryString["code"] != null)
+            {
+                codeType = Request.QueryString["code"].ToString();
+            }
+            
+            string stoken = string.Empty;
+            string searchText = Request.Form["searchText"] != null ? Request.Form["searchText"].ToString().Trim() : stoken;
+            string searchTarget = string.IsNullOrEmpty(searchText) ? stoken : searchText;
 
             ListViewModel ViewModelListOutput = new ListViewModel();
             ViewModelListOutput.ListType = tableName;
             ViewModelListOutput.TableName = tableName;
-            ViewModelListOutput.SearchText = searchText;
+            ViewModelListOutput.SearchText = searchText;        //@invoke searchTarget to force non-blank predicate
 
             var dataContext = new CMADataContext();
             ViewModelListOutput.TableHeaders = GetTableHeaders(dataContext, tableName);
             string TableData = string.Empty;
-            switch(tableName.ToUpper())
+            switch (tableName.ToUpper())
             {
-                case "CPT":
-                    var list = dataContext.CPTs.AsQueryable();
+                case "CODES":
+
+                    var q0 = dataContext.CODEs.AsQueryable();
+
+                    //  searchText = "a";
+
+/***
+                    var c0 = q0.Where(co => co.Type == codeType)
+                      .Select(co => new { co.Code1, co.Description })
+                      .OrderBy(co => co.Code1);
+***/
+
+                    var l0 = dataContext.CODEs.AsQueryable();
                     if (!string.IsNullOrEmpty(searchText))
                     {
-                        list = list.Where(_ => SqlMethods.Like(_.CPT1, "%" + searchText + "%")
-                                        || SqlMethods.Like(_.Description, "%" + searchText + "%")
-                                        || SqlMethods.Like(_.CodeSource, "%" + searchText + "%")
-                                        || SqlMethods.Like(_.SyncStamp, "%" + searchText + "%")
-                                        || SqlMethods.Like(_.OrgStamp, "%" + searchText + "%")); 
+                        l0 = l0.Where(_ => SqlMethods.Like(_.Code1, "%" + searchText + "%")
+                           || SqlMethods.Like(_.Description, "%" + searchText + "%")
+                           && Equals(_.Type, codeType));
                     }
-                    TableData = JsonConvert.SerializeObject(list.OrderBy(_ => _.CPT1).ToList());
+                    else
+                    {
+                        l0 = l0.Where(_ => _.Type == codeType)
+                                .OrderBy(co => co.Code1);
+                    }
+
+                    TableData = JsonConvert.SerializeObject(l0.OrderBy(_ => _.Code1).ToList());
+                    // TableData = JsonConvert.SerializeObject(c0.ToList());
                     break;
+
+                case "CPT":
+                    var l1 = dataContext.CPTs.AsQueryable();
+                    if (!string.IsNullOrEmpty(searchText))
+                    {
+                        l1 = l1.Where(_ => SqlMethods.Like(_.CPT1, "%" + searchText + "%")
+                                        || SqlMethods.Like(_.Description, "%" + searchText + "%"));
+                    } else
+                    {
+                        l1 = l1.Where(_ => false);
+                    }
+                    TableData = JsonConvert.SerializeObject(l1.OrderBy(_ => _.CPT1).ToList());
+                    break;
+                case "EPISODE":
+                    var l2 = dataContext.Episodes.AsQueryable();
+                    if (!string.IsNullOrEmpty(searchText))
+                    {
+                        l2 = l2.Where(_ => SqlMethods.Like(_.Description, "%" + searchText + "%")
+                                        || SqlMethods.Like(_.Comment, "%" + searchText + "%"));
+                    } else
+                    {
+                        l2 = l2.Where(_ => false);
+                    }
+                    TableData = JsonConvert.SerializeObject(l2.OrderByDescending(_ => _.ChgStamp).ToList());
+                    break;
+
+                case "ICD":
+                    var l3 = dataContext.ICDs.AsQueryable();
+                    if (!string.IsNullOrEmpty(searchText))
+                    {
+                        l3 = l3.Where(_ => SqlMethods.Like(_.Description, "%" + searchText + "%")
+                                        || SqlMethods.Like(_.Notes, "%" + searchText + "%"));
+                    } else
+                    {
+                        l3 = l3.Where(_ => false);
+                    }
+                    TableData = JsonConvert.SerializeObject(l3.OrderBy(_ => _.ICD1).ToList());
+                    break;
+
                 default:
                     break;
             }
@@ -81,16 +149,17 @@ namespace CMA.WebUI.Controllers
         [HttpPost]
         public ActionResult SaveRecord()
         {
-            string tableName = Request.Form["tableName"]!=null ? Request.Form["tableName"].ToString().Trim() : string.Empty;
-            string id = Request.Form["recordId"]!=null ?Request.Form["recordId"].ToString().Trim() : string.Empty ;
-            string columnList = Request.Form["columnList"]!=null ?Request.Form["columnList"].ToString().Trim() : string.Empty ;
-            string nonStringColumnList = Request.Form["nonStringColumnList"]!=null ? "," + Request.Form["nonStringColumnList"].ToString().Trim() +"," : string.Empty ;
-            string primaryKey = Request.Form["primaryKey"]!=null ?Request.Form["primaryKey"].ToString().Trim() : string.Empty ;
+            string tableName = Request.Form["tableName"] != null ? Request.Form["tableName"].ToString().Trim() : string.Empty;
+            string codeType = Request.Form["code"] != null ? Request.Form["code"].ToString().Trim() : string.Empty;
+            string id = Request.Form["recordId"] != null ? Request.Form["recordId"].ToString().Trim() : string.Empty;
+            string columnList = Request.Form["columnList"] != null ? Request.Form["columnList"].ToString().Trim() : string.Empty;
+            string nonStringColumnList = Request.Form["nonStringColumnList"] != null ? "," + Request.Form["nonStringColumnList"].ToString().Trim() + "," : string.Empty;
+            string primaryKey = Request.Form["primaryKey"] != null ? Request.Form["primaryKey"].ToString().Trim() : string.Empty;
             string errorMessage = string.Empty;
             bool isUpdate = false;
 
             if (string.IsNullOrEmpty(tableName) || string.IsNullOrEmpty(primaryKey) || (!string.IsNullOrEmpty(columnList) && !columnList.Contains(",")))
-                errorMessage= "Error Saving the Record.";
+                errorMessage = "Error Saving the Record.";
             if (string.IsNullOrEmpty(errorMessage))
             {
                 if (!string.IsNullOrEmpty(id))
@@ -132,7 +201,7 @@ namespace CMA.WebUI.Controllers
                             sql = "update dbo." + tableName + Environment.NewLine + "set ";
                             foreach (var col in columnList.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries))
                             {
-                                 if  (nonStringColumnList.Contains("," + col + ","))
+                                if (nonStringColumnList.Contains("," + col + ","))
                                     sql += col + "=" + (Request.Form["txt" + col] != null ? Request.Form["txt" + col].Trim() : "NULL") + "," + Environment.NewLine;
                                 else
                                     sql += col + "=" + SQLHelper.MakeSQLSafe(Request.Form["txt" + col] != null ? Request.Form["txt" + col].Trim() : string.Empty) + "," + Environment.NewLine;
@@ -147,8 +216,8 @@ namespace CMA.WebUI.Controllers
                         {
                             sql = "insert into dbo." + tableName + "(" + columnList + ")values(" + Environment.NewLine;
                             foreach (var col in columnList.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries))
-                            {   
-                                if  (nonStringColumnList.Contains("," + col + ","))
+                            {
+                                if (nonStringColumnList.Contains("," + col + ","))
                                     sql += (Request.Form["txt" + col] != null ? Request.Form["txt" + col] : "NULL") + ",";
                                 else
                                     sql += SQLHelper.MakeSQLSafe(Request.Form["txt" + col] != null ? Request.Form["txt" + col].Trim() : string.Empty) + ",";
@@ -182,14 +251,14 @@ namespace CMA.WebUI.Controllers
                 Response.Write(errorMessage);
             }
 
-            return null; 
+            return null;
         }
 
         [HttpPost]
         public ActionResult DeleteRecord()
         {
-            string tableName = Request.Form["table-name"]!=null ? Request.Form["table-name"].ToString().Trim() : string.Empty;
-            string key = Request.Form["id"]!=null ?Request.Form["id"].ToString().Trim() : string.Empty ;
+            string tableName = Request.Form["table-name"] != null ? Request.Form["table-name"].ToString().Trim() : string.Empty;
+            string key = Request.Form["id"] != null ? Request.Form["id"].ToString().Trim() : string.Empty;
 
             if (string.IsNullOrEmpty(tableName) || string.IsNullOrEmpty(key))
             {
@@ -205,7 +274,7 @@ namespace CMA.WebUI.Controllers
                     case "CPT":
                         {
                             var rec = dataContext.CPTs.FirstOrDefault(_ => _.CPT1 == key);
-                            if (rec!=null)
+                            if (rec != null)
                                 dataContext.CPTs.DeleteOnSubmit(rec);
                             break;
                         }
@@ -218,9 +287,13 @@ namespace CMA.WebUI.Controllers
             return null;
         }
 
+//=======
+
+
         public List<TableHeaders> GetTableHeaders(CMADataContext dataContext, string tableName)
         {
             List<TableHeaders> tableHeaders = new List<TableHeaders>();
+            List<TableHeaders> displayHeaders = new List<TableHeaders>();
 
             if (dataContext != null)
             {
@@ -231,7 +304,8 @@ namespace CMA.WebUI.Controllers
                         foreach (var col in table.RowType.DataMembers)
                         {
                             TableHeaders row = new TableHeaders();
-                            row.ColumnName = col.MappedName;
+//@x                         row.ColumnName = col.MappedName;
+                            row.ColumnName = col.Name;
                             row.IsPrimaryKey = col.IsPrimaryKey;
                             string dbType;
                             int length;
@@ -239,12 +313,69 @@ namespace CMA.WebUI.Controllers
                             row.Length = length;
                             row.DataType = dbType;
                             row.Required = !col.CanBeNull;
+
+                            row.DisplayLength = length;
+                            row.Caption = col.Name;
+                            row.ReadOnly = false;
                             tableHeaders.Add(row);
                         }
                     }
                 }
             }
-            return tableHeaders;
+
+            displayHeaders = filterList(tableHeaders, tableName);
+
+
+            return displayHeaders;
+            //@ return tableHeaders;
+        }
+
+        public string ColumnName { get; set; }
+        public string DataType { get; set; }
+        public int Length { get; set; }
+        public bool Required { get; set; }
+        public bool IsPrimaryKey { get; set; }
+
+        public string Caption;
+        public int DisplayLength;
+        public bool ReadOnly;
+
+
+        List<TableHeaders> filterList(List<TableHeaders> headers,  string source)
+        {
+            List<TableHeaders> displayHeaders = new List<TableHeaders>();
+            foreach (TableHeaders th in headers)
+            {
+                TableHeaders row = th;
+                switch (source)
+                {
+                    case "CODES":
+                        switch (th.ColumnName) {
+
+/**                            case "Type":
+///                                row.Caption = "CodeType";
+                                displayHeaders.Add(row);
+                                break;
+**/
+                            case "Code1":
+                                row.Caption = "Code";
+                                displayHeaders.Add(row);
+                                break;
+                            case "Description":
+///                                row.Caption = "Description";
+                                displayHeaders.Add(row);
+                                break;
+                        }
+                        break;
+                    default:
+                        displayHeaders.Add(row);
+                        break;
+                }
+
+
+            }
+
+            return displayHeaders;
         }
 
         public void GetDatabaseType(string input, out string output, out int length)
@@ -275,6 +406,19 @@ namespace CMA.WebUI.Controllers
                 }
 
             }
+        }
+
+        int ProcessCodeType(string codeType)
+        {
+            int ri=0;
+            switch(codeType)
+            {
+                case "ACT":
+                    ;
+                    break;
+            }
+
+            return ri;
         }
     }
 }

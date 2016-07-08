@@ -2,7 +2,9 @@
 <section class="dummy-window">
     <div class="inner-window inner-window-style">
         <header class="app-header">
-            <h1><span class="header-icon"></span>Case Management Assistant - <%=Model.TableName %></h1>
+            
+            <h1><span class="header-icon"></span>Case Management Assistant - <%= (Model.TableName == "CODES") ? Model.codeType : Model.TableName %></h1>
+            
             <div class="header-window-btn">
                 <ul>
                     <%--<li class="w-minimz"><a href="#">minimize</a></li>
@@ -28,7 +30,7 @@
                             </div>
                         </span>
                         <span class="search-btn">
-                            <button type="button" id="btnSearch" onclick="javascript:return searchText('<%=Model.TableName %>');">Search</button>
+                            <button type="button" id="btnSearch" onclick="javascript:return searchText('<%=Model.TableName %>', '<%=Model.codeType %>');">Search</button>
                         </span>
                         <div style="float:right">
                             <button type="button" style="padding:5px;" onclick="javascript:return showAddForm();">Add New Record</button>
@@ -86,7 +88,7 @@
                                 }
                         %>
                             <td><a href="#" onclick="javascript:return editForm('<%=counter%>');">Edit</a></td>    
-                            <td><a href="#" onclick="javascript:return deleteRecord('<%=counter%>','<%=Model.TableName %>');">Delete</td>
+                            <td><a href="#" onclick="javascript:return deleteRecord('<%=counter%>','<%=Model.TableName %>');">Delete</a></td>
                             </tr>
                         <%
                             }

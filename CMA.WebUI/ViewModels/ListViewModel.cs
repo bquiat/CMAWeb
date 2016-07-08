@@ -13,7 +13,7 @@ namespace CMA.WebUI.ViewModels
         public string TableData { get; set; }
 
         public string SearchText { get; set; }
-        
+        public string codeType { get; set;  }
     }
 
     public class TableHeaders
@@ -23,10 +23,16 @@ namespace CMA.WebUI.ViewModels
         public int Length { get; set; }
         public bool Required { get; set; }
         public bool IsPrimaryKey { get; set; }
+
+        public string Caption;
+        public int DisplayLength;
+        public bool ReadOnly;
     }
 
     //public class TableData
     //{
     //    public string data { get; set; }
     //}
+
 }
+

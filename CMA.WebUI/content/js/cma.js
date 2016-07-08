@@ -72,16 +72,19 @@ $("#searchText").keyup(function (event) {
         $("#btnSearch").click();
     }
 });
-function searchText(name)
+function searchText(name, codeType)
 {
     var searchText = $.trim($("#searchText").val());
     $overlay = $("#ajax-Page-overlay");
     $overlay.fadeIn();
     $("#overlayText").text('Searching....');
     var serializedData = "searchText=" + searchText;
-
+    var theurl = "/Manage/List?menu=" + name;
+    if (name == "CODES")
+     theurl = "/Manage/List?menu=CODES&code=" + codeType; 
+    
     $.ajax({
-        url: "/Manage/List?menu=" + name,
+        url: theurl + name,
         type: "post",
         data: serializedData,
         success: function (response, textStatus, jqXHR) {
@@ -98,7 +101,7 @@ function searchText(name)
     return false;
 }
 
-function saveAddForm()
+function    saveAddForm()
 {
     bError = false;
     $("#AddNewRecord").find(":input").each(function () {

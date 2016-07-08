@@ -316,7 +316,7 @@ namespace CMA.WebUI.Models
 		{
 			get
 			{
-				return this.GetTable<Activity>();
+				return GetTable<Activity>();
 			}
 		}
 		

@@ -120,42 +120,42 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Episode Codes <span class="caret"></span></a>
                                 <ul role="menu" class="dropdown-submenu">
-                                    <li><a href="#">Declined/Closed Reason</a></li>
-                                    <li><a href="#">Diagnosis Category</a></li>
-                                    <li><a href="#">Level of Care/Bed Type</a></li>
+                                    <li><a href="/manage/list?menu=CODES&code=DECL">Declined/Closed Reason</a></li>
+                                    <li><a href="/manage/list?menu=CODES&code=DIAG">Diagnosis Category</a></li>
+                                    <li><a href="/manage/list?menu=CODES&code=INT">Level of Care/Bed Type</a></li>
                                     <li><a href="#">Profile Type</a></li>
                                     <li><a href="#">Profile</a></li>
-                                    <li><a href="#">Pended Reason</a></li>
-                                    <li><a href="#">Services</a></li>
-                                    <li><a href="#">Service Type</a></li>
-                                    <li><a href="#">Term Relation</a></li>
+                                    <li><a href="/manage/list?menu=CODES&code=PEND">Pended Reason</a></li>
+                                    <li><a href="/manage/list?menu=CODES&code=SVCS">Services</a></li>
+                                    <li><a href="/manage/list?menu=CODES&code=ET">Service Type</a></li>
+                                    <li><a href="/manage/list?menu=CODES&code=TREL">Term Relation</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Codes <span class="caret"></span></a>
                                 <ul role="menu" class="dropdown-submenu">
-                                    <li><a href="#">Activity Type</a></li>
-                                    <li><a href="#">Assesment Type</a></li>
-                                    <li><a href="#">Countries</a></li>
+                                    <li><a href="/manage/list?menu=CODES&code=ACT">Activity Type</a></li>
+                                    <li><a href="/manage/list?menu=CODES&code=ASSE">Assesment Type</a></li>
+                                    <li><a href="/manage/list?menu=CODES&code=CTRY">Countries</a></li>
                                     <li><a href="#">Ethencity</a></li>
                                     <li><a href="#">Exception Criteria</a></li>
-                                    <li><a href="#">Fee Schedule</a></li>
+                                    <li><a href="/manage/list?menu=CODES&code=FS">Fee Schedule</a></li>
                                     <li><a href="#">Group/Client LOB</a></li>
-                                    <li><a href="#">Group/Client Type</a></li>
-                                    <li><a href="#">Language</a></li>
-                                    <li><a href="#">Name Type</a></li>
-                                    <li><a href="#">Note Type</a></li>
-                                    <li><a href="#">Payor Type</a></li>
-                                    <li><a href="#">Phone Type</a></li>
-                                    <li><a href="#">Plan Item Type</a></li>
-                                    <li><a href="#">Plan/LOB Type</a></li>
+                                    <li><a href="/manage/list?menu=CODES&code=PPT">Group/Client Type</a></li>
+                                    <li><a href="/manage/list?menu=CODES&code=LANG">Language</a></li>
+                                    <li><a href="/manage/list?menu=CODES&code=NAME">Name Type</a></li>
+                                    <li><a href="/manage/list?menu=CODES&code=NT">Note Type</a></li>
+                                    <li><a href="/manage/list?menu=CODES&code=PYRT">Payor Type</a></li>
+                                    <li><a href="/manage/list?menu=CODES&code=PHON">Phone Type</a></li>
+                                    <li><a href="/manage/list?menu=CODES&code=PACT">Plan Item Type</a></li>
+                                    <li><a href="/manage/list?menu=CODES&code=LOBT">Plan/LOB Type</a></li>
                                     <li><a href="#">Plan/LOB Contract Status</a></li>
-                                    <li><a href="#">Psychological Stressors</a></li>
-                                    <li><a href="#">Region</a></li>
-                                    <li><a href="#">Resource Services</a></li>
-                                    <li><a href="#">States</a></li>
-                                    <li><a href="#">User Group</a></li>
-                                    <li><a href="#">Work Activity</a></li>
+                                    <li><a href="/manage/list?menu=CODES&code=PSS">Psychological Stressors</a></li>
+                                    <li><a href="/manage/list?menu=CODES&code=REG">Region</a></li>
+                                    <li><a href="/manage/list?menu=CODES&code=SERV">Resource Services</a></li>
+                                    <li><a href="/manage/list?menu=CODES&code=ST">States</a></li>
+                                    <li><a href="/manage/list?menu=CODES&code=GT">User Group</a></li>
+                                    <li><a href="/manage/list?menu=CODES&code=UACT">Work Activity</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -188,26 +188,26 @@
                                             <li><a href="#">Manage Review</a></li>
                                             <li><a href="#">Add Document</a></li>
                                             <li><a href="#">Add Note</a></li>
-                                            <li><a href="#">Add Task</a></li>
+                                               <li><a href="#">Add Task</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="#">Add Note</a></li>
                                     <li><a href="#">Add Task</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#">CPT-4-CM</a></li>
+                            <li><a href="/manage/list?menu=CPT">CPT-4-CM</a></li>
                             <li><a href="#">HCPC</a></li>
-                            <li><a href="#">DSM-4</a></li>
-                            <li><a href="#">DRG</a></li>
+                            <li><a href="/manage/list?menu=DSM">DSM-4</a></li>
+                            <li><a href="/manage/list?menu=DRG">DRG</a></li>
                             <li><a href="/manage/list?menu=ICD">ICD-9-CM</a></li>
                             <li class="divider"></li>
-                            <li><a href="#">Names</a></li>
-                            <li><a href="#">Organizations</a></li>
+                            <li><a href="/manage/list?menu=Namez">Names</a></li>
+                            <li><a href="/manage/list?menu=Organizations">Organizations</a></li>
                             <li><a href="#">Plan/LOB ID</a></li>
-                            <li><a href="#">Standard</a></li>
+                            <li><a href="/manage/list?menu=StdBenefits">Standard</a></li>
                             <li class="divider"></li>
-                            <li><a href="#">Activity Codes</a></li>
-                            <li><a href="#">Activity Overrides</a></li>
+                            <li><a href="/manage/list?menu=ActCodes">Activity Codes</a></li>
+                            <li><a href="/manage/list?menu=ActOver">Activity Overrides</a></li>
                             <li><a href="#">Assesment Codes</a></li>
                             <li class="divider"></li>
                             <li class="dropdown">

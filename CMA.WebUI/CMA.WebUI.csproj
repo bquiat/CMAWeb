@@ -161,6 +161,7 @@
     <Content Include="content\fonts\roboto\Roboto-Regular-webfont.eot" />
     <Content Include="content\fonts\roboto\Roboto-Regular-webfont.ttf" />
     <Content Include="content\fonts\roboto\Roboto-Regular-webfont.woff" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
