@@ -80,11 +80,12 @@ function searchText(name, codeType)
     $("#overlayText").text('Searching....');
     var serializedData = "searchText=" + searchText;
     var theurl = "/Manage/List?menu=" + name;
-    if (name == "CODES")
-     theurl = "/Manage/List?menu=CODES&code=" + codeType; 
+    if (name == "CODES") {
+        theurl = "/Manage/List?menu=CODES&code=" + codeType;
+    }
     
     $.ajax({
-        url: theurl + name,
+        url: theurl,
         type: "post",
         data: serializedData,
         success: function (response, textStatus, jqXHR) {

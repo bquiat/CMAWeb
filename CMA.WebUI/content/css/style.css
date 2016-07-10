@@ -23,6 +23,7 @@ body {
 	color: #333;
 	line-height: 20px;
     cursor: default;
+    background-color: #d0d0d0
     
 }
 body, html {
@@ -357,18 +358,18 @@ background: #c3c3c3;
 }
 .inner-window {
     min-width: 300px;
-    xxmax-width: 1400px;
+    max-width: 600px;
     width: 100%;
     font-weight: normal;
-    overflow-x:scroll;
-	overflow-y:scroll;
+    overflow-x:auto;
+	overflow-y:auto;
 }
 .inner-window-style {
     padding: 8px 5px 5px;
     background-color: #85bdf2;
     position: absolute;
-    top:30px;
-    left:30px;
+    top:5px;
+    left:10px;
     border-radius:2px;
     -webkit-box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.5);
 -moz-box-shadow:  0px 3px 8px 0px rgba(0,0,0,0.5);

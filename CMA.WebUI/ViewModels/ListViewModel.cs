@@ -14,6 +14,7 @@ namespace CMA.WebUI.ViewModels
 
         public string SearchText { get; set; }
         public string codeType { get; set;  }
+        public string Caption { get; set; }
     }
 
     public class TableHeaders

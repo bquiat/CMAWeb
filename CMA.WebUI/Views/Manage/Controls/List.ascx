@@ -3,7 +3,7 @@
     <div class="inner-window inner-window-style">
         <header class="app-header">
             
-            <h1><span class="header-icon"></span>Case Management Assistant - <%= (Model.TableName == "CODES") ? Model.codeType : Model.TableName %></h1>
+            <h1><span class="header-icon"></span>Case Management Assistant - <%= (Model.TableName == "CODES") ? Model.Caption : Model.TableName %></h1>
             
             <div class="header-window-btn">
                 <ul>
