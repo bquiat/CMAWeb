@@ -34,11 +34,48 @@ namespace CMA.WebUI.Controllers
             return View();
         }
 
-        
+
         public ActionResult List()
         {
             string tableName = "CPT";
             string codeType = "CTRY";
+
+            Dictionary<string, string> codeMap = new Dictionary<string, string>(); 
+            try {
+                ///xx Dictionary<string, string> 
+                    codeMap = new Dictionary<string, string> {
+                    { "DECL", "Declined/Closed Reason"},
+                    { "DIAG", "Diagnostic"},
+                    { "INT", "Level of Care/Status"},
+                    { "PEND", "Pended Reason"},
+                    { "SVCS", "Services" },
+                    { "ET", "Service Type"},
+                    { "TREL", "Term Relation"},
+                    { "ACT", "Activity Type"},
+                    { "ASSE", "Assesment Type"},
+                    { "CTRY", "Country"},
+                    { "ETHN", "Ethnicity"},
+                    { "EXCP", "Exception Criteria"},
+                    { "FS", "Fee Schedule"},
+                    { "GLOB", "Group/Client LOB"},
+                    { "PPT", "Group/Client Type"},
+                    { "LANG", "Language"},
+                    { "NAME", "Name Type"},
+                    { "NT", "Note Type"},
+                    { "PYRT", "Payor Type"},
+                    { "PHON", "Phone Type"},
+                    { "PCAT", "Plan Item Type"},
+                    { "LOBT", "Plan/LOB Type"},
+                    { "LOBS", "Plan/LOB Contract Status"},
+                    { "PSS", "Psychological Stressors"},
+                    { "REG", "Region"},
+                    { "SERV", "Resource Services"},
+                    { "ST", "State"},
+                    { "GT", "User Group"},
+                    { "UACT", "Work Activity"},
+                };
+            }   catch(Exception e) { int z = 1; }
+
 
             if (Request.QueryString["menu"] != null)
             {
@@ -59,6 +96,12 @@ namespace CMA.WebUI.Controllers
             ViewModelListOutput.ListType = tableName;
             ViewModelListOutput.TableName = tableName;
             ViewModelListOutput.SearchText = searchText;        //@invoke searchTarget to force non-blank predicate
+
+            string codename = codeType;
+            try { codename = codeMap[codeType]; } 
+            catch (Exception e) { int z = 1; }
+
+            ViewModelListOutput.codeType = codename + " Codes";
 
             var dataContext = new CMADataContext();
             ViewModelListOutput.TableHeaders = GetTableHeaders(dataContext, tableName);
