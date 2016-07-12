@@ -48,7 +48,7 @@
                             foreach (var header in Model.TableHeaders)
                             {
                         %>
-                            <th><%=header.ColumnName %></th>
+                            <th><%=CMA.WebUI.Helpers.CMAHelper.ReplaceWithFriendlyName(header.ColumnName) %></th>
                         <%
                             }
                         %>

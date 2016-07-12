@@ -201,6 +201,10 @@ namespace CMA.WebUI.Controllers
             string columnList = Request.Form["columnList"] != null ? Request.Form["columnList"].ToString().Trim() : string.Empty;
             string nonStringColumnList = Request.Form["nonStringColumnList"] != null ? "," + Request.Form["nonStringColumnList"].ToString().Trim() + "," : string.Empty;
             string primaryKey = Request.Form["primaryKey"] != null ? Request.Form["primaryKey"].ToString().Trim() : string.Empty;
+
+            string replacedPrimaryKey = CMAHelper.ReplaceWithFriendlyName(primaryKey);
+
+
             string errorMessage = string.Empty;
             bool isUpdate = false;
 
@@ -230,9 +234,13 @@ namespace CMA.WebUI.Controllers
                     {
                         string sql = string.Empty;
                         if (isUpdate)
-                            sql = "select top 1 " + primaryKey + " from dbo." + tableName + " with (NOLOCK) where " + primaryKey + "=" + SQLHelper.MakeSQLSafe(updatePrimaryKeyValue);
+                            sql = "select top 1 " + replacedPrimaryKey + " from dbo." + tableName + " with (NOLOCK) where " + replacedPrimaryKey + "=" + SQLHelper.MakeSQLSafe(updatePrimaryKeyValue);
                         else
-                            sql = "select top 1 " + primaryKey + " from dbo." + tableName + " with (NOLOCK) where " + primaryKey + "=" + SQLHelper.MakeSQLSafe(primaryKeyValue);
+                            sql = "select top 1 " + replacedPrimaryKey + " from dbo." + tableName + " with (NOLOCK) where " + replacedPrimaryKey + "=" + SQLHelper.MakeSQLSafe(primaryKeyValue);
+
+                        if (!string.IsNullOrEmpty(codeType))
+                            sql += " and Type=" + SQLHelper.MakeSQLSafe(codeType);
+
 
                         var rec = dataContext.ExecuteQuery<dynamic>(sql);
 
@@ -248,19 +256,26 @@ namespace CMA.WebUI.Controllers
                             foreach (var col in columnList.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries))
                             {
                                 if (nonStringColumnList.Contains("," + col + ","))
-                                    sql += col + "=" + (Request.Form["txt" + col] != null ? Request.Form["txt" + col].Trim() : "NULL") + "," + Environment.NewLine;
+                                    sql += CMAHelper.ReplaceWithFriendlyName(col) + "=" + (Request.Form["txt" + col] != null ? Request.Form["txt" + col].Trim() : "NULL") + "," + Environment.NewLine;
                                 else
-                                    sql += col + "=" + SQLHelper.MakeSQLSafe(Request.Form["txt" + col] != null ? Request.Form["txt" + col].Trim() : string.Empty) + "," + Environment.NewLine;
+                                    sql += CMAHelper.ReplaceWithFriendlyName(col) + "=" + SQLHelper.MakeSQLSafe(Request.Form["txt" + col] != null ? Request.Form["txt" + col].Trim() : string.Empty) + "," + Environment.NewLine;
                             }
                             sql = sql.Trim();
 
                             if (sql.EndsWith(","))
                                 sql = sql.Substring(0, sql.Length - 1);
-                            sql += " where " + primaryKey + "=" + SQLHelper.MakeSQLSafe(updatePrimaryKeyValue);
+                            sql += " where " + replacedPrimaryKey + "=" + SQLHelper.MakeSQLSafe(updatePrimaryKeyValue);
+
+                            if (!string.IsNullOrEmpty(codeType))
+                                sql += " and Type=" + SQLHelper.MakeSQLSafe(codeType);
                         }
                         else
                         {
-                            sql = "insert into dbo." + tableName + "(" + columnList + ")values(" + Environment.NewLine;
+                            if (!string.IsNullOrEmpty(codeType))
+                                sql = "insert into dbo." + tableName + "(type," + columnList + ")values(" + Environment.NewLine + SQLHelper.MakeSQLSafe(codeType) + "," ;
+                            else
+                                sql = "insert into dbo." + tableName + "(" + columnList + ")values(" + Environment.NewLine;
+
                             foreach (var col in columnList.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries))
                             {
                                 if (nonStringColumnList.Contains("," + col + ","))

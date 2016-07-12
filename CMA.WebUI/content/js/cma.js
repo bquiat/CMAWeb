@@ -102,7 +102,7 @@ function searchText(name, codeType)
     return false;
 }
 
-function    saveAddForm()
+function saveAddForm()
 {
     bError = false;
     $("#AddNewRecord").find(":input").each(function () {
@@ -129,19 +129,21 @@ function    saveAddForm()
         $overlay.fadeIn();
         $("#overlayText").text('Saving the Record....');
         var serializedData = $("#frmAddEditRecord").serialize();
+        //alert(serializedData);
         $.ajax({
             url: "/Manage/SaveRecord",
             type: "post",
             data: serializedData,
             success: function (response, textStatus, jqXHR) {
                 alert('Record Updated successfully');
-                location.href = "/Manage/List?menu=" + $("#tableName").val();
+                location.href = "/Manage/List?menu=" + $("#tableName").val() + "&code=" + $("#code").val();
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 alert(jqXHR.responseText);
+                $overlay.fadeOut();
             },
             complete: function () {
-                //$overlay.fadeOut();
+                
             }
         });
     }
