@@ -33,7 +33,7 @@
                             }
                         %>    
                         <tr>
-                            <td><%=header.ColumnName %></td>
+                            <td><%=CMA.WebUI.Helpers.CMAHelper.ReplaceWithFriendlyName(header.ColumnName) %></td>
                             <td>
                                 <input type="text"
                                         id = "txt<%=header.ColumnName%>"
@@ -60,6 +60,7 @@
                                 <input type="hidden" id="recordId" name="recordId" />
                                 
                                 <input type="hidden" id="tableName" name="tableName" value="<%=Model.TableName %>" />
+                                <input type="hidden" id="code" name="code" value="<%=Request.QueryString["code"]!=null ? Request.QueryString["code"].ToString() : "" %>" />
                                 <input type="hidden" id="columnList" name="columnList" value="<%=string.Join(",",Model.TableHeaders.Select(_=>_.ColumnName).ToList()) %>" />
                                 <input type="hidden" id="nonStringColumnList" name="nonStringColumnList" value="<%=string.Join(",",Model.TableHeaders.Where(_=>_.Length ==0).Select(_=>_.ColumnName).ToList()) %>" />
                                 <button type="button" style="padding:5px;width:100px;" onclick="javascript:return saveAddForm();">Save</button>
