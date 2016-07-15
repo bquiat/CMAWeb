@@ -4,7 +4,7 @@
     $("#AddNewRecord").show(100);
     $("#AddNewRecord").find(":input").each(function () {
         var id = $(this).attr('id');
-        if (id != "tableName" && id!="columnList" && id!="nonStringColumnList" && id!="primaryKey" )
+        if (id != "tableName" && id != "code" && id != "columnList" && id != "nonStringColumnList" && id != "primaryKey")
             $(this).val('');
     })
     $("#recordId").val('');
@@ -150,3 +150,12 @@ function saveAddForm()
 
     return false;
 }
+
+$(".menu-item").click(function () {
+    alert('i am here');
+    var action = $(this).attr('data-action');
+    var type = $(this).attr('data-type');
+    alert(action);
+    alert(type);
+    return false;
+});
