@@ -136,6 +136,7 @@
                                 <ul role="menu" class="dropdown-submenu">
                                     <li><a href="/manage/list?menu=CODES&code=ACT">Activity Type</a></li>
                                     <li><a href="/manage/list?menu=CODES&code=ASSE">Assesment Type</a></li>
+                                    <%--<li><a class="menu-item" href="#" data-type="list" data-action="/manage/list?menu=CODES&code=CTRY">Countries</a></li>--%>
                                     <li><a href="/manage/list?menu=CODES&code=CTRY">Countries</a></li>
                                     <li><a href="#">Ethencity</a></li>
                                     <li><a href="#">Exception Criteria</a></li>

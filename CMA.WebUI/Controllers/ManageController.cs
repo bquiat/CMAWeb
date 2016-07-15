@@ -272,9 +272,9 @@ namespace CMA.WebUI.Controllers
                         else
                         {
                             if (!string.IsNullOrEmpty(codeType))
-                                sql = "insert into dbo." + tableName + "(type," + columnList + ")values(" + Environment.NewLine + SQLHelper.MakeSQLSafe(codeType) + "," ;
+                                sql = "insert into dbo." + tableName + "(type," + CMAHelper.ReplaceWithFriendlyName(columnList) + ")values(" + Environment.NewLine + SQLHelper.MakeSQLSafe(codeType) + "," ;
                             else
-                                sql = "insert into dbo." + tableName + "(" + columnList + ")values(" + Environment.NewLine;
+                                sql = "insert into dbo." + tableName + "(" + CMAHelper.ReplaceWithFriendlyName(columnList) + ")values(" + Environment.NewLine;
 
                             foreach (var col in columnList.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries))
                             {
