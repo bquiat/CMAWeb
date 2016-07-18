@@ -94,6 +94,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="content\css\bootstrap.css" />
+    <Content Include="content\css\cma.css" />
+    <Content Include="content\css\jquery-ui.css" />
     <Content Include="content\css\style.css" />
     <Content Include="content\fonts\roboto\roboto-black.svg" />
     <Content Include="content\fonts\roboto\roboto-light.svg" />
@@ -113,14 +115,21 @@
     <Content Include="content\images\icn-print.png" />
     <Content Include="content\js\bootstrap.min.js" />
     <Content Include="content\js\cma.js" />
+    <Content Include="content\js\jquery-1.10.2.js" />
+    <Content Include="content\js\jquery-migrate-1.2.1.min.js" />
+    <Content Include="content\js\jquery-ui.js" />
+    <Content Include="content\js\modernizr.min.js" />
     <Content Include="Global.asax" />
+    <Content Include="Models\DataMapping.xml" />
     <Content Include="Views\Manage\Case.aspx" />
     <Content Include="Views\Manage\Controls\Add.ascx" />
+    <Content Include="Views\Manage\Controls\Edit.ascx" />
     <Content Include="Views\Manage\Controls\List.ascx" />
     <Content Include="Views\Manage\Documents.aspx" />
     <Content Include="Views\Manage\Home.aspx" />
     <Content Include="Views\Manage\List.aspx" />
     <Content Include="Views\Manage\Notes.aspx" />
+    <Content Include="Views\Shared\Controls\Navigation.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -162,7 +171,6 @@
     <Content Include="content\fonts\roboto\Roboto-Regular-webfont.eot" />
     <Content Include="content\fonts\roboto\Roboto-Regular-webfont.ttf" />
     <Content Include="content\fonts\roboto\Roboto-Regular-webfont.woff" />
-    <Content Include="ClassDiagram1.cd" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

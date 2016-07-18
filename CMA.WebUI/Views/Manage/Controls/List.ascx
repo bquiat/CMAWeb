@@ -1,102 +1,118 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<CMA.WebUI.ViewModels.ListViewModel>" %>
-<section class="dummy-window">
-    <div class="inner-window inner-window-style">
-        <header class="app-header">
-            
-            <h1><span class="header-icon"></span>Case Management Assistant - <%= (Model.TableName == "CODES") ? Model.Caption : Model.TableName %></h1>
-            
-            <div class="header-window-btn">
-                <ul>
-                    <%--<li class="w-minimz"><a href="#">minimize</a></li>
-                    <li class="w-maxmiz"><a href="#">Maximize</a></li>--%>
-                    <li class="w-close"><a href="#">Close</a></li>
-                </ul>
-            </div>
-        </header>
-        <section class="window-inner-header">
-            <div class="search-text">
-                <h2>Search Text</h2>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <span class="seacrh-field">
-                            <input class="form-control" type="text" id="searchText" name="searchText" value="<%=Model.SearchText %>">
-                        </span>
-                        <span class="serach-checkbox" style="display:none;">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox">
-                                    Search Within
-                                </label>
+<%@ Import Namespace="CMA.WebUI.Helpers" %>
+<%=Model.InputParam.ContainerId%>||
+<div id="<%=Model.InputParam.ContainerId%>-window">
+    <header class="app-header ">
+        <h1><span class="header-icon"></span><%=Model.Caption%></h1>
+        <div class="header-window-btn">
+            <ul>
+                <li class="w-minimz" onclick="classMinimize($(this));"><a href="#">Minimize</a></li>
+                <li class="w-maxmiz" onclick="classMaximize($(this));"><a href="#">Maximize</a></li>
+                <li class="w-close" onclick="classcloseWin($(this));"><a href="#">Close</a></li>
+            </ul>
+        </div>
+    </header>
+    <div class="overflow--container">
+        <div class="inner-window window-fluid inner-window-style" id="addeditview-<%=Model.InputParam.ContainerId%>">
+        </div>
+        <div class="inner-window window-fluid inner-window-style" id="lstview-<%=Model.InputParam.ContainerId%>">
+            <section class="window-inner-header">
+                <div class="wdw-hdr-block">
+                    <div class="wdw-hdr-block-title">Filter / Sort</div>
+                    <div class="row">
+                        <div class="col-xs-12 tp-pdd--1">
+                            <div class="row">
+                                <div class="col-xs-1">
+                                    <label>Criteria:</label>
+                                </div>
+                                <div class="col-xs-11">
+                                    <span class="txtbx--1">
+                                        <label>Search Text</label>
+                                        <input type="text" class="form-control searchText" 
+                                            value="<%=(!string.IsNullOrEmpty(Model.SearchText) ? Model.SearchText : "")%>"
+                                            style="width:450px;" data-id="<%=Model.InputParam.ContainerId %>" id="txt-<%=Model.InputParam.ContainerId %>-search" name="txt-<%=Model.InputParam.ContainerId %>-search">
+                                    </span>
+                                    <span class="search-btn no--float">
+                                        <button 
+                                            type="button" 
+                                            class="search" 
+                                            id="btn-<%=Model.InputParam.ContainerId %>-search" 
+                                            onclick="javascript:return searchText('<%=Model.InputParam.Type %>','<%=Model.InputParam.Menu %>','<%=Model.TableName %>','<%=Model.InputParam.SubQuery %>','<%=Model.InputParam.ContainerId %>');"
+                                            >Search</button>
+                                        <button type="button" onclick="javascript:addNewRecord('<%=Model.InputParam.Type %>','<%=Model.InputParam.Menu %>','<%=Model.TableName %>','<%=Model.InputParam.SubQuery %>','<%=Model.InputParam.ContainerId %>');">Add New Record</button>
+                                    </span>
+                                </div>
                             </div>
-                        </span>
-                        <span class="search-btn">
-                            <button type="button" id="btnSearch" onclick="javascript:return searchText('<%=Model.TableName %>', '<%=Model.codeType %>');">Search</button>
-                        </span>
-                        <div style="float:right">
-                            <button type="button" style="padding:5px;" onclick="javascript:return showAddForm();">Add New Record</button>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-        <section class="inner-window-body">
-            <div class="app-table">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                        <% 
-                            foreach (var header in Model.TableHeaders)
-                            {
-                        %>
-                            <th><%=CMA.WebUI.Helpers.CMAHelper.ReplaceWithFriendlyName(header.ColumnName) %></th>
-                        <%
-                            }
-                        %>
-                        <th></th>
-                        <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% 
-                            var obj = Newtonsoft.Json.JsonConvert.DeserializeObject<Newtonsoft.Json.Linq.JArray>(Model.TableData);
-                            int counter = 0;
-                            if (obj!=null)
-                            foreach (var row in obj)
-                            {
-                                counter++;
-                        %>
-                            <tr id="List<%=counter %>">
-                        <%
-                                foreach (var header in Model.TableHeaders)
-                                {
-                                    string headerName = header.ColumnName;
-                        %>
-                                <td id="td<%=headerName%>">
-                                    <%
-                                        if (string.Equals(headerName, Model.TableName, StringComparison.CurrentCultureIgnoreCase))
-                                            headerName = Model.TableName + "1";
-                                        Response.Write(row[headerName].ToString());
-                                        if (header.IsPrimaryKey)
-                                        {
-                                        %>
-                                        <input type="hidden" id="list<%=counter %>Id" value="<%=row[headerName].ToString() %>" />
-                                        <%
-                                        }
-                                    %>
-                                </td>
-                        <%
-                                }
-                        %>
-                            <td><a href="#" onclick="javascript:return editForm('<%=counter%>');">Edit</a></td>    
-                            <td><a href="#" onclick="javascript:return deleteRecord('<%=counter%>','<%=Model.TableName %>');">Delete</a></td>
+            </section>
+            <% 
+                var obj = Newtonsoft.Json.JsonConvert.DeserializeObject<Newtonsoft.Json.Linq.JArray>(Model.TableData);    
+            %>
+            <section class="inner-window-body">
+                <div class="app-table">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <% 
+                                    foreach (var header in Model.DataColumns)
+                                    {
+                                %>  
+                                    <th><%=header.DisplayName %></th>
+                                <%
+                                    }
+                                %>
+                                <th></th>
+                                <th></th>
                             </tr>
-                        <%
-                            }
-                        %>
-                    </tbody>
-                </table>
-                <input type="hidden" id="headerList" value="<%=string.Join(",",Model.TableHeaders.Select(_=>_.ColumnName).ToList()) %>" />
-            </div>
-        </section>
+                        </thead>
+                        <tbody>
+                            <% 
+                                if (obj != null && obj.Any())
+                                {
+                                    foreach (var record in obj)
+                                    {
+                                        string primaryKeyCol = string.Empty;
+                                        string primaryKeyVal = string.Empty;
+                            %>
+                            <tr>
+                            <%
+                                foreach (var col in Model.DataColumns)
+                                {
+                                    if (col.IsPrimaryKey)
+                                    {
+                                        primaryKeyCol = CMAHelper.ReplaceWithLINQName(col.DBColumnName);
+                                        primaryKeyVal = record[CMAHelper.ReplaceWithLINQName(col.DBColumnName)].ToString();
+                                    }
+                            %>
+                                        <td><%=record[CMAHelper.ReplaceWithLINQName(col.DBColumnName)].ToString() %></td>
+                            <%
+                                        }
+                            %>
+                                <td><a 
+                                    href="#"
+                                    class="activelink" 
+                                    onclick="javascript:editRecord('<%=Model.InputParam.Type %>','<%=primaryKeyCol %>','<%=primaryKeyVal %>','<%=Model.InputParam.Menu %>','<%=Model.TableName %>','<%=Model.InputParam.SubQuery %>','<%=Model.InputParam.ContainerId %>');">
+                                        Edit
+                                    </a></td>
+                                <td>
+                                    <a 
+                                    href="#"
+                                    class="activelink" 
+                                    onclick="javascript:deleteRecord('<%=Model.InputParam.Type %>','<%=primaryKeyCol %>','<%=primaryKeyVal %>','<%=Model.InputParam.Menu %>','<%=Model.TableName %>','<%=Model.InputParam.SubQuery %>','<%=Model.InputParam.ContainerId %>');">
+                                    Delete
+                                    </a>
+                                </td>
+                            </tr>
+                            <%
+                                    }
+                                }
+                            %>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
     </div>
-</section>
+</div>

@@ -1,39 +1,31 @@
-﻿function showAddForm()
-{   
-    $("#ListRecord").hide(500);
-    $("#AddNewRecord").show(100);
-    $("#AddNewRecord").find(":input").each(function () {
-        var id = $(this).attr('id');
-        if (id != "tableName" && id != "code" && id != "columnList" && id != "nonStringColumnList" && id != "primaryKey")
-            $(this).val('');
-    })
-    $("#recordId").val('');
-    $("#primaryKeyValue").val('');
-    return false;
-}
-function closeAddForm()
-{   
-    $("#AddNewRecord").hide(500);
-    $("#ListRecord").show(100);
-    return false;
-}
-
-function deleteRecord(id, name)
+﻿function deleteRecord(type, key, value, menu, tablename, subquery, id)
 {
     var r = confirm('Are you sure you want to delete this record? Once deleted, this record cannot be recovered?')
     if (r)
     {
+        $overlayText = $("#overlayText");
         $overlay = $("#ajax-Page-overlay");
         $overlay.fadeIn();
-        $("#overlayText").text('Deleting the Record....');
-        var serializedData = "table-name=" + name + "&id=" + $("#list" + id + "Key").val();
+        $overlayText.text('Deleting the Record....');
+        var serializedData = "type=" + type + "&key=" + key + "&val=" + value + "&menu=" + menu + "&table=" + tablename + "&subquery=" + subquery + "&id=" + id;
+
         $.ajax({
             url: "/Manage/DeleteRecord",
             type: "post",
             data: serializedData,
             success: function (response, textStatus, jqXHR) {
-                alert('Record Deleted successfully');
-                $("#List" + id).remove();
+                alert(menu + ' Deleted successfully');
+                var id = response.substring(0, response.indexOf('||')).trim();
+                var content = response.substring(response.indexOf('||') + 2).trim();
+                if ($("#pageContent").find("#" + id + "-window").length > 0) {
+                    $("#pageContent").find("#" + id + "-window").html(content);
+                    $("#lstview-" + id).slideDown(100);
+                    $("#addeditview-" + id).slideUp(100);
+                    refreshWindow(id);
+                } else
+                    $("#pageContent").append(content);
+                openNewTab(id);
+
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 alert(jqXHR.responseText);
@@ -45,51 +37,29 @@ function deleteRecord(id, name)
     }
     return false;
 }
-
-function editForm(id)
+function showhide(showid, hideid)
 {
-    var $tr = $("#List" + id);
-    var headerList = $("#headerList").val().split(',');
-    var primaryKey = $("#primaryKey").val();
-    var primaryKeyValue = "";
-    for (var i = 0; i < headerList.length; i++)
-    {
-        var col = headerList[i];
-        var val = $.trim($("#List" + id).find("#td" + col).text());
-        if (col == primaryKey)
-            primaryKeyValue = val;
-        $("#txt" + col).val(val);
+    if (($("#" + showid).length > 0) && ($("#" + hideid).length > 0)) {
+        $("#" + showid).slideDown(100);
+        $("#" + hideid).slideUp(100);
     }
-    $("#primaryKeyValue").val(primaryKeyValue);
-    $("#recordId").val($("#list" + id + "Id").val());
-    $("#ListRecord").hide(500);
-    $("#AddNewRecord").show(100);
     return false;
 }
-$("#searchText").keyup(function (event) {
-    if (event.keyCode == 13) {
-        
-        $("#btnSearch").click();
-    }
-});
-function searchText(name, codeType)
-{
-    var searchText = $.trim($("#searchText").val());
+function addNewRecord(type, menu, tablename, subquery, id) {
+    $overlayText = $("#overlayText");
     $overlay = $("#ajax-Page-overlay");
     $overlay.fadeIn();
-    $("#overlayText").text('Searching....');
-    var serializedData = "searchText=" + searchText;
-    var theurl = "/Manage/List?menu=" + name;
-    if (name == "CODES") {
-        theurl = "/Manage/List?menu=CODES&code=" + codeType;
-    }
-    
+    var serializedData = "edit=0&type=" + type + "&menu=" + menu + "&table=" + tablename + "&subquery=" + subquery + "&id=" + id;
+
+    $overlayText.text('Loading to Add New ' + menu + '....');
     $.ajax({
-        url: theurl,
+        url: "/Manage/GetEditData",
         type: "post",
         data: serializedData,
         success: function (response, textStatus, jqXHR) {
-            $("#ListRecord").html(response);
+            $("#lstview-" + id).slideUp(100);
+            $("#addeditview-" + id).slideDown(100);
+            $("#addeditview-" + id).html(response);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             alert(jqXHR.responseText);
@@ -98,64 +68,170 @@ function searchText(name, codeType)
             $overlay.fadeOut();
         }
     });
-
     return false;
 }
-
-function saveAddForm()
+function editRecord(type,key,value,menu,tablename,subquery,id)
+{
+    $overlayText = $("#overlayText");
+    $overlay = $("#ajax-Page-overlay");
+    $overlay.fadeIn();
+    var serializedData = "edit=1&type=" + type + "&key=" + key + "&val=" + value + "&menu=" + menu + "&table=" + tablename + "&subquery=" + subquery + "&id=" + id;
+    $overlayText.text('Loading the ' + menu + '....');
+    $.ajax({
+        url: "/Manage/GetEditData",
+        type: "post",
+        data: serializedData,
+        success: function (response, textStatus, jqXHR) {
+            $("#lstview-" + id).slideUp(100);
+            $("#addeditview-" + id).slideDown(100);
+            $("#addeditview-" + id).html(response);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert(jqXHR.responseText);
+        },
+        complete: function () {
+            $overlay.fadeOut();
+        }
+    });
+    return false;
+}
+function saveRecord(id,type,menu,tablename,subquery,id)
 {
     bError = false;
-    $("#AddNewRecord").find(":input").each(function () {
+    $("#frm-" + id + "-edit").find(".required").each(function () {
         if (!bError) {
-            var required = $(this).attr('data-required');
-            var length = $(this).attr('data-length');
-            if (required == "1" && $(this).val() == "") {
+            if ($(this).val() == "") {
                 bError = true;
                 alert('This Field is Required. Please Add the Value.');
                 $(this).focus();
             }
-            else if (length == 0 && isNaN($(this).val()))
-            {
-                bError = true;
-                alert('Invalid Input. Only Numbers Allowed.');
-                $(this).focus();
-            }
         }
-    })
+    });
 
-    if (!bError)
-    {
+    if (!bError) {
+        $overlayText = $("#overlayText");
         $overlay = $("#ajax-Page-overlay");
         $overlay.fadeIn();
-        $("#overlayText").text('Saving the Record....');
-        var serializedData = $("#frmAddEditRecord").serialize();
-        //alert(serializedData);
+        var serializedData = $("#frm-" + id + "-edit").serialize();
+        $overlayText.text('Saving the ' + menu + '....');
+        serializedData += "&type=" + type + "&menu=" + menu + "&table=" + tablename + "&subquery=" + subquery + "&id=" + id;
+
         $.ajax({
             url: "/Manage/SaveRecord",
             type: "post",
             data: serializedData,
             success: function (response, textStatus, jqXHR) {
-                alert('Record Updated successfully');
-                location.href = "/Manage/List?menu=" + $("#tableName").val() + "&code=" + $("#code").val();
+                alert(menu + ' Updated successfully');
+                var id = response.substring(0, response.indexOf('||')).trim();
+                var content = response.substring(response.indexOf('||') + 2).trim();
+                if ($("#pageContent").find("#" + id + "-window").length > 0) {
+                    $("#pageContent").find("#" + id + "-window").html(content);
+                    $("#lstview-" + id).slideDown(100);
+                    $("#addeditview-" + id).slideUp(100);
+                    refreshWindow(id);
+                } else
+                    $("#pageContent").append(content);
+                openNewTab(id);
+
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 alert(jqXHR.responseText);
-                $overlay.fadeOut();
             },
             complete: function () {
-                
+                $overlay.fadeOut();
             }
         });
     }
-
     return false;
 }
-
+function refreshWindow(id)
+{
+    if ($("#dragZone").find("#" + id).length == 1)
+        $("#dragZone").find("#" + id).remove();
+    if ($("#" + id + "-tab").length == 1)
+        $("#" + id + "-tab").remove();
+}
 $(".menu-item").click(function () {
-    alert('i am here');
-    var action = $(this).attr('data-action');
     var type = $(this).attr('data-type');
-    alert(action);
-    alert(type);
+    var tableName = $(this).attr('data-input1');
+    var subQuery = $(this).attr('data-input2');
+    var id = $(this).attr('data-input3');
+    var menuName = $(this).attr('data-input4');
+    $overlayText = $("#overlayText");
+    $overlay = $("#ajax-Page-overlay");
+    $overlay.fadeIn();
+    $overlayText.text('Refreshing....');
+    var serializedData = "type=" + type + "&table=" + tableName + "&subquery=" + subQuery + "&id=" + id + "&menu=" + menuName;
+    $.ajax({
+        url: "/Manage/GetListData",
+        type: "post",
+        data: serializedData,
+        success: function (response, textStatus, jqXHR) {
+            var id = response.substring(0, response.indexOf('||')).trim();
+            var content = response.substring(response.indexOf('||') + 2).trim();
+            if ($("#pageContent").find("#" + id + "-window").length > 0) {
+                $("#pageContent").find("#" + id + "-window").html(content);
+                $("#lstview-" + id).slideDown(100);
+                $("#addeditview-" + id).slideUp(100);
+                refreshWindow(id);
+            }else
+                $("#pageContent").append(content);
+            openNewTab(id);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert(jqXHR.responseText);
+        },
+        complete: function () {
+            $overlay.fadeOut();
+        }
+    });
     return false;
 });
+$(".searchText").keyup(function (event) {
+    if (event.keyCode == 13) {
+        var id = $(this).attr('data-id');
+        $("#btn-" + id + "-search").click();
+    }
+});
+
+function searchText(type, menu, tableName, subQuery, id)
+{
+    var $searchText = $("#txt-" + id + "-search");
+    if ($searchText.val().trim() == "")
+    {
+        alert('Please enter the Search Text');
+        $searchText.focus();
+        return false;
+    }
+
+    $overlayText = $("#overlayText");
+    $overlay = $("#ajax-Page-overlay");
+    $overlay.fadeIn();
+    $overlayText.text('Searching....');
+    var serializedData = "type=" + type + "&table=" + tableName + "&subquery=" + subQuery + "&id=" + id + "&menu=" + menu;
+    serializedData += "&searchText=" + $searchText.val();
+    $.ajax({
+        url: "/Manage/GetListData",
+        type: "post",
+        data: serializedData,
+        success: function (response, textStatus, jqXHR) {
+            var id = response.substring(0, response.indexOf('||')).trim();
+            var content = response.substring(response.indexOf('||') + 2).trim();
+            if ($("#pageContent").find("#" + id + "-window").length > 0) {
+                $("#pageContent").find("#" + id + "-window").html(content);
+                $("#lstview-" + id).slideDown(100);
+                $("#addeditview-" + id).slideUp(100);
+                refreshWindow(id);
+            } else
+                $("#pageContent").append(content);
+            openNewTab(id);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert(jqXHR.responseText);
+        },
+        complete: function () {
+            $overlay.fadeOut();
+        }
+    });
+    return false;
+}
