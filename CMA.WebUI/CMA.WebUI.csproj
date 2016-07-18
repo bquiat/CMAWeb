@@ -122,7 +122,6 @@
     <Content Include="Global.asax" />
     <Content Include="Models\DataMapping.xml" />
     <Content Include="Views\Manage\Case.aspx" />
-    <Content Include="Views\Manage\Controls\Add.ascx" />
     <Content Include="Views\Manage\Controls\Edit.ascx" />
     <Content Include="Views\Manage\Controls\List.ascx" />
     <Content Include="Views\Manage\Documents.aspx" />
