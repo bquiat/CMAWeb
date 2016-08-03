@@ -127,10 +127,10 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Codes <span class="caret"></span></a>
                         <ul role="menu" class="dropdown-submenu">
                             <li>
-                                <a href="/manage/list?menu=CODES&code=ACT">Activity Type</a>
+                                <a class="menu-item" href="#" data-type="list" data-input1="codes" data-input2="act" data-input3="activity-type" data-input4="Activity Type">Activity Type</a>
                             </li>
                             <li>
-                                <a href="/manage/list?menu=CODES&code=ASSE">Assesment Type</a>
+                                <a class="menu-item" href="#" data-type="list" data-input1="codes" data-input2="asse" data-input3="assesment-type" data-input4="Assesment Type">Assesment Type</a>
                             </li>
                             <li>
                                 <a class="menu-item" href="#" data-type="list" data-input1="codes" data-input2="ctry" data-input3="countries" data-input4="Countries">Countries</a>
@@ -138,51 +138,51 @@
                             <li><a href="#">Ethencity</a></li>
                             <li><a href="#">Exception Criteria</a></li>
                             <li>
-                                <a href="/manage/list?menu=CODES&code=FS">Fee Schedule</a>
+                                <a class="menu-item" href="#" data-type="list" data-input1="codes" data-input2="fs" data-input3="fee-schedule" data-input4="Fee Schedule">Fee Schedule</a>
                             </li>
                             <li><a href="#">Group/Client LOB</a></li>
                             <li>
-                                <a href="/manage/list?menu=CODES&code=PPT">Group/Client Type</a>
+                                <a class="menu-item" href="#" data-type="list" data-input1="codes" data-input2="ppt" data-input3="group-client-type" data-input4="Group/Client Type">Group/Client Type</a>
                             </li>
                             <li>
-                                <a href="/manage/list?menu=CODES&code=LANG">Language</a>
+                                <a class="menu-item" href="#" data-type="list" data-input1="codes" data-input2="lang" data-input3="language" data-input4="Language">Language</a>
                             </li>
                             <li>
-                                <a href="/manage/list?menu=CODES&code=NAME">Name Type</a>
+                                <a class="menu-item" href="#" data-type="list" data-input1="codes" data-input2="name" data-input3="name-type" data-input4="Name Type">Name Type</a>
                             </li>
                             <li>
-                                <a href="/manage/list?menu=CODES&code=NT">Note Type</a>
+                                <a class="menu-item" href="#" data-type="list" data-input1="codes" data-input2="nt" data-input3="note-type" data-input4="Note Type">Note Type</a>
                             </li>
                             <li>
-                                <a href="/manage/list?menu=CODES&code=PYRT">Payor Type</a>
+                                <a class="menu-item" href="#" data-type="list" data-input1="codes" data-input2="pyrt" data-input3="payor-type" data-input4="Payor Type">Payor Type</a>
                             </li>
                             <li>
-                                <a href="/manage/list?menu=CODES&code=PHON">Phone Type</a>
+                                <a class="menu-item" href="#" data-type="list" data-input1="codes" data-input2="phon" data-input3="phon-type" data-input4="Phone Type">Phone Type</a>
                             </li>
                             <li>
-                                <a href="/manage/list?menu=CODES&code=PACT">Plan Item Type</a>
+                                <a class="menu-item" href="#" data-type="list" data-input1="codes" data-input2="decl" data-input3="plan-item-type" data-input4="Plan Item Type">Plan Item Type</a>
                             </li>
                             <li>
-                                <a href="/manage/list?menu=CODES&code=LOBT">Plan/LOB Type</a>
+                                <a class="menu-item" href="#" data-type="list" data-input1="codes" data-input2="lobt" data-input3="plan-lob-type" data-input4="Plan/LOB Type">Plan/LOB Type</a>
                             </li>
                             <li><a href="#">Plan/LOB Contract Status</a></li>
                             <li>
-                                <a href="/manage/list?menu=CODES&code=PSS">Psychological Stressors</a>
+                                <a class="menu-item" href="#" data-type="list" data-input1="codes" data-input2="pss" data-input3="psychlogical-stressors" data-input4="Psychological Stressors">Psychological Stressors</a>
                             </li>
                             <li>
-                                <a href="/manage/list?menu=CODES&code=REG">Region</a>
+                                <a class="menu-item" href="#" data-type="list" data-input1="codes" data-input2="reg" data-input3="region" data-input4="Region">Region</a>
                             </li>
                             <li>
-                                <a href="/manage/list?menu=CODES&code=SERV">Resource Services</a>
+                                <a class="menu-item" href="#" data-type="list" data-input1="codes" data-input2="serv" data-input3="resource-services" data-input4="Resource Services">Resource Services</a>
                             </li>
                             <li>
-                                <a href="/manage/list?menu=CODES&code=ST">States</a>
+                                <a class="menu-item" href="#" data-type="list" data-input1="codes" data-input2="st" data-input3="states" data-input4="States">States</a>
                             </li>
                             <li>
-                                <a href="/manage/list?menu=CODES&code=GT">User Group</a>
+                                <a class="menu-item" href="#" data-type="list" data-input1="codes" data-input2="gt" data-input3="user-group" data-input4="User Group">User Group</a>
                             </li>
                             <li>
-                                <a href="/manage/list?menu=CODES&code=UACT">Work Activity</a>
+                                <a class="menu-item" href="#" data-type="list" data-input1="codes" data-input2="uact" data-input3="work-activity" data-input4="Work Activity">Work Activity</a>
                             </li>
                         </ul>
                     </li>
@@ -223,19 +223,35 @@
                             <li><a href="#">Add Task</a></li>
                         </ul>
                     </li>
-                    <li><a href="/manage/list?menu=CPT">CPT-4-CM</a></li>
+                    <li><a href="#">CPT-4-CM</a></li>
                     <li><a href="#">HCPC</a></li>
-                    <li><a href="/manage/list?menu=DSM">DSM-4</a></li>
-                    <li><a href="/manage/list?menu=DRG">DRG</a></li>
-                    <li><a href="/manage/list?menu=ICD">ICD-9-CM</a></li>
+                    <li>
+                        <a class="menu-item" href="#" data-type="list" data-input1="codes" data-input2="dsm" data-input3="dsm-4" data-input4="DSM-4">DSM-4</a>
+                    </li>
+                    <li>
+                        <a class="menu-item" href="#" data-type="list" data-input1="codes" data-input2="drg" data-input3="drg" data-input4="DRG">DRG</a>
+                    </li>
+                    <li>
+                        <a class="menu-item" href="#" data-type="list" data-input1="codes" data-input2="icd" data-input3="icd-9-cm" data-input4="ICD-9-CM">ICD-9-CM</a>
+                    </li>
                     <li class="divider"></li>
-                    <li><a href="/manage/list?menu=Namez">Names</a></li>
-                    <li><a href="/manage/list?menu=Organizations">Organizations</a></li>
+                    <li>
+                        <a class="menu-item" href="#" data-type="list" data-input1="codes" data-input2="namez" data-input3="names" data-input4="Names">Names</a>
+                    </li>
+                    <li>
+                        <a class="menu-item" href="#" data-type="list" data-input1="codes" data-input2="organizations" data-input3="organizations" data-input4="Organizations">Organizations</a>
+                    </li>
                     <li><a href="#">Plan/LOB ID</a></li>
-                    <li><a href="/manage/list?menu=StdBenefits">Standard</a></li>
+                    <li>
+                        <a class="menu-item" href="#" data-type="list" data-input1="codes" data-input2="stdbenefits" data-input3="standard-benefits" data-input4="Standard">Standard</a>
+                    </li>
                     <li class="divider"></li>
-                    <li><a href="/manage/list?menu=ActCodes">Activity Codes</a></li>
-                    <li><a href="/manage/list?menu=ActOver">Activity Overrides</a></li>
+                    <li>
+                        <a class="menu-item" href="#" data-type="list" data-input1="codes" data-input2="actcodes" data-input3="activity-codes" data-input4="Activity Codes">Activity Codes</a>
+                    </li>
+                    <li>
+                        <a class="menu-item" href="#" data-type="list" data-input1="codes" data-input2="actover" data-input3="activity-overrides" data-input4="Activity Overrides">Activity Overrides</a>
+                    </li>
                     <li><a href="#">Assesment Codes</a></li>
                     <li class="divider"></li>
                     <li class="dropdown">
@@ -297,6 +313,9 @@
                     <li><a href="#">Add Note</a></li>
                     <li><a href="#">Add Task</a></li>
                 </ul>--%>
+            </li>
+            <li>
+                <a href="/Account/LogOff">LogOut</a>
             </li>
         </ul>
     </div>

@@ -18,6 +18,7 @@ namespace CMA.WebUI.Controllers
 {
     public class ManageController : Controller
     {
+        [Authorize]
         public ActionResult Home()
         {
             return View();
@@ -39,10 +40,11 @@ namespace CMA.WebUI.Controllers
 
 
         [HttpPost]
+        [Authorize]
         public ActionResult GetEditData()
         {
             ListInput inputParam = new ListInput();
-            bool isEdit = Request.Form["type"] != null ? Request.Form["type"].ToString() == "1" : false;
+            bool isEdit = Request.Form["edit"] != null ? Request.Form["edit"].ToString() == "1" : false;
             var type = Request.Form["type"]!=null ? Request.Form["type"].ToString() : string.Empty;
             string key = Request.Form["key"]!=null ? Request.Form["key"].ToString() : string.Empty;
             string value = Request.Form["val"]!=null ? Request.Form["val"].ToString() : string.Empty;
@@ -72,6 +74,7 @@ namespace CMA.WebUI.Controllers
                 return null;
         }
         [HttpPost]
+        [Authorize]
         public ActionResult GetListData()
         {
             ListInput inputParam = new ListInput();
@@ -99,6 +102,7 @@ namespace CMA.WebUI.Controllers
                 return null;
         }
         [HttpPost]
+        [Authorize]
         public ActionResult DeleteRecord()
         {
             ListInput inputParam = new ListInput();
@@ -129,6 +133,7 @@ namespace CMA.WebUI.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult SaveRecord()
         {
             ListInput inputParam = new ListInput();
@@ -327,6 +332,7 @@ namespace CMA.WebUI.Controllers
                     column.ReadOnly = col.Element("ReadOnly") != null ? bool.Parse(col.Element("ReadOnly").Value) : false;
                     column.IsPrimaryKey = col.Element("IsPrimaryKey") != null ? bool.Parse(col.Element("IsPrimaryKey").Value) : false;
                     column.IsRequired = col.Element("IsRequired") != null ? bool.Parse(col.Element("IsRequired").Value) : false;
+                    column.Width = col.Element("Width") != null ? int.Parse(col.Element("Width").Value) : 0;
                     dataColumns.Add(column);
                 }
             return dataColumns;

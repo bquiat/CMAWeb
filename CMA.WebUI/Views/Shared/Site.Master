@@ -25,7 +25,14 @@
                 </ul>
             </div>
         </header>
+        <% 
+    if (Request.IsAuthenticated)
+    {
+        %>
         <%Html.RenderPartial("~/Views/Shared/Controls/Navigation.ascx"); %>
+        <% 
+    }
+        %>
         <div>
             <div class="window-tabbing">
     	        <ul id="ul_tabcontainer11" class="nav nav-tabs">

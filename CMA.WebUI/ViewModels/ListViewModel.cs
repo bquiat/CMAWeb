@@ -47,6 +47,7 @@ namespace CMA.WebUI.ViewModels
         public bool ReadOnly { get; set; }
         public bool IsPrimaryKey { get; set; }
         public bool IsRequired { get; set; }
+        public int Width { get; set; }
         
     }
 }

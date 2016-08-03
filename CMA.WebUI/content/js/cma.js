@@ -235,3 +235,19 @@ function searchText(type, menu, tableName, subQuery, id)
     });
     return false;
 }
+
+function validateLogin()
+{
+    if ($("#txtUsername").val().trim() == "")
+    {
+        alert('Please enter the Username');
+        $("#txtUsername").focus();
+        return false;
+    }
+    if ($("#txtPassword").val().trim() == "") {
+        alert('Please enter the Password');
+        $("#txtPassword").focus();
+        return false;
+    }
+    return true;
+}
