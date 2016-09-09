@@ -8,7 +8,7 @@
                 var obj = Model.TableData!=null ? 
                             Newtonsoft.Json.JsonConvert.DeserializeObject<Newtonsoft.Json.Linq.JArray>(Model.TableData) != null ? Newtonsoft.Json.JsonConvert.DeserializeObject<Newtonsoft.Json.Linq.JArray>(Model.TableData).FirstOrDefault() : null
                           : null;
-                foreach (var col in Model.DataColumns)
+                foreach (var col in Model.DataColumns.Where(_=>_.IsVisible))
                 {
                     if (col.IsPrimaryKey)
                     {
@@ -27,14 +27,15 @@
             <div class="row">
                 <div class="col-xs-12 tp-pdd--1">
                     <div class="row">
-                        <div class="col-xs-1">
+                        <div class="col-xs-2">
                             <label><%=col.DisplayName %>:</label>
+                            
                         </div>
-                        <div class="col-xs-11">
+                        <div class="col-xs-10">
                             <span class="txtbx--1">
                                 <input type="text" 
                                         class="form-control <%=col.IsRequired ? "required" : "" %>" 
-                                        style="width: 450px;" 
+                                        style="width: <%=col.Width.ToString() + "px"%>;" 
                                         <%=(col.MaxLength  > 0 ? " Maxlength = " + col.MaxLength : "") %>
                                         id="txt-<%=Model.InputParam.ContainerId %>-<%= col.DBColumnName.ToLower()%>" 
                                         name="txt-<%=Model.InputParam.ContainerId %>-<%= col.DBColumnName.ToLower()%>" 

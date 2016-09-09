@@ -1,9 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--Schema
 <DataMappings>
   <DataMapping>
     <Menu>Countries</Menu>
     <TableName>codes</TableName>
     <SubQuery>ctry</SubQuery>
+    <MaxRecords>10</MaxRecords>
     <DataColumns>
       <DataColumn>
         <DBColumnName>Code</DBColumnName>
@@ -13,35 +15,75 @@
         <IsPrimaryKey>true</IsPrimaryKey>
         <IsRequired>true</IsRequired>
         <Width>100</Width>
+        <IsSearchAble>true</IsSearchAble>
+        <IsSubQuery>true</IsSubQuery>
+        <DefaultValue>ctry</DefaultValue>
+        <IsVisible>false</IsVisible>
+        <OrderBy>ASC<OrderBy>
+      </DataColumn>
+  </DataColumns>
+</DataMapping>
+</DataMappings>-->
+<DataMappings>
+  <DataMapping>
+    <Menu>Countries</Menu>
+    <TableName>codes</TableName>
+    <SubQuery>ctry</SubQuery>
+    <MaxRecords>10</MaxRecords>
+    <DataColumns>
+      <DataColumn>
+        <DBColumnName>Code</DBColumnName>
+        <DisplayName>Code</DisplayName>
+        <MaxLength>4</MaxLength>
+        <IsPrimaryKey>true</IsPrimaryKey>
+        <Width>100</Width>
+        <IsSearchAble>true</IsSearchAble>
       </DataColumn>
       <DataColumn>
         <DBColumnName>Description</DBColumnName>
         <DisplayName>Description</DisplayName>
         <MaxLength>30</MaxLength>
-        <ReadOnly>false</ReadOnly>
-        <IsRequired>true</IsRequired>
-    </DataColumn>
+        <IsRequired>false</IsRequired>
+        <Width>250</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Type</DBColumnName>
+        <DisplayName>Type</DisplayName>
+        <ReadOnly>true</ReadOnly>
+        <IsSubQuery>true</IsSubQuery>
+        <DefaultValue>ctry</DefaultValue>
+        <IsVisible>false</IsVisible>
+      </DataColumn>
     </DataColumns>
   </DataMapping>
   <DataMapping>
     <Menu>Declined/Closed Reason</Menu>
     <TableName>codes</TableName>
     <SubQuery>DECL</SubQuery>
+    <MaxRecords>10</MaxRecords>
     <DataColumns>
       <DataColumn>
         <DBColumnName>Code</DBColumnName>
         <DisplayName>Code</DisplayName>
         <MaxLength>4</MaxLength>
-        <ReadOnly>false</ReadOnly>
         <IsPrimaryKey>true</IsPrimaryKey>
-        <IsRequired>true</IsRequired>
+        <Width>100</Width>
+        <IsSearchAble>true</IsSearchAble>
       </DataColumn>
       <DataColumn>
         <DBColumnName>Description</DBColumnName>
         <DisplayName>Description</DisplayName>
         <MaxLength>30</MaxLength>
-        <ReadOnly>false</ReadOnly>
-        <IsRequired>true</IsRequired>
+        <IsRequired>false</IsRequired>
+        <Width>250</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Type</DBColumnName>
+        <DisplayName>Type</DisplayName>
+        <IsSubQuery>true</IsSubQuery>
+        <ReadOnly>true</ReadOnly>
+        <DefaultValue>ctry</DefaultValue>
+        <IsVisible>false</IsVisible>
       </DataColumn>
     </DataColumns>
   </DataMapping>
@@ -49,21 +91,30 @@
     <Menu>Diagnosis Category</Menu>
     <TableName>codes</TableName>
     <SubQuery>DIAG</SubQuery>
+    <MaxRecords>10</MaxRecords>
     <DataColumns>
       <DataColumn>
         <DBColumnName>Code</DBColumnName>
         <DisplayName>Code</DisplayName>
         <MaxLength>4</MaxLength>
-        <ReadOnly>false</ReadOnly>
         <IsPrimaryKey>true</IsPrimaryKey>
-        <IsRequired>true</IsRequired>
+        <Width>100</Width>
+        <IsSearchable>true</IsSearchable>
       </DataColumn>
       <DataColumn>
         <DBColumnName>Description</DBColumnName>
         <DisplayName>Description</DisplayName>
         <MaxLength>30</MaxLength>
-        <ReadOnly>false</ReadOnly>
-        <IsRequired>true</IsRequired>
+        <IsRequired>false</IsRequired>
+        <Width>250</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Type</DBColumnName>
+        <DisplayName>Type</DisplayName>
+        <ReadOnly>true</ReadOnly>
+        <IsSubQuery>true</IsSubQuery>
+        <DefaultValue>ctry</DefaultValue>
+        <IsVisible>false</IsVisible>
       </DataColumn>
     </DataColumns>
   </DataMapping>
@@ -71,21 +122,30 @@
     <Menu>Level of Care/Bed Type</Menu>
     <TableName>codes</TableName>
     <SubQuery>INT</SubQuery>
+    <MaxRecords>10</MaxRecords>
     <DataColumns>
       <DataColumn>
         <DBColumnName>Code</DBColumnName>
         <DisplayName>Code</DisplayName>
         <MaxLength>4</MaxLength>
-        <ReadOnly>false</ReadOnly>
         <IsPrimaryKey>true</IsPrimaryKey>
-        <IsRequired>true</IsRequired>
+        <Width>100</Width>
+        <IsSearchable>true</IsSearchable>
       </DataColumn>
       <DataColumn>
         <DBColumnName>Description</DBColumnName>
         <DisplayName>Description</DisplayName>
-        <MaxLength>30</MaxLength>
-        <ReadOnly>false</ReadOnly>
-        <IsRequired>true</IsRequired>
+         <MaxLength>30</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>250</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Type</DBColumnName>
+        <DisplayName>Type</DisplayName>
+        <ReadOnly>true</ReadOnly>
+        <IsSubQuery>true</IsSubQuery>
+        <DefaultValue>ctry</DefaultValue>
+        <IsVisible>false</IsVisible>
       </DataColumn>
     </DataColumns>
   </DataMapping>
@@ -93,21 +153,30 @@
     <Menu>Pended Reason</Menu>
     <TableName>codes</TableName>
     <SubQuery>PEND</SubQuery>
+    <MaxRecords>10</MaxRecords>
     <DataColumns>
       <DataColumn>
         <DBColumnName>Code</DBColumnName>
         <DisplayName>Code</DisplayName>
         <MaxLength>4</MaxLength>
-        <ReadOnly>false</ReadOnly>
         <IsPrimaryKey>true</IsPrimaryKey>
-        <IsRequired>true</IsRequired>
+        <Width>100</Width>
+        <IsSearchable>true</IsSearchable>
       </DataColumn>
       <DataColumn>
         <DBColumnName>Description</DBColumnName>
         <DisplayName>Description</DisplayName>
-        <MaxLength>30</MaxLength>
-        <ReadOnly>false</ReadOnly>
-        <IsRequired>true</IsRequired>
+         <MaxLength>30</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>250</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Type</DBColumnName>
+        <DisplayName>Type</DisplayName>
+        <ReadOnly>true</ReadOnly>
+        <IsSubQuery>true</IsSubQuery>
+        <DefaultValue>ctry</DefaultValue>
+        <IsVisible>false</IsVisible>
       </DataColumn>
     </DataColumns>
   </DataMapping>
@@ -115,21 +184,30 @@
     <Menu>Services</Menu>
     <TableName>codes</TableName>
     <SubQuery>SVCS</SubQuery>
+    <MaxRecords>10</MaxRecords>
     <DataColumns>
-      <DataColumn>
+       <DataColumn>
         <DBColumnName>Code</DBColumnName>
         <DisplayName>Code</DisplayName>
         <MaxLength>4</MaxLength>
-        <ReadOnly>false</ReadOnly>
         <IsPrimaryKey>true</IsPrimaryKey>
-        <IsRequired>true</IsRequired>
+        <Width>100</Width>
+        <IsSearchable>true</IsSearchable>
       </DataColumn>
       <DataColumn>
         <DBColumnName>Description</DBColumnName>
         <DisplayName>Description</DisplayName>
-        <MaxLength>30</MaxLength>
-        <ReadOnly>false</ReadOnly>
-        <IsRequired>true</IsRequired>
+         <MaxLength>30</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>250</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Type</DBColumnName>
+        <DisplayName>Type</DisplayName>
+        <ReadOnly>true</ReadOnly>
+        <IsSubQuery>true</IsSubQuery>
+        <DefaultValue>ctry</DefaultValue>
+        <IsVisible>false</IsVisible>
       </DataColumn>
     </DataColumns>
   </DataMapping>
@@ -137,21 +215,30 @@
     <Menu>Service Type</Menu>
     <TableName>codes</TableName>
     <SubQuery>ET</SubQuery>
+    <MaxRecords>10</MaxRecords>
     <DataColumns>
       <DataColumn>
         <DBColumnName>Code</DBColumnName>
         <DisplayName>Code</DisplayName>
         <MaxLength>4</MaxLength>
-        <ReadOnly>false</ReadOnly>
         <IsPrimaryKey>true</IsPrimaryKey>
-        <IsRequired>true</IsRequired>
+        <Width>100</Width>
+        <IsSearchable>true</IsSearchable>
       </DataColumn>
       <DataColumn>
         <DBColumnName>Description</DBColumnName>
         <DisplayName>Description</DisplayName>
-        <MaxLength>30</MaxLength>
-        <ReadOnly>false</ReadOnly>
-        <IsRequired>true</IsRequired>
+         <MaxLength>30</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>250</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Type</DBColumnName>
+        <DisplayName>Type</DisplayName>
+        <ReadOnly>true</ReadOnly>
+        <IsSubQuery>true</IsSubQuery>
+        <DefaultValue>ctry</DefaultValue>
+        <IsVisible>false</IsVisible>
       </DataColumn>
     </DataColumns>
   </DataMapping>
@@ -164,16 +251,24 @@
         <DBColumnName>Code</DBColumnName>
         <DisplayName>Code</DisplayName>
         <MaxLength>4</MaxLength>
-        <ReadOnly>false</ReadOnly>
         <IsPrimaryKey>true</IsPrimaryKey>
-        <IsRequired>true</IsRequired>
+        <Width>100</Width>
+        <IsSearchable>true</IsSearchable>
       </DataColumn>
       <DataColumn>
         <DBColumnName>Description</DBColumnName>
         <DisplayName>Description</DisplayName>
-        <MaxLength>30</MaxLength>
-        <ReadOnly>false</ReadOnly>
-        <IsRequired>true</IsRequired>
+         <MaxLength>30</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>250</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Type</DBColumnName>
+        <DisplayName>Type</DisplayName>
+        <ReadOnly>true</ReadOnly>
+        <IsSubQuery>true</IsSubQuery>
+        <DefaultValue>ctry</DefaultValue>
+        <IsVisible>false</IsVisible>
       </DataColumn>
     </DataColumns>
   </DataMapping>
@@ -186,16 +281,24 @@
         <DBColumnName>Code</DBColumnName>
         <DisplayName>Code</DisplayName>
         <MaxLength>4</MaxLength>
-        <ReadOnly>false</ReadOnly>
         <IsPrimaryKey>true</IsPrimaryKey>
-        <IsRequired>true</IsRequired>
+        <Width>100</Width>
+        <IsSearchable>true</IsSearchable>
       </DataColumn>
       <DataColumn>
         <DBColumnName>Description</DBColumnName>
         <DisplayName>Description</DisplayName>
-        <MaxLength>30</MaxLength>
-        <ReadOnly>false</ReadOnly>
-        <IsRequired>true</IsRequired>
+         <MaxLength>30</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>250</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Type</DBColumnName>
+        <DisplayName>Type</DisplayName>
+        <ReadOnly>true</ReadOnly>
+        <IsSubQuery>true</IsSubQuery>
+        <DefaultValue>ctry</DefaultValue>
+        <IsVisible>false</IsVisible>
       </DataColumn>
     </DataColumns>
   </DataMapping>
@@ -203,21 +306,30 @@
     <Menu>Assesment Type</Menu>
     <TableName>codes</TableName>
     <SubQuery>asse</SubQuery>
+    <MaxRecords>10</MaxRecords>
     <DataColumns>
       <DataColumn>
         <DBColumnName>Code</DBColumnName>
         <DisplayName>Code</DisplayName>
         <MaxLength>4</MaxLength>
-        <ReadOnly>false</ReadOnly>
         <IsPrimaryKey>true</IsPrimaryKey>
-        <IsRequired>true</IsRequired>
+        <Width>100</Width>
+        <IsSearchable>true</IsSearchable>
       </DataColumn>
       <DataColumn>
         <DBColumnName>Description</DBColumnName>
         <DisplayName>Description</DisplayName>
-        <MaxLength>30</MaxLength>
-        <ReadOnly>false</ReadOnly>
-        <IsRequired>true</IsRequired>
+         <MaxLength>30</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>250</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Type</DBColumnName>
+        <DisplayName>Type</DisplayName>
+        <ReadOnly>true</ReadOnly>
+        <IsSubQuery>true</IsSubQuery>
+        <DefaultValue>ctry</DefaultValue>
+        <IsVisible>false</IsVisible>
       </DataColumn>
     </DataColumns>
   </DataMapping>
@@ -230,16 +342,24 @@
         <DBColumnName>Code</DBColumnName>
         <DisplayName>Code</DisplayName>
         <MaxLength>4</MaxLength>
-        <ReadOnly>false</ReadOnly>
         <IsPrimaryKey>true</IsPrimaryKey>
-        <IsRequired>true</IsRequired>
+        <Width>100</Width>
+        <IsSearchable>true</IsSearchable>
       </DataColumn>
       <DataColumn>
         <DBColumnName>Description</DBColumnName>
         <DisplayName>Description</DisplayName>
-        <MaxLength>30</MaxLength>
-        <ReadOnly>false</ReadOnly>
-        <IsRequired>true</IsRequired>
+         <MaxLength>30</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>250</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Type</DBColumnName>
+        <DisplayName>Type</DisplayName>
+        <ReadOnly>true</ReadOnly>
+        <IsSubQuery>true</IsSubQuery>
+        <DefaultValue>ctry</DefaultValue>
+        <IsVisible>false</IsVisible>
       </DataColumn>
     </DataColumns>
   </DataMapping>
@@ -252,16 +372,24 @@
         <DBColumnName>Code</DBColumnName>
         <DisplayName>Code</DisplayName>
         <MaxLength>4</MaxLength>
-        <ReadOnly>false</ReadOnly>
         <IsPrimaryKey>true</IsPrimaryKey>
-        <IsRequired>true</IsRequired>
+        <Width>100</Width>
+        <IsSearchable>true</IsSearchable>
       </DataColumn>
       <DataColumn>
         <DBColumnName>Description</DBColumnName>
         <DisplayName>Description</DisplayName>
-        <MaxLength>30</MaxLength>
-        <ReadOnly>false</ReadOnly>
-        <IsRequired>true</IsRequired>
+         <MaxLength>30</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>250</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Type</DBColumnName>
+        <DisplayName>Type</DisplayName>
+        <ReadOnly>true</ReadOnly>
+        <IsSubQuery>true</IsSubQuery>
+        <DefaultValue>ctry</DefaultValue>
+        <IsVisible>false</IsVisible>
       </DataColumn>
     </DataColumns>
   </DataMapping>
@@ -274,16 +402,24 @@
         <DBColumnName>Code</DBColumnName>
         <DisplayName>Code</DisplayName>
         <MaxLength>4</MaxLength>
-        <ReadOnly>false</ReadOnly>
         <IsPrimaryKey>true</IsPrimaryKey>
-        <IsRequired>true</IsRequired>
+        <Width>100</Width>
+        <IsSearchable>true</IsSearchable>
       </DataColumn>
       <DataColumn>
         <DBColumnName>Description</DBColumnName>
         <DisplayName>Description</DisplayName>
-        <MaxLength>30</MaxLength>
-        <ReadOnly>false</ReadOnly>
-        <IsRequired>true</IsRequired>
+         <MaxLength>30</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>250</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Type</DBColumnName>
+        <DisplayName>Type</DisplayName>
+        <ReadOnly>true</ReadOnly>
+        <IsSubQuery>true</IsSubQuery>
+        <DefaultValue>ctry</DefaultValue>
+        <IsVisible>false</IsVisible>
       </DataColumn>
     </DataColumns>
   </DataMapping>
@@ -296,16 +432,24 @@
         <DBColumnName>Code</DBColumnName>
         <DisplayName>Code</DisplayName>
         <MaxLength>4</MaxLength>
-        <ReadOnly>false</ReadOnly>
         <IsPrimaryKey>true</IsPrimaryKey>
-        <IsRequired>true</IsRequired>
+        <Width>100</Width>
+        <IsSearchable>true</IsSearchable>
       </DataColumn>
       <DataColumn>
         <DBColumnName>Description</DBColumnName>
         <DisplayName>Description</DisplayName>
-        <MaxLength>30</MaxLength>
-        <ReadOnly>false</ReadOnly>
-        <IsRequired>true</IsRequired>
+         <MaxLength>30</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>250</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Type</DBColumnName>
+        <DisplayName>Type</DisplayName>
+        <ReadOnly>true</ReadOnly>
+        <IsSubQuery>true</IsSubQuery>
+        <DefaultValue>ctry</DefaultValue>
+        <IsVisible>false</IsVisible>
       </DataColumn>
     </DataColumns>
   </DataMapping>
@@ -318,16 +462,24 @@
         <DBColumnName>Code</DBColumnName>
         <DisplayName>Code</DisplayName>
         <MaxLength>4</MaxLength>
-        <ReadOnly>false</ReadOnly>
         <IsPrimaryKey>true</IsPrimaryKey>
-        <IsRequired>true</IsRequired>
+        <Width>100</Width>
+        <IsSearchable>true</IsSearchable>
       </DataColumn>
       <DataColumn>
         <DBColumnName>Description</DBColumnName>
         <DisplayName>Description</DisplayName>
-        <MaxLength>30</MaxLength>
-        <ReadOnly>false</ReadOnly>
-        <IsRequired>true</IsRequired>
+         <MaxLength>30</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>250</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Type</DBColumnName>
+        <DisplayName>Type</DisplayName>
+        <ReadOnly>true</ReadOnly>
+        <IsSubQuery>true</IsSubQuery>
+        <DefaultValue>ctry</DefaultValue>
+        <IsVisible>false</IsVisible>
       </DataColumn>
     </DataColumns>
   </DataMapping>
@@ -340,16 +492,24 @@
         <DBColumnName>Code</DBColumnName>
         <DisplayName>Code</DisplayName>
         <MaxLength>4</MaxLength>
-        <ReadOnly>false</ReadOnly>
         <IsPrimaryKey>true</IsPrimaryKey>
-        <IsRequired>true</IsRequired>
+        <Width>100</Width>
+        <IsSearchable>true</IsSearchable>
       </DataColumn>
       <DataColumn>
         <DBColumnName>Description</DBColumnName>
         <DisplayName>Description</DisplayName>
-        <MaxLength>30</MaxLength>
-        <ReadOnly>false</ReadOnly>
-        <IsRequired>true</IsRequired>
+         <MaxLength>30</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>250</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Type</DBColumnName>
+        <DisplayName>Type</DisplayName>
+        <ReadOnly>true</ReadOnly>
+        <IsSubQuery>true</IsSubQuery>
+        <DefaultValue>ctry</DefaultValue>
+        <IsVisible>false</IsVisible>
       </DataColumn>
     </DataColumns>
   </DataMapping>
@@ -362,16 +522,24 @@
         <DBColumnName>Code</DBColumnName>
         <DisplayName>Code</DisplayName>
         <MaxLength>4</MaxLength>
-        <ReadOnly>false</ReadOnly>
         <IsPrimaryKey>true</IsPrimaryKey>
-        <IsRequired>true</IsRequired>
+        <Width>100</Width>
+        <IsSearchable>true</IsSearchable>
       </DataColumn>
       <DataColumn>
         <DBColumnName>Description</DBColumnName>
         <DisplayName>Description</DisplayName>
-        <MaxLength>30</MaxLength>
-        <ReadOnly>false</ReadOnly>
-        <IsRequired>true</IsRequired>
+         <MaxLength>30</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>250</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Type</DBColumnName>
+        <DisplayName>Type</DisplayName>
+        <ReadOnly>true</ReadOnly>
+        <IsSubQuery>true</IsSubQuery>
+        <DefaultValue>ctry</DefaultValue>
+        <IsVisible>false</IsVisible>
       </DataColumn>
     </DataColumns>
   </DataMapping>
@@ -384,16 +552,24 @@
         <DBColumnName>Code</DBColumnName>
         <DisplayName>Code</DisplayName>
         <MaxLength>4</MaxLength>
-        <ReadOnly>false</ReadOnly>
         <IsPrimaryKey>true</IsPrimaryKey>
-        <IsRequired>true</IsRequired>
+        <Width>100</Width>
+        <IsSearchable>true</IsSearchable>
       </DataColumn>
       <DataColumn>
         <DBColumnName>Description</DBColumnName>
         <DisplayName>Description</DisplayName>
-        <MaxLength>30</MaxLength>
-        <ReadOnly>false</ReadOnly>
-        <IsRequired>true</IsRequired>
+         <MaxLength>30</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>250</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Type</DBColumnName>
+        <DisplayName>Type</DisplayName>
+        <ReadOnly>true</ReadOnly>
+        <IsSubQuery>true</IsSubQuery>
+        <DefaultValue>ctry</DefaultValue>
+        <IsVisible>false</IsVisible>
       </DataColumn>
     </DataColumns>
   </DataMapping>
@@ -406,16 +582,24 @@
         <DBColumnName>Code</DBColumnName>
         <DisplayName>Code</DisplayName>
         <MaxLength>4</MaxLength>
-        <ReadOnly>false</ReadOnly>
         <IsPrimaryKey>true</IsPrimaryKey>
-        <IsRequired>true</IsRequired>
+        <Width>100</Width>
+        <IsSearchable>true</IsSearchable>
       </DataColumn>
       <DataColumn>
         <DBColumnName>Description</DBColumnName>
         <DisplayName>Description</DisplayName>
-        <MaxLength>30</MaxLength>
-        <ReadOnly>false</ReadOnly>
-        <IsRequired>true</IsRequired>
+         <MaxLength>30</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>250</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Type</DBColumnName>
+        <DisplayName>Type</DisplayName>
+        <ReadOnly>true</ReadOnly>
+        <IsSubQuery>true</IsSubQuery>
+        <DefaultValue>ctry</DefaultValue>
+        <IsVisible>false</IsVisible>
       </DataColumn>
     </DataColumns>
   </DataMapping>
@@ -428,16 +612,24 @@
         <DBColumnName>Code</DBColumnName>
         <DisplayName>Code</DisplayName>
         <MaxLength>4</MaxLength>
-        <ReadOnly>false</ReadOnly>
         <IsPrimaryKey>true</IsPrimaryKey>
-        <IsRequired>true</IsRequired>
+        <Width>100</Width>
+        <IsSearchable>true</IsSearchable>
       </DataColumn>
       <DataColumn>
         <DBColumnName>Description</DBColumnName>
         <DisplayName>Description</DisplayName>
-        <MaxLength>30</MaxLength>
-        <ReadOnly>false</ReadOnly>
-        <IsRequired>true</IsRequired>
+         <MaxLength>30</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>250</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Type</DBColumnName>
+        <DisplayName>Type</DisplayName>
+        <ReadOnly>true</ReadOnly>
+        <IsSubQuery>true</IsSubQuery>
+        <DefaultValue>ctry</DefaultValue>
+        <IsVisible>false</IsVisible>
       </DataColumn>
     </DataColumns>
   </DataMapping>
@@ -450,16 +642,24 @@
         <DBColumnName>Code</DBColumnName>
         <DisplayName>Code</DisplayName>
         <MaxLength>4</MaxLength>
-        <ReadOnly>false</ReadOnly>
         <IsPrimaryKey>true</IsPrimaryKey>
-        <IsRequired>true</IsRequired>
+        <Width>100</Width>
+        <IsSearchable>true</IsSearchable>
       </DataColumn>
       <DataColumn>
         <DBColumnName>Description</DBColumnName>
         <DisplayName>Description</DisplayName>
-        <MaxLength>30</MaxLength>
-        <ReadOnly>false</ReadOnly>
-        <IsRequired>true</IsRequired>
+         <MaxLength>30</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>250</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Type</DBColumnName>
+        <DisplayName>Type</DisplayName>
+        <ReadOnly>true</ReadOnly>
+        <IsSubQuery>true</IsSubQuery>
+        <DefaultValue>ctry</DefaultValue>
+        <IsVisible>false</IsVisible>
       </DataColumn>
     </DataColumns>
   </DataMapping>
@@ -472,16 +672,24 @@
         <DBColumnName>Code</DBColumnName>
         <DisplayName>Code</DisplayName>
         <MaxLength>4</MaxLength>
-        <ReadOnly>false</ReadOnly>
         <IsPrimaryKey>true</IsPrimaryKey>
-        <IsRequired>true</IsRequired>
+        <Width>100</Width>
+        <IsSearchable>true</IsSearchable>
       </DataColumn>
       <DataColumn>
         <DBColumnName>Description</DBColumnName>
         <DisplayName>Description</DisplayName>
-        <MaxLength>30</MaxLength>
-        <ReadOnly>false</ReadOnly>
-        <IsRequired>true</IsRequired>
+         <MaxLength>30</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>250</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Type</DBColumnName>
+        <DisplayName>Type</DisplayName>
+        <ReadOnly>true</ReadOnly>
+        <IsSubQuery>true</IsSubQuery>
+        <DefaultValue>ctry</DefaultValue>
+        <IsVisible>false</IsVisible>
       </DataColumn>
     </DataColumns>
   </DataMapping>
@@ -494,16 +702,24 @@
         <DBColumnName>Code</DBColumnName>
         <DisplayName>Code</DisplayName>
         <MaxLength>4</MaxLength>
-        <ReadOnly>false</ReadOnly>
         <IsPrimaryKey>true</IsPrimaryKey>
-        <IsRequired>true</IsRequired>
+        <Width>100</Width>
+        <IsSearchable>true</IsSearchable>
       </DataColumn>
       <DataColumn>
         <DBColumnName>Description</DBColumnName>
         <DisplayName>Description</DisplayName>
-        <MaxLength>30</MaxLength>
-        <ReadOnly>false</ReadOnly>
-        <IsRequired>true</IsRequired>
+         <MaxLength>30</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>250</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Type</DBColumnName>
+        <DisplayName>Type</DisplayName>
+        <ReadOnly>true</ReadOnly>
+        <IsSubQuery>true</IsSubQuery>
+        <DefaultValue>ctry</DefaultValue>
+        <IsVisible>false</IsVisible>
       </DataColumn>
     </DataColumns>
   </DataMapping>
@@ -516,16 +732,24 @@
         <DBColumnName>Code</DBColumnName>
         <DisplayName>Code</DisplayName>
         <MaxLength>4</MaxLength>
-        <ReadOnly>false</ReadOnly>
         <IsPrimaryKey>true</IsPrimaryKey>
-        <IsRequired>true</IsRequired>
+        <Width>100</Width>
+        <IsSearchable>true</IsSearchable>
       </DataColumn>
       <DataColumn>
         <DBColumnName>Description</DBColumnName>
         <DisplayName>Description</DisplayName>
-        <MaxLength>30</MaxLength>
-        <ReadOnly>false</ReadOnly>
-        <IsRequired>true</IsRequired>
+         <MaxLength>30</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>250</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Type</DBColumnName>
+        <DisplayName>Type</DisplayName>
+        <ReadOnly>true</ReadOnly>
+        <IsSubQuery>true</IsSubQuery>
+        <DefaultValue>ctry</DefaultValue>
+        <IsVisible>false</IsVisible>
       </DataColumn>
     </DataColumns>
   </DataMapping>
@@ -538,214 +762,911 @@
         <DBColumnName>Code</DBColumnName>
         <DisplayName>Code</DisplayName>
         <MaxLength>4</MaxLength>
-        <ReadOnly>false</ReadOnly>
         <IsPrimaryKey>true</IsPrimaryKey>
-        <IsRequired>true</IsRequired>
+        <Width>100</Width>
+        <IsSearchable>true</IsSearchable>
       </DataColumn>
       <DataColumn>
         <DBColumnName>Description</DBColumnName>
         <DisplayName>Description</DisplayName>
-        <MaxLength>30</MaxLength>
-        <ReadOnly>false</ReadOnly>
-        <IsRequired>true</IsRequired>
+         <MaxLength>30</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>250</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Type</DBColumnName>
+        <DisplayName>Type</DisplayName>
+        <ReadOnly>true</ReadOnly>
+        <IsSubQuery>true</IsSubQuery>
+        <DefaultValue>ctry</DefaultValue>
+        <IsVisible>false</IsVisible>
       </DataColumn>
     </DataColumns>
   </DataMapping>
+  
   <DataMapping>
-    <Menu>User Group</Menu>
-    <TableName>codes</TableName>
-    <SubQuery>gt</SubQuery>
+    <Menu>CPT-4-CM</Menu>
+    <TableName>CPT</TableName>
+    <SubQuery></SubQuery>
+    <MaxRecords>10</MaxRecords>
     <DataColumns>
       <DataColumn>
-        <DBColumnName>Code</DBColumnName>
-        <DisplayName>Code</DisplayName>
-        <MaxLength>4</MaxLength>
-        <ReadOnly>false</ReadOnly>
+        <DBColumnName>CPT</DBColumnName>
+        <DisplayName>CPT</DisplayName>
+        <MaxLength>5</MaxLength>
         <IsPrimaryKey>true</IsPrimaryKey>
-        <IsRequired>true</IsRequired>
+        <Width>100</Width>
+        <IsSearchAble>true</IsSearchAble>
       </DataColumn>
       <DataColumn>
         <DBColumnName>Description</DBColumnName>
         <DisplayName>Description</DisplayName>
-        <MaxLength>30</MaxLength>
-        <ReadOnly>false</ReadOnly>
-        <IsRequired>true</IsRequired>
+        <MaxLength>35</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>250</Width>
       </DataColumn>
     </DataColumns>
   </DataMapping>
   <DataMapping>
     <Menu>DSM-4</Menu>
-    <TableName>codes</TableName>
-    <SubQuery>dsm</SubQuery>
+    <TableName>DSM</TableName>
+    <SubQuery></SubQuery>
+    <MaxRecords>10</MaxRecords>
     <DataColumns>
       <DataColumn>
-        <DBColumnName>Code</DBColumnName>
-        <DisplayName>Code</DisplayName>
-        <MaxLength>4</MaxLength>
-        <ReadOnly>false</ReadOnly>
+        <DBColumnName>DSM</DBColumnName>
+        <DisplayName>DSM</DisplayName>
+        <MaxLength>5</MaxLength>
         <IsPrimaryKey>true</IsPrimaryKey>
-        <IsRequired>true</IsRequired>
+        <Width>100</Width>
+        <IsSearchAble>true</IsSearchAble>
       </DataColumn>
       <DataColumn>
         <DBColumnName>Description</DBColumnName>
         <DisplayName>Description</DisplayName>
-        <MaxLength>30</MaxLength>
-        <ReadOnly>false</ReadOnly>
-        <IsRequired>true</IsRequired>
+        <MaxLength>50</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>250</Width>
       </DataColumn>
     </DataColumns>
   </DataMapping>
   <DataMapping>
     <Menu>DRG</Menu>
-    <TableName>codes</TableName>
-    <SubQuery>drg</SubQuery>
+    <TableName>DRG</TableName>
+    <SubQuery></SubQuery>
+    <MaxRecords>10</MaxRecords>
     <DataColumns>
       <DataColumn>
-        <DBColumnName>Code</DBColumnName>
-        <DisplayName>Code</DisplayName>
-        <MaxLength>4</MaxLength>
-        <ReadOnly>false</ReadOnly>
+        <DBColumnName>DRG</DBColumnName>
+        <DisplayName>DRG</DisplayName>
+        <MaxLength>5</MaxLength>
         <IsPrimaryKey>true</IsPrimaryKey>
-        <IsRequired>true</IsRequired>
+        <Width>100</Width>
+        <IsSearchAble>true</IsSearchAble>
       </DataColumn>
       <DataColumn>
         <DBColumnName>Description</DBColumnName>
         <DisplayName>Description</DisplayName>
-        <MaxLength>30</MaxLength>
-        <ReadOnly>false</ReadOnly>
-        <IsRequired>true</IsRequired>
+        <MaxLength>150</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>250</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Rel_Weight</DBColumnName>
+        <DisplayName>Rel_Weight</DisplayName>
+        <MaxLength>10</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>GeoMeanLOS</DBColumnName>
+        <DisplayName>GeoMeanLOS</DisplayName>
+        <MaxLength>10</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>OutLierCutOff</DBColumnName>
+        <DisplayName>OutLierCutOff</DisplayName>
+        <MaxLength>10</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
       </DataColumn>
     </DataColumns>
   </DataMapping>
   <DataMapping>
     <Menu>ICD-9-CM</Menu>
-    <TableName>codes</TableName>
-    <SubQuery>icd</SubQuery>
+    <TableName>ICD</TableName>
+    <SubQuery></SubQuery>
+    <MaxRecords>10</MaxRecords>
     <DataColumns>
       <DataColumn>
-        <DBColumnName>Code</DBColumnName>
-        <DisplayName>Code</DisplayName>
-        <MaxLength>4</MaxLength>
-        <ReadOnly>false</ReadOnly>
+        <DBColumnName>ICD</DBColumnName>
+        <DisplayName>ICD</DisplayName>
+        <MaxLength>6</MaxLength>
         <IsPrimaryKey>true</IsPrimaryKey>
-        <IsRequired>true</IsRequired>
+        <Width>100</Width>
+        <IsSearchAble>true</IsSearchAble>
       </DataColumn>
       <DataColumn>
         <DBColumnName>Description</DBColumnName>
         <DisplayName>Description</DisplayName>
-        <MaxLength>30</MaxLength>
-        <ReadOnly>false</ReadOnly>
-        <IsRequired>true</IsRequired>
+        <MaxLength>225</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>250</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>LengthOfStay</DBColumnName>
+        <DisplayName>LengthOfStay</DisplayName>
+        <MaxLength>10</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Notes</DBColumnName>
+        <DisplayName>Notes</DisplayName>
+        <MaxLength>16</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>100</Width>
       </DataColumn>
     </DataColumns>
   </DataMapping>
   <DataMapping>
     <Menu>Names</Menu>
-    <TableName>codes</TableName>
-    <SubQuery>namez</SubQuery>
+    <TableName>namez</TableName>
+    <SubQuery></SubQuery>
+    <MaxRecords>10</MaxRecords>
     <DataColumns>
       <DataColumn>
-        <DBColumnName>Code</DBColumnName>
-        <DisplayName>Code</DisplayName>
-        <MaxLength>4</MaxLength>
-        <ReadOnly>false</ReadOnly>
+        <DBColumnName>Names_ID</DBColumnName>
+        <DisplayName>Names_ID</DisplayName>
+        <MaxLength>5</MaxLength>
         <IsPrimaryKey>true</IsPrimaryKey>
-        <IsRequired>true</IsRequired>
+        <Width>50</Width>
+        <IsSearchAble>true</IsSearchAble>
       </DataColumn>
       <DataColumn>
-        <DBColumnName>Description</DBColumnName>
-        <DisplayName>Description</DisplayName>
-        <MaxLength>30</MaxLength>
-        <ReadOnly>false</ReadOnly>
+        <DBColumnName>NameID</DBColumnName>
+        <DisplayName>NameID</DisplayName>
+        <MaxLength>22</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>250</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>NameIs</DBColumnName>
+        <DisplayName>NameIs</DisplayName>
+        <MaxLength>10</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Type</DBColumnName>
+        <DisplayName>Type</DisplayName>
+        <MaxLength>4</MaxLength>
         <IsRequired>true</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Status</DBColumnName>
+        <DisplayName>Status</DisplayName>
+        <MaxLength>8</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>ParentNameID</DBColumnName>
+        <DisplayName>ParentNameID</DisplayName>
+        <MaxLength>22</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+          <DataColumn>
+        <DBColumnName>FirstName</DBColumnName>
+        <DisplayName>FirstName</DisplayName>
+        <MaxLength>20</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+          <DataColumn>
+        <DBColumnName>MI</DBColumnName>
+        <DisplayName>MI</DisplayName>
+        <MaxLength>1</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>10</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>LastName</DBColumnName>
+        <DisplayName>LastName</DisplayName>
+        <MaxLength>20</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Title</DBColumnName>
+        <DisplayName>Title</DisplayName>
+        <MaxLength>30</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Salutation</DBColumnName>
+        <DisplayName>Salutation</DisplayName>
+        <MaxLength>20</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Organization</DBColumnName>
+        <DisplayName>Organization</DisplayName>
+        <MaxLength>4</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>100</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Address1</DBColumnName>
+        <DisplayName>Address1</DisplayName>
+        <MaxLength>30</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>100</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Address2</DBColumnName>
+        <DisplayName>Address2</DisplayName>
+        <MaxLength>30</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>100</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>City</DBColumnName>
+        <DisplayName>City</DisplayName>
+        <MaxLength>20</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>100</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>State</DBColumnName>
+        <DisplayName>State</DisplayName>
+        <MaxLength>4</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>PostalCode</DBColumnName>
+        <DisplayName>PostalCode</DisplayName>
+        <MaxLength>10</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>County</DBColumnName>
+        <DisplayName>County</DisplayName>
+        <MaxLength>45</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>100</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Country</DBColumnName>
+        <DisplayName>Country</DisplayName>
+        <MaxLength>4</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Secondary_Address1</DBColumnName>
+        <DisplayName>Secondary_Address1</DisplayName>
+        <MaxLength>30</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>100</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Secondary_Address2</DBColumnName>
+        <DisplayName>Secondary_Address2</DisplayName>
+        <MaxLength>30</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>100</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Secondary_City</DBColumnName>
+        <DisplayName>Secondary_City</DisplayName>
+        <MaxLength>20</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>100</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Secondary_State</DBColumnName>
+        <DisplayName>Secondary_State</DisplayName>
+        <MaxLength>4</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>100</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Secondary_PostalCode</DBColumnName>
+        <DisplayName>Secondary_PostalCode</DisplayName>
+        <MaxLength>45</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>100</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Secondary_County</DBColumnName>
+        <DisplayName>Secondary_County</DisplayName>
+        <MaxLength>4</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Secondary_Country</DBColumnName>
+        <DisplayName>Secondary_Country</DisplayName>
+        <MaxLength>4</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Email1</DBColumnName>
+        <DisplayName>Email1</DisplayName>
+        <MaxLength>50</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>100</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Email2</DBColumnName>
+        <DisplayName>Email2</DisplayName>
+        <MaxLength>50</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>100</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Phone1</DBColumnName>
+        <DisplayName>Phone1</DisplayName>
+        <MaxLength>13</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Phone1Ext</DBColumnName>
+        <DisplayName>Phone1Ext</DisplayName>
+        <MaxLength>4</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Phone1Type</DBColumnName>
+        <DisplayName>Phone1Type</DisplayName>
+        <MaxLength>4</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Phone1</DBColumnName>
+        <DisplayName>Phone1</DisplayName>
+        <MaxLength>13</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Phone1Ext</DBColumnName>
+        <DisplayName>Phone1Ext</DisplayName>
+        <MaxLength>4</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Phone1Type</DBColumnName>
+        <DisplayName>Phone1Type</DisplayName>
+        <MaxLength>4</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Phone2</DBColumnName>
+        <DisplayName>Phone2</DisplayName>
+        <MaxLength>13</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Phone2Ext</DBColumnName>
+        <DisplayName>Phone2Ext</DisplayName>
+        <MaxLength>4</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Phone2Type</DBColumnName>
+        <DisplayName>Phone2Type</DisplayName>
+        <MaxLength>4</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+        <DataColumn>
+        <DBColumnName>Phone3</DBColumnName>
+        <DisplayName>Phone3</DisplayName>
+        <MaxLength>13</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Phone3Ext</DBColumnName>
+        <DisplayName>Phone3Ext</DisplayName>
+        <MaxLength>4</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Phone3Type</DBColumnName>
+        <DisplayName>Phone3Type</DisplayName>
+        <MaxLength>4</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      
+      <DataColumn>
+        <DBColumnName>Phone4</DBColumnName>
+        <DisplayName>Phone4</DisplayName>
+        <MaxLength>13</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Phone4Ext</DBColumnName>
+        <DisplayName>Phone4Ext</DisplayName>
+        <MaxLength>4</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Phone4Type</DBColumnName>
+        <DisplayName>Phone4Type</DisplayName>
+        <MaxLength>4</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+        
+      <DataColumn>
+        <DBColumnName>Fax</DBColumnName>
+        <DisplayName>Fax</DisplayName>
+        <MaxLength>13</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Sex</DBColumnName>
+        <DisplayName>Sex</DisplayName>
+        <MaxLength>1</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>10</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>DOB</DBColumnName>
+        <DisplayName>DOB</DisplayName>
+        <MaxLength>8</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Ethnicity</DBColumnName>
+        <DisplayName>Ethnicity</DisplayName>
+        <MaxLength>4</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Language</DBColumnName>
+        <DisplayName>Language</DisplayName>
+        <MaxLength>4</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Organization2</DBColumnName>
+        <DisplayName>Organization2</DisplayName>
+        <MaxLength>4</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+        <DataColumn>
+        <DBColumnName>SocialSecurity</DBColumnName>
+        <DisplayName>SocialSecurity</DisplayName>
+        <MaxLength>11</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>NLocations</DBColumnName>
+        <DisplayName>NLocations</DisplayName>
+        <MaxLength>4</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>SMSA</DBColumnName>
+        <DisplayName>SMSA</DisplayName>
+        <MaxLength>60</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>100</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>RGSite</DBColumnName>
+        <DisplayName>RGSite</DisplayName>
+        <MaxLength>10</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>RGParentSite</DBColumnName>
+        <DisplayName>RGParentSite</DisplayName>
+        <MaxLength>10</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+        <DataColumn>
+        <DBColumnName>MetroStatArea</DBColumnName>
+        <DisplayName>MetroStatArea</DisplayName>
+        <MaxLength>60</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>100</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>User1</DBColumnName>
+        <DisplayName>User1</DisplayName>
+        <MaxLength>40</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>100</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>User2</DBColumnName>
+        <DisplayName>User2</DisplayName>
+        <MaxLength>40</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>100</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>User3</DBColumnName>
+        <DisplayName>User3</DisplayName>
+        <MaxLength>40</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>100</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>User4</DBColumnName>
+        <DisplayName>User4</DisplayName>
+        <MaxLength>40</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>100</Width>
+      </DataColumn>
+        <DataColumn>
+        <DBColumnName>PIN</DBColumnName>
+        <DisplayName>PIN</DisplayName>
+        <MaxLength>9</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+          <DataColumn>
+        <DBColumnName>UPIN</DBColumnName>
+        <DisplayName>UPIN</DisplayName>
+        <MaxLength>6</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+        <DataColumn>
+        <DBColumnName>StateLicense</DBColumnName>
+        <DisplayName>StateLicense</DisplayName>
+        <MaxLength>6</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
       </DataColumn>
     </DataColumns>
   </DataMapping>
   <DataMapping>
     <Menu>Organizations</Menu>
-    <TableName>codes</TableName>
-    <SubQuery>organizations</SubQuery>
+    <TableName>organization</TableName>
+    <SubQuery></SubQuery>
+    <MaxRecords>10</MaxRecords>
     <DataColumns>
       <DataColumn>
-        <DBColumnName>Code</DBColumnName>
-        <DisplayName>Code</DisplayName>
-        <MaxLength>4</MaxLength>
-        <ReadOnly>false</ReadOnly>
+        <DBColumnName>Organization_ID</DBColumnName>
+        <DisplayName>Organization_ID</DisplayName>
+        <MaxLength>5</MaxLength>
         <IsPrimaryKey>true</IsPrimaryKey>
-        <IsRequired>true</IsRequired>
+        <Width>50</Width>
+        <IsSearchAble>true</IsSearchAble>
       </DataColumn>
       <DataColumn>
-        <DBColumnName>Description</DBColumnName>
-        <DisplayName>Description</DisplayName>
+        <DBColumnName>Name</DBColumnName>
+        <DisplayName>Name</DisplayName>
+        <MaxLength>50</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>250</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>PARENT_ORG_ID</DBColumnName>
+        <DisplayName>PARENT_ORG_ID</DisplayName>
+        <MaxLength>5</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>HQ_ORG_ID</DBColumnName>
+        <DisplayName>HQ_ORG_ID</DisplayName>
+        <MaxLength>5</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>EIN</DBColumnName>
+        <DisplayName>EIN</DisplayName>
+        <MaxLength>10</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>HIPPA_Number</DBColumnName>
+        <DisplayName>HIPPA_Number</DisplayName>
+        <MaxLength>10</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Primary_Address1</DBColumnName>
+        <DisplayName>Primary_Address1</DisplayName>
         <MaxLength>30</MaxLength>
-        <ReadOnly>false</ReadOnly>
-        <IsRequired>true</IsRequired>
+        <IsRequired>false</IsRequired>
+        <Width>100</Width>
       </DataColumn>
-    </DataColumns>
-  </DataMapping>
-  <DataMapping>
-    <Menu>Standard</Menu>
-    <TableName>codes</TableName>
-    <SubQuery>stdbenefits</SubQuery>
-    <DataColumns>
       <DataColumn>
-        <DBColumnName>Code</DBColumnName>
-        <DisplayName>Code</DisplayName>
+        <DBColumnName>Primary_Address2</DBColumnName>
+        <DisplayName>Primary_Address2</DisplayName>
+        <MaxLength>30</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>100</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Primary_City</DBColumnName>
+        <DisplayName>Primary_City</DisplayName>
+        <MaxLength>20</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Primary_State</DBColumnName>
+        <DisplayName>Primary_State</DisplayName>
         <MaxLength>4</MaxLength>
-        <ReadOnly>false</ReadOnly>
-        <IsPrimaryKey>true</IsPrimaryKey>
-        <IsRequired>true</IsRequired>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
       </DataColumn>
       <DataColumn>
-        <DBColumnName>Description</DBColumnName>
-        <DisplayName>Description</DisplayName>
-        <MaxLength>30</MaxLength>
-        <ReadOnly>false</ReadOnly>
-        <IsRequired>true</IsRequired>
+        <DBColumnName>Primary_PostalCode</DBColumnName>
+        <DisplayName>Primary_PostalCode</DisplayName>
+        <MaxLength>10</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
       </DataColumn>
+      <DataColumn>
+        <DBColumnName>Primary_Country</DBColumnName>
+        <DisplayName>Primary_Country</DisplayName>
+        <MaxLength>4</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Secondary_Address1</DBColumnName>
+        <DisplayName>Secondary_Address1</DisplayName>
+        <MaxLength>30</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>100</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Secondary_Address2</DBColumnName>
+        <DisplayName>Secondary_Address2</DisplayName>
+        <MaxLength>30</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>100</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Secondary_City</DBColumnName>
+        <DisplayName>Secondary_City</DisplayName>
+        <MaxLength>20</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Secondary_State</DBColumnName>
+        <DisplayName>Secondary_State</DisplayName>
+        <MaxLength>4</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Secondary_PostalCode</DBColumnName>
+        <DisplayName>Secondary_PostalCode</DisplayName>
+        <MaxLength>10</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Secondary_Country</DBColumnName>
+        <DisplayName>Secondary_Country</DisplayName>
+        <MaxLength>4</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+
+      <DataColumn>
+        <DBColumnName>Phone</DBColumnName>
+        <DisplayName>Phone</DisplayName>
+        <MaxLength>13</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Fax</DBColumnName>
+        <DisplayName>Fax</DisplayName>
+        <MaxLength>13</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>WebSite</DBColumnName>
+        <DisplayName>WebSite</DisplayName>
+        <MaxLength>50</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>250</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>FederalTaxId</DBColumnName>
+        <DisplayName>FederalTaxId</DisplayName>
+        <MaxLength>20</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>100</Width>
+      </DataColumn>
+      
     </DataColumns>
   </DataMapping>
   <DataMapping>
     <Menu>Activity Codes</Menu>
-    <TableName>codes</TableName>
-    <SubQuery>actcodes</SubQuery>
+    <TableName>ActCodes</TableName>
+    <SubQuery></SubQuery>
     <DataColumns>
       <DataColumn>
-        <DBColumnName>Code</DBColumnName>
-        <DisplayName>Code</DisplayName>
-        <MaxLength>4</MaxLength>
-        <ReadOnly>false</ReadOnly>
+        <DBColumnName>ActivityCode</DBColumnName>
+        <DisplayName>ActivityCode</DisplayName>
+        <MaxLength>5</MaxLength>
         <IsPrimaryKey>true</IsPrimaryKey>
-        <IsRequired>true</IsRequired>
+        <Width>50</Width>
+        <IsSearchAble>true</IsSearchAble>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>CodeType</DBColumnName>
+        <DisplayName>CodeType</DisplayName>
+        <MaxLength>4</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
       </DataColumn>
       <DataColumn>
         <DBColumnName>Description</DBColumnName>
         <DisplayName>Description</DisplayName>
         <MaxLength>30</MaxLength>
-        <ReadOnly>false</ReadOnly>
-        <IsRequired>true</IsRequired>
+        <IsRequired>false</IsRequired>
+        <Width>100</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>ProfessionalTime</DBColumnName>
+        <DisplayName>ProfessionalTime</DisplayName>
+        <MaxLength>5</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>TravelTime</DBColumnName>
+        <DisplayName>TravelTime</DisplayName>
+        <MaxLength>5</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>MileageRate</DBColumnName>
+        <DisplayName>MileageRate</DisplayName>
+        <MaxLength>5</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>BillingStatus</DBColumnName>
+        <DisplayName>BillingStatus</DisplayName>
+        <MaxLength>12</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>100</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Productive</DBColumnName>
+        <DisplayName>Productive</DisplayName>
+        <MaxLength>2</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>10</Width>
       </DataColumn>
     </DataColumns>
   </DataMapping>
   <DataMapping>
     <Menu>Activity Overrides</Menu>
-    <TableName>codes</TableName>
-    <SubQuery>actover</SubQuery>
+    <TableName>ActOver</TableName>
+    <SubQuery></SubQuery>
     <DataColumns>
       <DataColumn>
-        <DBColumnName>Code</DBColumnName>
-        <DisplayName>Code</DisplayName>
-        <MaxLength>4</MaxLength>
-        <ReadOnly>false</ReadOnly>
+        <DBColumnName>ActivityOverRideID</DBColumnName>
+        <DisplayName>ActivityOverRideID</DisplayName>
+        <MaxLength>22</MaxLength>
         <IsPrimaryKey>true</IsPrimaryKey>
-        <IsRequired>true</IsRequired>
+        <Width>50</Width>
+        <IsSearchAble>true</IsSearchAble>
       </DataColumn>
       <DataColumn>
-        <DBColumnName>Description</DBColumnName>
-        <DisplayName>Description</DisplayName>
-        <MaxLength>30</MaxLength>
-        <ReadOnly>false</ReadOnly>
-        <IsRequired>true</IsRequired>
+        <DBColumnName>ActivityCode</DBColumnName>
+        <DisplayName>ActivityCode</DisplayName>
+        <MaxLength>5</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>FeeSchedule</DBColumnName>
+        <DisplayName>FeeSchedule</DisplayName>
+        <MaxLength>4</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>UserID</DBColumnName>
+        <DisplayName>UserID</DisplayName>
+        <MaxLength>5</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>NameID</DBColumnName>
+        <DisplayName>NameID</DisplayName>
+        <MaxLength>22</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>TimeRate</DBColumnName>
+        <DisplayName>TimeRate</DisplayName>
+        <MaxLength>5</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>TravelRate</DBColumnName>
+        <DisplayName>TravelRate</DisplayName>
+        <MaxLength>5</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>MileageRate</DBColumnName>
+        <DisplayName>MileageRate</DisplayName>
+        <MaxLength>5</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>UserGroup</DBColumnName>
+        <DisplayName>UserGroup</DisplayName>
+        <MaxLength>4</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>ActivityType</DBColumnName>
+        <DisplayName>ActivityType</DisplayName>
+        <MaxLength>4</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
+      </DataColumn>
+      <DataColumn>
+        <DBColumnName>Weight</DBColumnName>
+        <DisplayName>Weight</DisplayName>
+        <MaxLength>4</MaxLength>
+        <IsRequired>false</IsRequired>
+        <Width>50</Width>
       </DataColumn>
     </DataColumns>
   </DataMapping>

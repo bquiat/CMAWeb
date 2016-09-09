@@ -116,9 +116,7 @@
                 var htmlWindow = "<div id=\"" + objID + "\" class=\"resizable ui-widget-content draggable window--container\">" + my_var + "</div>";
                 $("#dragZone").append(htmlWindow);
                 var a = $("#dragZone").children().length;
-                $('#' + objID).draggable({
-                    start: function (event, ui) { $(this).css("z-index", a++); }
-                });
+                $('#' + objID).draggable({ handle: 'header', start: function (event, ui) { $(this).css("z-index", a++); } });
                 $('#dragZone div').click(function () {
                     $('#dragZone div').each(function () {
                         $(this).css("z-index", "0");

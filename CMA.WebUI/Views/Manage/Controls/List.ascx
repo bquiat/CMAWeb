@@ -56,7 +56,7 @@
                         <thead>
                             <tr>
                                 <% 
-                                    foreach (var header in Model.DataColumns)
+                                    foreach (var header in Model.DataColumns.Where(_=>_.IsVisible))
                                     {
                                 %>  
                                     <th><%=header.DisplayName %></th>
@@ -78,7 +78,7 @@
                             %>
                             <tr>
                             <%
-                                foreach (var col in Model.DataColumns)
+                                foreach (var col in Model.DataColumns.Where(_=>_.IsVisible))
                                 {
                                     if (col.IsPrimaryKey)
                                     {

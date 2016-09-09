@@ -53,7 +53,7 @@ function addNewRecord(type, menu, tablename, subquery, id) {
 
     $overlayText.text('Loading to Add New ' + menu + '....');
     $.ajax({
-        url: "/Manage/GetEditData",
+        url: "/Manage/GetEdit",
         type: "post",
         data: serializedData,
         success: function (response, textStatus, jqXHR) {
@@ -78,7 +78,7 @@ function editRecord(type,key,value,menu,tablename,subquery,id)
     var serializedData = "edit=1&type=" + type + "&key=" + key + "&val=" + value + "&menu=" + menu + "&table=" + tablename + "&subquery=" + subquery + "&id=" + id;
     $overlayText.text('Loading the ' + menu + '....');
     $.ajax({
-        url: "/Manage/GetEditData",
+        url: "/Manage/GetEdit",
         type: "post",
         data: serializedData,
         success: function (response, textStatus, jqXHR) {
@@ -152,18 +152,22 @@ function refreshWindow(id)
         $("#" + id + "-tab").remove();
 }
 $(".menu-item").click(function () {
-    var type = $(this).attr('data-type');
-    var tableName = $(this).attr('data-input1');
-    var subQuery = $(this).attr('data-input2');
-    var id = $(this).attr('data-input3');
-    var menuName = $(this).attr('data-input4');
+    var type = $(this).data('type');
     $overlayText = $("#overlayText");
     $overlay = $("#ajax-Page-overlay");
     $overlay.fadeIn();
     $overlayText.text('Refreshing....');
-    var serializedData = "type=" + type + "&table=" + tableName + "&subquery=" + subQuery + "&id=" + id + "&menu=" + menuName;
+    var id = $(this).data('container-name');
+    var menuName = $(this).data('container-caption');
+    var tableName = $(this).data('table');
+    var subQuery = $(this).data('query');
+    var serializedData = "type=" + type + "&id=" + id + "&menu=" + menuName;
+    if (type == "list") {
+        var serializedData = serializedData + "&table=" + tableName + "&subquery=" + subQuery;
+    }
+
     $.ajax({
-        url: "/Manage/GetListData",
+        url: "/Manage/GetWindow",
         type: "post",
         data: serializedData,
         success: function (response, textStatus, jqXHR) {
@@ -174,7 +178,7 @@ $(".menu-item").click(function () {
                 $("#lstview-" + id).slideDown(100);
                 $("#addeditview-" + id).slideUp(100);
                 refreshWindow(id);
-            }else
+            } else
                 $("#pageContent").append(content);
             openNewTab(id);
         },
@@ -189,7 +193,7 @@ $(".menu-item").click(function () {
 });
 $(".searchText").keyup(function (event) {
     if (event.keyCode == 13) {
-        var id = $(this).attr('data-id');
+        var id = $(this).data('id');
         $("#btn-" + id + "-search").click();
     }
 });
@@ -211,7 +215,7 @@ function searchText(type, menu, tableName, subQuery, id)
     var serializedData = "type=" + type + "&table=" + tableName + "&subquery=" + subQuery + "&id=" + id + "&menu=" + menu;
     serializedData += "&searchText=" + $searchText.val();
     $.ajax({
-        url: "/Manage/GetListData",
+        url: "/Manage/GetWindow",
         type: "post",
         data: serializedData,
         success: function (response, textStatus, jqXHR) {

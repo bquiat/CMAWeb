@@ -22,3 +22,9 @@
 .activelink{
     color:#3399fb!important;
 }
+#manage-case
+{
+    min-height:600px;
+    min-width:1200px!important;
+}
+

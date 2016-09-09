@@ -13,6 +13,7 @@ using System.Data.Linq.SqlClient;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using System.Xml;
+using System.Reflection;
 
 namespace CMA.WebUI.Controllers
 {
@@ -38,10 +39,9 @@ namespace CMA.WebUI.Controllers
             return View();
         }
 
-
         [HttpPost]
         [Authorize]
-        public ActionResult GetEditData()
+        public ActionResult GetEdit()
         {
             ListInput inputParam = new ListInput();
             bool isEdit = Request.Form["edit"] != null ? Request.Form["edit"].ToString() == "1" : false;
@@ -52,10 +52,10 @@ namespace CMA.WebUI.Controllers
             inputParam.TableName = Request.Form["table"]!=null ? Request.Form["table"].ToString() : string.Empty;
             inputParam.SubQuery = Request.Form["subquery"]!=null ? Request.Form["subquery"].ToString() : string.Empty;
             inputParam.Type = type;
-            inputParam.ContainerId =Request.Form["id"]!=null ? Request.Form["id"].ToString() : string.Empty; 
-
+            inputParam.ContainerId =Request.Form["id"]!=null ? Request.Form["id"].ToString() : string.Empty;
             ListViewModel viewModel = new ListViewModel();
             viewModel.InputParam = inputParam;
+            int MaxListRecord = 0;
 
             if (string.Equals(type, "list", StringComparison.InvariantCultureIgnoreCase))
             {
@@ -64,9 +64,13 @@ namespace CMA.WebUI.Controllers
                     viewModel.Caption = "Edit Record for " + CMAHelper.ConvertSentenceCase(inputParam.Menu);
                 else 
                     viewModel.Caption = "Add Record for " + CMAHelper.ConvertSentenceCase(inputParam.Menu);
-                viewModel.DataColumns = InitializeDataMapping(inputParam);
+                viewModel.DataColumns = InitializeDataMapping(inputParam, out MaxListRecord);
+                viewModel.MaxListRecords = MaxListRecord;
+
                 if (isEdit)
                     viewModel.TableData = GetDataFromDB(viewModel, value);
+
+                
 
                 return PartialView("~/Views/Manage/Controls/Edit.ascx", viewModel);
             }
@@ -75,7 +79,7 @@ namespace CMA.WebUI.Controllers
         }
         [HttpPost]
         [Authorize]
-        public ActionResult GetListData()
+        public ActionResult GetWindow()
         {
             ListInput inputParam = new ListInput();
             var type = Request.Form["type"]!=null ? Request.Form["type"].ToString() : string.Empty;
@@ -87,16 +91,39 @@ namespace CMA.WebUI.Controllers
 
             ListViewModel viewModel = new ListViewModel();
             viewModel.InputParam = inputParam;
+            int MaxListRecords = 0;
 
             if (string.Equals(type, "list", StringComparison.InvariantCultureIgnoreCase))
-            {   
+            {
                 string searchText = Request.Form["searchText"] != null ? Request.Form["searchText"].ToString().Trim() : string.Empty;
                 viewModel.TableName = inputParam.TableName;
                 viewModel.Caption = "Manage " + CMAHelper.ConvertSentenceCase(inputParam.Menu);
                 viewModel.SearchText = searchText.Trim();
-                viewModel.DataColumns = InitializeDataMapping(inputParam);
+                viewModel.DataColumns = InitializeDataMapping(inputParam, out MaxListRecords);
+                viewModel.MaxListRecords = MaxListRecords;
                 viewModel.TableData = GetDataFromDB(viewModel);
                 return PartialView("~/Views/Manage/Controls/List.ascx", viewModel);
+            }
+            else if (string.Equals(type, "manage-case", StringComparison.InvariantCultureIgnoreCase))
+            {
+                string searchText = Request.Form["searchText"] != null ? Request.Form["searchText"].ToString().Trim() : string.Empty;
+                viewModel.Caption = "Manage " + CMAHelper.ConvertSentenceCase(inputParam.Menu);
+                viewModel.SearchText = searchText.Trim();
+                return PartialView("~/Views/Manage/Controls/ManageCase.ascx", viewModel);
+            }
+            else if (string.Equals(type, "manage-document", StringComparison.InvariantCultureIgnoreCase))
+            {
+                string searchText = Request.Form["searchText"] != null ? Request.Form["searchText"].ToString().Trim() : string.Empty;
+                viewModel.Caption = "Manage " + CMAHelper.ConvertSentenceCase(inputParam.Menu);
+                viewModel.SearchText = searchText.Trim();
+                return PartialView("~/Views/Manage/Controls/ManageDocument.ascx", viewModel);
+            }
+            else if (string.Equals(type, "manage-activity", StringComparison.InvariantCultureIgnoreCase))
+            {
+                string searchText = Request.Form["searchText"] != null ? Request.Form["searchText"].ToString().Trim() : string.Empty;
+                viewModel.Caption = "Manage " + CMAHelper.ConvertSentenceCase(inputParam.Menu);
+                viewModel.SearchText = searchText.Trim();
+                return PartialView("~/Views/Manage/Controls/ManageActivity.ascx", viewModel);
             }
             else
                 return null;
@@ -114,7 +141,7 @@ namespace CMA.WebUI.Controllers
             inputParam.SubQuery = Request.Form["subquery"]!=null ? Request.Form["subquery"].ToString() : string.Empty;
             inputParam.Type = type;
             inputParam.ContainerId =Request.Form["id"]!=null ? Request.Form["id"].ToString() : string.Empty;
-
+            int MaxListRecord = 0;
             ListViewModel viewModel = new ListViewModel();
             viewModel.InputParam = inputParam;
 
@@ -124,7 +151,8 @@ namespace CMA.WebUI.Controllers
                 DeleteRecordFromDB(viewModel, value, viewModel.InputParam.SubQuery);
                 viewModel.Caption = "Manage " + CMAHelper.ConvertSentenceCase(inputParam.Menu);
                 viewModel.SearchText = string.Empty;
-                viewModel.DataColumns = InitializeDataMapping(inputParam);
+                viewModel.DataColumns = InitializeDataMapping(inputParam, out MaxListRecord);
+                viewModel.MaxListRecords = MaxListRecord;
                 viewModel.TableData = GetDataFromDB(viewModel);
                 return PartialView("~/Views/Manage/Controls/List.ascx", viewModel);
             }
@@ -148,13 +176,15 @@ namespace CMA.WebUI.Controllers
             viewModel.InputParam = inputParam;
             viewModel.TableName = inputParam.TableName;
             string errorMessage = string.Empty;
+            int MaxListRecord = 0;
 
             if (string.Equals(type, "list", StringComparison.InvariantCultureIgnoreCase))
             {
                 string pkey = Request.Form["pkey"] != null ? Request.Form["pkey"].ToString().Trim() : string.Empty;
                 string pkeyValue = Request.Form["pkeyValue"] != null ? Request.Form["pkeyValue"].ToString().Trim() : string.Empty;
                 bool isUpdate = !string.IsNullOrEmpty(pkey) && !string.IsNullOrEmpty(pkeyValue) ? true : false;
-                viewModel.DataColumns = InitializeDataMapping(inputParam);
+                viewModel.DataColumns = InitializeDataMapping(inputParam, out MaxListRecord);
+                viewModel.MaxListRecords = MaxListRecord;
                 string sql = string.Empty;
 
                 var dataContext = new CMADataContext();
@@ -279,41 +309,95 @@ namespace CMA.WebUI.Controllers
         private string GetDataFromDB(ListViewModel viewModel, string value)
         {
             var dataContext = new CMADataContext();
-            switch (viewModel.TableName.ToLower())
-            {
-                case "codes":
-                    var q0 = dataContext.CODEs.AsQueryable();
-                    if (!string.IsNullOrEmpty(value))
-                        q0 = q0.Where(_ => _.Type == viewModel.InputParam.SubQuery && _.Code1 == value);
-                    
-                    else if (!string.IsNullOrEmpty(viewModel.SearchText))
-                        q0 = q0.Where(_ => SqlMethods.Like(_.Code1, "%" + viewModel.SearchText + "%")
-                            || SqlMethods.Like(_.Description, "%" + viewModel.SearchText + "%")
-                            && Equals(_.Type, viewModel.InputParam.SubQuery));
-                    else
-                        q0 = q0.Where(_ => _.Type == viewModel.InputParam.SubQuery);
-                    
+            string sql = "select ";
+            if (!string.IsNullOrEmpty(viewModel.SearchText))
+                sql += " top 1 ";
+            else if (viewModel.MaxListRecords > 0)
+                sql += " top " + viewModel.MaxListRecords + " ";
 
-                    viewModel.TableData = JsonConvert.SerializeObject(q0.OrderBy(_ => _.Code1).ToList());
-                    break;
-                default:
-                    break;
+            sql += string.Join(",", viewModel.DataColumns.Select(_=>_.DBColumnName).ToList());
+            sql += " from dbo." + viewModel.TableName.ToLower() + " with (NOLOCK)";
+
+            bool hasWhereClause = false;
+            bool bAddAnd = false;
+            if (!string.IsNullOrEmpty(viewModel.InputParam.SubQuery) && viewModel.DataColumns.Where(_=>_.IsSubQuery).Any())
+            {
+                
+                if (!hasWhereClause)
+                {
+                    sql += " where ";
+                    hasWhereClause = true;
+                }
+                foreach (var colName in viewModel.DataColumns.Where(_ => _.IsSubQuery))
+                    sql += " " + colName.DBColumnName + "=" + SQLHelper.MakeSQLSafe(viewModel.InputParam.SubQuery) + " OR";
+
+                sql = sql.Trim();
+                if (sql.EndsWith("OR"))
+                    sql = sql.Substring(0, sql.Length - 2);
+                bAddAnd = true;
             }
 
+            if (!string.IsNullOrEmpty(value) && viewModel.DataColumns.Where(_=>_.IsPrimaryKey).Any())
+            {
+                bool bFirstTime = true;
+                if (!hasWhereClause)
+                {
+                    sql += " where ";
+                    hasWhereClause = true;
+                }
+                foreach (var colName in viewModel.DataColumns.Where(_ => _.IsPrimaryKey))
+                {
+                    if (bAddAnd && bFirstTime)
+                        sql += " AND ";
+                    sql += " " + colName.DBColumnName + "=" + SQLHelper.MakeSQLSafe(value) + " AND";
+                    bFirstTime = false;
+                }
+                
+                sql = sql.Trim();
+                if (sql.EndsWith("AND"))
+                    sql = sql.Substring(0, sql.Length - 3);
+                bAddAnd = true;
+            }
+
+            else if (!string.IsNullOrEmpty(viewModel.SearchText) && viewModel.DataColumns.Where(_=>_.IsSearchAble).Any())
+            {
+                bool bFirstTime = true;
+                if (!hasWhereClause)
+                {
+                    sql += " where ";
+                    hasWhereClause = true;
+                }
+                foreach (var colName in viewModel.DataColumns.Where(_ => _.IsSearchAble))
+                {
+                    if (bAddAnd && bFirstTime)
+                        sql += " AND ";
+                    sql += " " + colName.DBColumnName + " like " + SQLHelper.MakeSQLSafe("%" + viewModel.SearchText + "%") + " OR";
+                }
+
+                sql = sql.Trim();
+                if (sql.EndsWith("OR"))
+                    sql = sql.Substring(0, sql.Length - 2);
+                bAddAnd = true;
+            }
+
+            if (viewModel.DataColumns.Where(_=>_.OrderBy!=null).Any())
+            {
+                foreach (var colName in viewModel.DataColumns.Where(_ => _.OrderBy != null))
+                    sql += colName.OrderBy + ",";
+                sql = sql.Trim();
+                if (sql.EndsWith(","))
+                    sql = sql.Substring(0, sql.Length - 1);
+            }
+
+            var dbTabName = dataContext.Mapping.GetTables().Where(_ => _.TableName.ToLower() == "dbo." + viewModel.TableName.ToLower()).FirstOrDefault();
+            var output = dataContext.ExecuteQuery(dbTabName.RowType.Type, sql);
+            viewModel.TableData = JsonConvert.SerializeObject(output);
             dataContext.Dispose();
             return viewModel.TableData;
         }
-        private List<DataColumn> InitializeDataMapping(ListInput inputParam)
-        {
-
-            //XmlSerializer serializer = new XmlSerializer(typeof(DataMapping));
-            //System.IO.FileStream fs = new System.IO.FileStream(Server.MapPath("~/Models/DataMapping.xml"), System.IO.FileMode.Open);
-            //XmlReader reader = XmlReader.Create(fs);
-            //var mappings = (DataMapping)serializer.Deserialize(reader);
-
-
-            //fs.Close();
-            //fs.Dispose();
+        private List<DataColumn> InitializeDataMapping(ListInput inputParam, out int MaxListRecords)
+        {   
+            MaxListRecords = int.Parse(ConfigurationManager.AppSettings["MaxListRecods"]);
             List<DataColumn> dataColumns = new List<DataColumn>();
             XDocument xDoc = XDocument.Load(Server.MapPath("~/Models/DataMapping.xml"));
             var datacolumns = from cols in xDoc.Descendants("DataMapping")
@@ -322,19 +406,29 @@ namespace CMA.WebUI.Controllers
                                     && cols.Element("SubQuery").Value.ToLower() == inputParam.SubQuery.ToLower()
                               select cols;
 
-            if (datacolumns!=null && datacolumns.Any())
+            if (datacolumns != null && datacolumns.Any())
+            {
+                if (datacolumns.Descendants("MaxRecords")!=null && datacolumns.Descendants("MaxRecords").FirstOrDefault()!=null)
+                    MaxListRecords = int.Parse(datacolumns.Descendants("MaxRecords").FirstOrDefault().Value.ToString());
+
                 foreach (var col in datacolumns.Descendants("DataColumn"))
                 {
                     DataColumn column = new DataColumn();
                     column.DBColumnName = col.Element("DBColumnName").Value;
                     column.DisplayName = col.Element("DisplayName").Value;
-                    column.MaxLength = col.Element("MaxLength") != null ? int.Parse(col.Element("MaxLength").Value) : 0; 
-                    column.ReadOnly = col.Element("ReadOnly") != null ? bool.Parse(col.Element("ReadOnly").Value) : false;
+                    column.MaxLength = col.Element("MaxLength") != null ? int.Parse(col.Element("MaxLength").Value) : 0;
+                    column.ReadOnly = col.Element("ReadOnly") != null ? bool.Parse(col.Element("ReadOnly").Value) : false; // All fields are updatable unless specified
                     column.IsPrimaryKey = col.Element("IsPrimaryKey") != null ? bool.Parse(col.Element("IsPrimaryKey").Value) : false;
-                    column.IsRequired = col.Element("IsRequired") != null ? bool.Parse(col.Element("IsRequired").Value) : false;
-                    column.Width = col.Element("Width") != null ? int.Parse(col.Element("Width").Value) : 0;
+                    column.IsRequired = col.Element("IsRequired") != null ? bool.Parse(col.Element("IsRequired").Value) : true; // Default all Values are required unless specified
+                    column.Width = col.Element("Width") != null ? int.Parse(col.Element("Width").Value) : 100; 
+                    column.IsSearchAble = col.Element("IsSearchAble") != null ? bool.Parse(col.Element("IsSearchAble").Value) : false; // Default is False unless specified
+                    column.IsSubQuery = col.Element("IsSubQuery") != null ? bool.Parse(col.Element("IsSubQuery").Value) : false; // Default is False unless specified
+                    column.DefaultValue = col.Element("DefaultValue") != null ? col.Element("DefaultValue").Value.ToString() : string.Empty; 
+                    column.IsVisible = col.Element("IsVisible") != null ? bool.Parse(col.Element("IsVisible").Value) : true; // Default is true unless specified
+                    column.OrderBy = (col.Element("OrderBy") != null ? column.DBColumnName + " " + col.Element("OrderBy").Value.ToString() : null); 
                     dataColumns.Add(column);
                 }
+            }
             return dataColumns;
         }
 
@@ -774,8 +868,7 @@ namespace CMA.WebUI.Controllers
 //            return displayHeaders;
 //        }
 
-        
-
+            
         int ProcessCodeType(string codeType)
         {
             int ri=0;

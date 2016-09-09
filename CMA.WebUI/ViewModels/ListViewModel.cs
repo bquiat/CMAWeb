@@ -11,6 +11,7 @@ namespace CMA.WebUI.ViewModels
         public string TableData { get; set; }
         public string SearchText { get; set; }
         public string Caption { get; set; }
+        public int MaxListRecords { get; set; }
         public ListInput InputParam { get; set; }
         public List<DataColumn> DataColumns { get; set; }
     }
@@ -48,7 +49,11 @@ namespace CMA.WebUI.ViewModels
         public bool IsPrimaryKey { get; set; }
         public bool IsRequired { get; set; }
         public int Width { get; set; }
-        
+        public bool IsSearchAble { get; set; }
+        public bool IsVisible { get; set; }
+        public bool IsSubQuery { get; set; }
+        public string DefaultValue { get; set; }
+        public string OrderBy { get; set; }
     }
 }
 

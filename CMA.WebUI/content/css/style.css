@@ -134,11 +134,13 @@ button:active {
   width: 100%;
     height:100% !important;
 }
+/* <!-- WebhtmlVersion - 0004 - Start --> */
 .app-header {
 	background-color:#6badf6;
     padding: 0 5px 5px 5px;
-	cursor:default;
+	cursor: move;
 }
+/* <!-- WebhtmlVersion - 0004 - End --> */
 .app-header h1 {
   color: #111;
   display: inline-block;
@@ -374,10 +376,13 @@ background: #c3c3c3;
 -moz-box-shadow:  0px 3px 8px 0px rgba(0,0,0,0.5);
 box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.5);--*/
 }
+/* <!-- WebhtmlVersion - 0005 - Start --> */
 .overflow--container {
     overflow-x: auto;
-    height: 100%;
+    height: 95%;
+     background-color: #eeeeee;
 }
+/* <!-- WebhtmlVersion - 0005 - End --> */
 .window--container {
 	background-color:#6badf6 !important;
 	border:solid 1px #5284bc !important;
@@ -428,6 +433,7 @@ box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.5);--*/
 .window-inner-header .search-text .search-btn button {
     margin-top: -3px;
 }
+/* <!-- WebhtmlVersion - 0006 - Start --> */
 .inner-window-body {
     background-color: #fff;
     float: left;
@@ -436,13 +442,18 @@ box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.5);--*/
     width: 100%;
     position: relative;
     height: 100%;
+    padding-bottom:10px;
+    margin-right:10px;
+    min-width:800px;
 }
+
 .inner-window {
-	position:absolute;
+	
 	background-color:#eee;
-	height:100%;
+	/*height:100%;*/
 	min-width:800px;
 }
+/* <!-- WebhtmlVersion - 0006 - End --> */
 select.form-control {
     padding-left: 0px;
 }
@@ -498,11 +509,13 @@ select.form-control {
 .no--float {
 	float:none !important;
 }
+/* <!-- WebhtmlVersion - 0007 - Start --> */
 .window-fluid {
 	min-width: 600px;
-    width: 100%;
+    width: 98%;
     font-weight: normal;
 }
+/* <!-- WebhtmlVersion - 0007 - End --> */
 .window-fluid.inner-window-style {
 }
 table label {
@@ -550,12 +563,16 @@ th {
 .manage--case__tabbing {
 	margin-top:5px;
 }
+/* <!-- WebhtmlVersion - 0008 - Start --> */
 .inner--body__manage--case {
     float: left;
-    height: 465px;
+    min-height: 600px;
+    height:100%;
     width: 100%;
+    min-width:800px;
 	background-color:#eee;
 }
+/* <!-- WebhtmlVersion - 0008 - End --> */
 .window-inner-header.manage-window--hdr {
 	border-bottom:0;
 }

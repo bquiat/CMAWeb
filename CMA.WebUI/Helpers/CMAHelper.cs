@@ -10,7 +10,21 @@ namespace CMA.WebUI.Helpers
         }
         public static string ReplaceWithLINQName(string input)
         {
-            return input.Replace("Code", "Code1");
+            switch (input)
+            {
+                case "Code":
+                    return "Code1";
+                case "CPT":
+                    return "CPT1";
+                case "DSM":
+                    return "DSM1";
+                case "DRG":
+                    return "DRG1";
+                case "ICD":
+                    return "ICD1";
+                default:
+                    return input;
+            }
         }
         public static string ConvertSentenceCase(string input)
         {
