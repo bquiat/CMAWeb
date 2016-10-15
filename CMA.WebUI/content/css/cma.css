@@ -12,6 +12,7 @@
 }
 .resizable {
     width: 850px;
+    min-height:850px;
 }
 .btncancel{
     width:80px;

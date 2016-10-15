@@ -32,5 +32,13 @@ namespace CMA.WebUI.Helpers
             var r = new Regex(@"(^[a-z])|\.\s+(.)", RegexOptions.ExplicitCapture);
             return r.Replace(lowerCase, s => s.Value.ToUpper());
         }
+
+        public static string GetValue(string input)
+        {
+            if (!string.IsNullOrEmpty(input))
+                return input;
+            else
+                return string.Empty;
+        }
     }
 }

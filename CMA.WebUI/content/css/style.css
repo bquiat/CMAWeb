@@ -356,7 +356,7 @@ background: #c3c3c3;
 }
 .resizable {
 	width:650px;
-	height:300px;
+	height:800px;
 	overflow:hidden;
 }
 .inner-window {
@@ -379,7 +379,7 @@ box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.5);--*/
 /* <!-- WebhtmlVersion - 0005 - Start --> */
 .overflow--container {
     overflow-x: auto;
-    height: 95%;
+    height: 98%;
      background-color: #eeeeee;
 }
 /* <!-- WebhtmlVersion - 0005 - End --> */

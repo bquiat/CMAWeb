@@ -316,7 +316,7 @@ namespace CMA.WebUI.Models
 		{
 			get
 			{
-				return GetTable<Activity>();
+				return this.GetTable<Activity>();
 			}
 		}
 		
@@ -16964,6 +16964,8 @@ namespace CMA.WebUI.Models
 		
 		private string _ChgStamp;
 		
+		private EntityRef<ORGANIZATION> _ORGANIZATION1;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -17098,6 +17100,7 @@ namespace CMA.WebUI.Models
 		
 		public Namez()
 		{
+			this._ORGANIZATION1 = default(EntityRef<ORGANIZATION>);
 			OnCreated();
 		}
 		
@@ -17332,6 +17335,10 @@ namespace CMA.WebUI.Models
 			{
 				if ((this._Organization != value))
 				{
+					if (this._ORGANIZATION1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnOrganizationChanging(value);
 					this.SendPropertyChanging();
 					this._Organization = value;
@@ -18361,6 +18368,40 @@ namespace CMA.WebUI.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ORGANIZATION_Namez", Storage="_ORGANIZATION1", ThisKey="Organization", OtherKey="ORGANIZATION_ID", IsForeignKey=true)]
+		public ORGANIZATION ORGANIZATION1
+		{
+			get
+			{
+				return this._ORGANIZATION1.Entity;
+			}
+			set
+			{
+				ORGANIZATION previousValue = this._ORGANIZATION1.Entity;
+				if (((previousValue != value) 
+							|| (this._ORGANIZATION1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ORGANIZATION1.Entity = null;
+						previousValue.Namezs.Remove(this);
+					}
+					this._ORGANIZATION1.Entity = value;
+					if ((value != null))
+					{
+						value.Namezs.Add(this);
+						this._Organization = value.ORGANIZATION_ID;
+					}
+					else
+					{
+						this._Organization = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ORGANIZATION1");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -19256,6 +19297,8 @@ namespace CMA.WebUI.Models
 		
 		private string _FederalTaxId;
 		
+		private EntitySet<Namez> _Namezs;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -19308,6 +19351,7 @@ namespace CMA.WebUI.Models
 		
 		public ORGANIZATION()
 		{
+			this._Namezs = new EntitySet<Namez>(new Action<Namez>(this.attach_Namezs), new Action<Namez>(this.detach_Namezs));
 			OnCreated();
 		}
 		
@@ -19751,6 +19795,19 @@ namespace CMA.WebUI.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ORGANIZATION_Namez", Storage="_Namezs", ThisKey="ORGANIZATION_ID", OtherKey="Organization")]
+		public EntitySet<Namez> Namezs
+		{
+			get
+			{
+				return this._Namezs;
+			}
+			set
+			{
+				this._Namezs.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -19769,6 +19826,18 @@ namespace CMA.WebUI.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_Namezs(Namez entity)
+		{
+			this.SendPropertyChanging();
+			entity.ORGANIZATION1 = this;
+		}
+		
+		private void detach_Namezs(Namez entity)
+		{
+			this.SendPropertyChanging();
+			entity.ORGANIZATION1 = null;
 		}
 	}
 	

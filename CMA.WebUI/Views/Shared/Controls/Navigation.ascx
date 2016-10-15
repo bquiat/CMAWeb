@@ -288,8 +288,11 @@
                 <img src="/content/images/folder.png" alt="Previous" /></a></li>
             <li><a href="#">
                 <img src="/content/images/icn-folder1.png" alt="Next" /></a></li>
-            <li><a href="#">
-                <img src="/content/:images/icn-file-search.png" alt="Add" /></a></li>
+            <li>
+                <a class="menu-item" href="#" data-type="list" data-table="find_case" data-query="" data-container-name="find-case" data-container-caption="Find Case">
+                    <img src="/content/images/icn-file-search.png" alt="Add" />
+                </a>
+            </li>
             <li class="ver-divider"><a href="#">
                 <img src="/content/images/icn-notes.png" alt="Delete" /></a></li>
             <li><a href="#">

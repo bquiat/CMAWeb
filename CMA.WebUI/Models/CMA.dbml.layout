@@ -518,5 +518,12 @@
         <elementListCompartment Id="7aec2d06-071a-4876-9b8a-fe7e3e4ca1ce" absoluteBounds="6.765, 39.21, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <associationConnector edgePoints="[(27.7515374615385 : 9.79002115885417); (27.375 : 10.1665586203926); (27.375 : 28.2121899414063); (26.75 : 28.2121899414063)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CMADataContext/ORGANIZATION/ORGANIZATION_Namez" />
+      <nodes>
+        <classShapeMoniker Id="37ebf711-c8d9-4fa1-8d8a-19c7667071b0" />
+        <classShapeMoniker Id="19df34b7-8653-4048-8c31-a6a1b5328912" />
+      </nodes>
+    </associationConnector>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

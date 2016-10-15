@@ -1,4 +1,6 @@
-﻿function deleteRecord(type, key, value, menu, tablename, subquery, id)
+﻿var global_case_Id = 0;
+
+function deleteRecord(type, key, value, menu, tablename, subquery, id)
 {
     var r = confirm('Are you sure you want to delete this record? Once deleted, this record cannot be recovered?')
     if (r)
@@ -144,6 +146,14 @@ function saveRecord(id,type,menu,tablename,subquery,id)
     }
     return false;
 }
+
+function OpenManageCase(NameID, id)
+{
+    global_case_Id = id;
+    OpenMenu("manage-case", "", "manage-case", "Manage Case", "");
+    return false;
+}
+
 function refreshWindow(id)
 {
     if ($("#dragZone").find("#" + id).length == 1)
@@ -153,18 +163,37 @@ function refreshWindow(id)
 }
 $(".menu-item").click(function () {
     var type = $(this).data('type');
+    var tableName = $(this).data('table');
+    var id = $(this).data('container-name');
+    var menuName = $(this).data('container-caption');
+    var subQuery = $(this).data('query');
+    OpenMenu(type, tableName, id, menuName, subQuery);
+    return false;
+});
+
+function OpenMenu(type,tableName,id,menuName,subQuery)
+{
+    //Going to reset these vars so we open the find case since there is no global case id.
+    //Might have to do this for other windows as well. 
+    if (type == "manage-case" && global_case_Id == 0) {
+        type = "list";
+        tableName = "find_case";
+        subQuery = "";
+        id = "find-case";
+        menuName = "Find Case";
+    }
+
     $overlayText = $("#overlayText");
     $overlay = $("#ajax-Page-overlay");
     $overlay.fadeIn();
     $overlayText.text('Refreshing....');
-    var id = $(this).data('container-name');
-    var menuName = $(this).data('container-caption');
-    var tableName = $(this).data('table');
-    var subQuery = $(this).data('query');
     var serializedData = "type=" + type + "&id=" + id + "&menu=" + menuName;
     if (type == "list") {
         var serializedData = serializedData + "&table=" + tableName + "&subquery=" + subQuery;
     }
+
+    if (global_case_Id > 0)
+        serializedData += "&NameID=" + global_case_Id;
 
     $.ajax({
         url: "/Manage/GetWindow",
@@ -189,15 +218,53 @@ $(".menu-item").click(function () {
             $overlay.fadeOut();
         }
     });
-    return false;
-});
-$(".searchText").keyup(function (event) {
-    if (event.keyCode == 13) {
-        var id = $(this).data('id');
-        $("#btn-" + id + "-search").click();
-    }
-});
+}
 
+$(document).ready(function () {
+    $(".searchText").keyup(function (event) {
+        if (event.keyCode == 13) {
+            var id = $(this).data('id');
+            $("#btn-" + id + "-search").click();
+        }
+    });
+})
+
+function UpdateCaseComment(EpisodeID)
+{
+    $("#case-episode-comment").html($("#case-episode-comment-" + EpisodeID).val());
+    return false;
+}
+
+function searchCase()
+{
+    var searchText = $("#txt-find-case-search").val().trim();
+    if (searchText == "") {
+        alert('Please enter the Search Criteria');
+        return false;
+    }
+
+    $overlayText = $("#overlayText");
+    $overlay = $("#ajax-Page-overlay");
+    $overlay.fadeIn();
+    var serializedData = "SearchText=" + searchText;
+
+    $overlayText.text('Searching the Case ' + searchText + '....');
+    $.ajax({
+        url: "/Manage/GetCaseSearch",
+        type: "post",
+        data: serializedData,
+        success: function (response, textStatus, jqXHR) {
+            $("#find-case-search-result").html(response);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert(jqXHR.responseText);
+        },
+        complete: function () {
+            $overlay.fadeOut();
+        }
+    });
+    return false;
+}
 function searchText(type, menu, tableName, subQuery, id)
 {
     var $searchText = $("#txt-" + id + "-search");

@@ -126,6 +126,8 @@
     <Content Include="Views\Account\LogOn.aspx" />
     <Content Include="Views\Manage\Case.aspx" />
     <Content Include="Views\Manage\Controls\Edit.ascx" />
+    <Content Include="Views\Manage\Controls\Find-Case-Result.ascx" />
+    <Content Include="Views\Manage\Controls\Find.ascx" />
     <Content Include="Views\Manage\Controls\List.ascx" />
     <Content Include="Views\Manage\Controls\ManageActivity.ascx" />
     <Content Include="Views\Manage\Controls\ManageDocument.ascx" />

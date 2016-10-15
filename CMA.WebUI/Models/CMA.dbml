@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="CMA" Class="CMADataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-NI7FNH1\SQLEXPRESS;Initial Catalog=CMA;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="CMAConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=MANISHGARG570C;Initial Catalog=CMA;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="CMAConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.ACTCODES" Member="ACTCODEs">
     <Type Name="ACTCODE">
       <Column Name="ActivityCode" Type="System.String" DbType="VarChar(5) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -836,6 +836,7 @@
       <Column Name="CreatedAt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="SyncStamp" Type="System.String" DbType="VarChar(14)" CanBeNull="true" />
       <Column Name="ChgStamp" Type="System.String" DbType="VarChar(22)" CanBeNull="true" />
+      <Association Name="ORGANIZATION_Namez" Member="ORGANIZATION1" ThisKey="Organization" OtherKey="ORGANIZATION_ID" Type="ORGANIZATION" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.NETRSRC" Member="NETRSRCs">
@@ -906,6 +907,7 @@
       <Column Name="Fax" Type="System.String" DbType="VarChar(13)" CanBeNull="true" />
       <Column Name="WebSite" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="FederalTaxId" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Association Name="ORGANIZATION_Namez" Member="Namezs" ThisKey="ORGANIZATION_ID" OtherKey="Organization" Type="Namez" />
     </Type>
   </Table>
   <Table Name="dbo.PlanItem" Member="PlanItems">
