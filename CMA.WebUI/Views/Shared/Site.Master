@@ -179,14 +179,18 @@
             }
         }
         function classcloseWin(obj) {
-            var obj2 = obj.parent().parent().parent().parent();
-            var attrid = obj2.attr("id");
-            $("#" + attrid).remove();
-            $("#" + attrid + "-tab").remove();
+            $("#" + obj).remove();
+            $("#" + obj + "-tab").remove();
+            //var obj2 = obj.parent().parent().parent().parent();
+            //var attrid = obj2.attr("id");
+            //alert(attrid);
+            //$("#" + attrid).remove();
+            //$("#" + attrid + "-tab").remove();
         }
         function clickbytab(obj) {
             var obj2 = obj.parent();
             var attrid = obj2.attr("id");
+            alert(attrid);
             $("#" + attrid).remove();
             attrid = attrid.replace("-tab", "");
             $("#" + attrid).remove();

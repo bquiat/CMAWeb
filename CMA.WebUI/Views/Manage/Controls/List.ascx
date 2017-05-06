@@ -6,9 +6,9 @@
         <h1><span class="header-icon"></span><%=Model.Caption%></h1>
         <div class="header-window-btn">
             <ul>
-                <li class="w-minimz" onclick="classMinimize($(this));"><a href="#">Minimize</a></li>
-                <li class="w-maxmiz" onclick="classMaximize($(this));"><a href="#">Maximize</a></li>
-                <li class="w-close" onclick="classcloseWin($(this));"><a href="#">Close</a></li>
+                <!--<li class="w-minimz" onclick="classMinimize('<%=Model.InputParam.ContainerId%>');"><a href="#">Minimize</a></li>
+                <li class="w-maxmiz" onclick="classMaximize('<%=Model.InputParam.ContainerId%>');"><a href="#">Maximize</a></li>-->
+                <li class="w-close" onclick="classcloseWin('<%=Model.InputParam.ContainerId%>');"><a href="#">Close</a></li>
             </ul>
         </div>
     </header>
@@ -30,7 +30,9 @@
                                         <label>Search Text</label>
                                         <input type="text" class="form-control searchText" 
                                             value="<%=(!string.IsNullOrEmpty(Model.SearchText) ? Model.SearchText : "")%>"
-                                            style="width:450px;" data-id="<%=Model.InputParam.ContainerId %>" id="txt-<%=Model.InputParam.ContainerId %>-search" name="txt-<%=Model.InputParam.ContainerId %>-search">
+                                            style="width:450px;" data-id="<%=Model.InputParam.ContainerId %>" id="txt-<%=Model.InputParam.ContainerId %>-search" name="txt-<%=Model.InputParam.ContainerId %>-search"
+                                            onKeyPress="javascript:captureEnterKey(event, this,'<%=Model.InputParam.Type %>','<%=Model.InputParam.Menu %>','<%=Model.TableName %>','<%=Model.InputParam.SubQuery %>','<%=Model.InputParam.ContainerId %>');"
+                                            >
                                     </span>
                                     <span class="search-btn no--float">
                                         <button 

@@ -50,8 +50,11 @@ namespace CMA.WebUI.Controllers
             {
                 var dataContext = new CMADataContext();
                 var results = dataContext.Namezs.Where(_ =>
-                                 SqlMethods.Like(_.FirstName, "%" + searchText + "%") ||
-                                 SqlMethods.Like(_.LastName, "%" + searchText + "%") 
+                                 _.NameIs.HasValue && 
+                                 _.NameIs.Value == 1
+                                 && (
+                                    SqlMethods.Like(_.FirstName, "%" + searchText + "%") ||
+                                    SqlMethods.Like(_.LastName, "%" + searchText + "%"))
                             ).ToList();
                 ViewData["FindCaseSearchOutput"] = results;
                 dataContext.Dispose();
@@ -335,12 +338,15 @@ namespace CMA.WebUI.Controllers
                 var servicePhase = dataContext.SERVICEs.Where(_ => episodes.Select(e => e.EpisodeID).ToArray().Contains(_.EpisodeID)).ToList();
                 List<Namez> EpisodeTeamNames = dataContext.Namezs.Where(_ => EpisodeTeamNameIDs.Contains(_.NameID.Trim())).ToList();
                 List<ORGANIZATION> organizations = dataContext.ORGANIZATIONs.Where(_ => EpisodeTeamNames.Select(e => e.Organization).ToArray().Contains(_.ORGANIZATION_ID)).ToList();
+                List<BENEFIT> benefits = dataContext.BENEFITs.Where(_ => episodes.Select(e => e.EpisodeID).ToArray().Contains(_.EpisodeID)).ToList();
+
                 ViewData["Name"] = name;
                 ViewData["Episodes"] = episodes;
                 ViewData["EpisodeTeam"] = episodeTeams;
                 ViewData["ServicePhase"] = servicePhase;
                 ViewData["EpisodeTeamNames"] = EpisodeTeamNames;
                 ViewData["EpisodeOrganizations"] = organizations;
+                ViewData["Benefits"] = benefits;
             }
             dataContext.Dispose();
         }
@@ -456,7 +462,8 @@ namespace CMA.WebUI.Controllers
 
             var dbTabName = dataContext.Mapping.GetTables().Where(_ => _.TableName.ToLower() == "dbo." + viewModel.TableName.ToLower()).FirstOrDefault();
             var output = dataContext.ExecuteQuery(dbTabName.RowType.Type, sql);
-            viewModel.TableData = JsonConvert.SerializeObject(output);
+            viewModel.TableData = JsonConvert.SerializeObject(output, new JsonSerializerSettings{
+                                                                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore});
             dataContext.Dispose();
             return viewModel.TableData;
         }

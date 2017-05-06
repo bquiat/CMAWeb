@@ -39,6 +39,14 @@ function deleteRecord(type, key, value, menu, tablename, subquery, id)
     }
     return false;
 }
+function captureEnterKey(e, obj, type, menu, tableName, subQuery, containerId)
+{
+    var code = e.keyCode ? e.keyCode : e.which;
+    if (code == 13) {//Enter Key
+        return searchText(type, menu, tableName, subQuery, containerId);
+    }
+}
+
 function showhide(showid, hideid)
 {
     if (($("#" + showid).length > 0) && ($("#" + hideid).length > 0)) {

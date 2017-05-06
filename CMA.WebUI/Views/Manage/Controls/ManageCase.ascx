@@ -1,14 +1,17 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<dynamic>" %>
 <%@ Import Namespace="CMA.WebUI.Helpers" %>
+<%@ Import Namespace="CMA.WebUI.Models" %>
 <% 
-    CMA.WebUI.Models.Namez name = ViewData["Name"] != null ? (CMA.WebUI.Models.Namez)ViewData["Name"] : null;
+    Namez name = ViewData["Name"] != null ? (Namez)ViewData["Name"] : null;
     if (name != null)
     {
-        List<CMA.WebUI.Models.Episode> Episodes = (List<CMA.WebUI.Models.Episode>)ViewData["Episodes"];
-        List<CMA.WebUI.Models.EPI_TEAM> EpisodeTeam = (List<CMA.WebUI.Models.EPI_TEAM>)ViewData["EpisodeTeam"];
-        List<CMA.WebUI.Models.SERVICE> Services = (List<CMA.WebUI.Models.SERVICE>)ViewData["ServicePhase"];
-        List<CMA.WebUI.Models.Namez> EpisodeTeamNames = (List<CMA.WebUI.Models.Namez>)ViewData["EpisodeTeamNames"];
-        List<CMA.WebUI.Models.ORGANIZATION> Organizations = (List<CMA.WebUI.Models.ORGANIZATION>)ViewData["EpisodeOrganizations"];
+        List<Episode> Episodes = (List<Episode>)ViewData["Episodes"];
+        List<EPI_TEAM> EpisodeTeam = (List<EPI_TEAM>)ViewData["EpisodeTeam"];
+        List<SERVICE> Services = (List<SERVICE>)ViewData["ServicePhase"];
+        List<Namez> EpisodeTeamNames = (List<Namez>)ViewData["EpisodeTeamNames"];
+        List<ORGANIZATION> Organizations = (List<ORGANIZATION>)ViewData["EpisodeOrganizations"];
+        List<BENEFIT> Benefits = (List<BENEFIT>)ViewData["Benefits"];
+        string episodeId = string.Empty;
 %>
 
 <%=Model.InputParam.ContainerId%>||
@@ -62,14 +65,19 @@
                             <div class="mng-case--tp__info">
                             	<span><label>Episode</label></span>
                                 <span>
-                                    <select>
+                                    <select 
+                                    id ="ddl-episode-case-manage-case"
+                                    name ="ddl-episode-case-manage-case"
+                                    ReadOnly>
                                     <% 
+
                                         if (Episodes!=null && Episodes.Any())
                                         {
                                             foreach (var episode in Episodes)
                                             {
+                                                episodeId = episode.EpisodeID;
                                     %>
-                                        <option value=""><%=CMAHelper.GetValue(episode.Description)%></option>
+                                        <option value="<%=CMAHelper.GetValue(episode.EpisodeID)%>" selected><%=CMAHelper.GetValue(episode.Description)%></option>
                                     <%
                                             }
                                         }
@@ -142,12 +150,16 @@
                                                             	<div class="master__input input--bx__1">
                                                                 	<span><label>Master #</label></span>
                                                                 	<span>
+                                                                        <% 
+                                                                            string masterNo = Benefits != null && Benefits.Any() && Benefits.Where(_ => _.EpisodeID == episodeId).Any() ?
+                                                                                                    Benefits.Where(_ => _.EpisodeID == episodeId).FirstOrDefault().MemberNumber : string.Empty;
+                                                                        %>
                                                                         <input 
                                                                             type="text" 
                                                                             class="form-control"
                                                                             id="manage-case-master-number"
                                                                             name="manage-case-master-number"
-                                                                            value=""><!--TODO-->
+                                                                            value="<%=!string.IsNullOrEmpty(name.Names_ID.ToString()) ? CMAHelper.GetValue(name.Names_ID.ToString()) : string.Empty %>">
                                                                     </span>
                                                                 </div>
                                                                 <div class="member__input input--bx__1">
@@ -157,7 +169,9 @@
                                                                             type="text" 
                                                                             class="form-control"
                                                                             id="manage-case-member-number"
-                                                                            name="manage-case-member-number"><!--TODO-->
+                                                                            name="manage-case-member-number"
+                                                                            value="<%=masterNo %>"
+                                                                            ><!--TODO-->
                                                                     </span>
                                                                 </div>
                                                                 <div class="position__input input--bx__1">
@@ -202,7 +216,7 @@
                                                                             class="form-control"
                                                                             id="manage-case-salutaion"
                                                                             name="manage-case-salutation"
-                                                                            value="<%=CMAHelper.GetValue(name.Title) %>">
+                                                                            value="<%=CMAHelper.GetValue(name.Salutation) %>">
                                                                     </span>
                                                                 </div>
                                                                 <div class="input--bx__1">

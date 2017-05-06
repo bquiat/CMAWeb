@@ -1340,7 +1340,7 @@
         <IsRequired>false</IsRequired>
         <Width>50</Width>
       </DataColumn>
-          <DataColumn>
+      <DataColumn>
         <DBColumnName>UPIN</DBColumnName>
         <DisplayName>UPIN</DisplayName>
         <MaxLength>6</MaxLength>
