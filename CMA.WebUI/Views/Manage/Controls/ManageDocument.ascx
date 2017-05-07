@@ -1,14 +1,26 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<dynamic>" %>
 <%@ Import Namespace="CMA.WebUI.Helpers" %>
+<%@ Import Namespace="CMA.WebUI.Models" %>
+
+<% 
+    Namez name = ViewData["Name"] != null ? (Namez)ViewData["Name"] : null;
+    if (name != null)
+    {
+        List<Episode> Episodes = (List<Episode>)ViewData["Episodes"];
+        List<Document> Documents = (List<Document>)ViewData["Documents"];
+        List<Namez> ToFromNamez = (List<Namez>)ViewData["ToFromNames"];
+        List<ORGANIZATION> ToFromOrganization = (List<ORGANIZATION>)ViewData["ToFromOrganization"];
+%>
+
 <%=Model.InputParam.ContainerId%>||
 <div id="<%=Model.InputParam.ContainerId%>-window">
     <header class="app-header ">
         <h1><span class="header-icon"></span>Manage Documents</h1>
         <div class="header-window-btn">
             <ul>
-                <li class="w-minimz" onclick="clasMinimaiz($(this));"><a href="#">minimize</a></li>
-                <li class="w-maxmiz" onclick="clasMaximaiz($(this));"><a href="#" >Maximize</a></li>
-                <li class="w-close" onclick="clascloseWin($(this));"><a href="#">Close</a></li>
+                <%--<li class="w-minimz" onclick="clasMinimaiz($(this));"><a href="#">minimize</a></li>
+                <li class="w-maxmiz" onclick="clasMaximaiz($(this));"><a href="#" >Maximize</a></li>--%>
+                <li class="w-close" onclick="classcloseWin('manage-document');"><a href="#">Close</a></li>
             </ul>
         </div>
     </header>
@@ -88,134 +100,78 @@
                                     <tr>
                                         <th></th>
                                         <th>Date/Time</th>
-                                        <th>Status</th>
-                                        <th>User ID</th>
-                                        <th>Return</th>
-                                        <th>Note</th>
+                                        <th>To/From</th>
+                                        <th>From</th>
+                                        <th>By/To</th>
                                         <th>Type</th>
+                                        <th>Document</th>
+                                        <th>Return</th>
+                                        <th>Received</th>
+                                        <th>Description</th>
+                                        <th>File</th>
+                                        <th>Episode</th>
                                     </tr>
                                 </thead>
                               <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td>02/11/16 09:30AM</td>
-                                    <td>POST</td>
-                                    <td>CLD</td>
-                                    <td>
-                                        <div class="checkbox">
-                                            <label>
-                                               <input type="checkbox">
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td>Ldd1.0 Phone call from Mark at LO regarding the trial being</td>
-                                    <td>Review: Case file</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>02/11/16 09:30AM</td>
-                                    <td>POST</td>
-                                    <td>CLD</td>
-                                    <td>
-                                        <div class="checkbox">
-                                            <label>
-                                               <input type="checkbox">
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td>Ldd1.0 Phone call from Mark at LO regarding the trial being</td>
-                                    <td>Review: Case file</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>02/11/16 09:30AM</td>
-                                    <td>POST</td>
-                                    <td>CLD</td>
-                                    <td>
-                                        <div class="checkbox">
-                                            <label>
-                                               <input type="checkbox">
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td>Ldd1.0 Phone call from Mark at LO regarding the trial being</td>
-                                    <td>Review: Case file</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>02/11/16 09:30AM</td>
-                                    <td>POST</td>
-                                    <td>CLD</td>
-                                    <td>
-                                        <div class="checkbox">
-                                            <label>
-                                               <input type="checkbox">
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td>Ldd1.0 Phone call from Mark at LO regarding the trial being</td>
-                                    <td>Review: Case file</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>02/11/16 09:30AM</td>
-                                    <td>POST</td>
-                                    <td>CLD</td>
-                                    <td>
-                                        <div class="checkbox">
-                                            <label>
-                                               <input type="checkbox">
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td>Ldd1.0 Phone call from Mark at LO regarding the trial being</td>
-                                    <td>Review: Case file</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>02/11/16 09:30AM</td>
-                                    <td>POST</td>
-                                    <td>CLD</td>
-                                    <td>
-                                        <div class="checkbox">
-                                            <label>
-                                               <input type="checkbox">
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td>Ldd1.0 Phone call from Mark at LO regarding the trial being</td>
-                                    <td>Review: Case file</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>02/11/16 09:30AM</td>
-                                    <td>POST</td>
-                                    <td>CLD</td>
-                                    <td>
-                                        <div class="checkbox">
-                                            <label>
-                                               <input type="checkbox">
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td>Ldd1.0 Phone call from Mark at LO regarding the trial being</td>
-                                    <td>Review: Case file</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>02/11/16 09:30AM</td>
-                                    <td>POST</td>
-                                    <td>CLD</td>
-                                    <td>
-                                        <div class="checkbox">
-                                            <label>
-                                               <input type="checkbox">
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td>Ldd1.0 Phone call from Mark at LO regarding the trial being</td>
-                                    <td>Review: Case file</td>
-                                </tr>
+                                <%
+                                    if (Documents!=null && Documents.Any())
+                                    {
+                                        foreach(var document in Documents)
+                                        {
+                                %>
+                                    <tr>
+                                        <td></td>
+                                        <td><%=document.Date_.HasValue ?
+                                                document.Date_.Value.ToLongDateString() + " " + document.Date_.Value.ToLongTimeString() :
+                                                string.Empty
+                                            %>
+                                        </td>
+                                        <td>
+                                            <% 
+                                                string toFromName = string.Empty;
+
+                                                if (document.ToNameID!=null
+                                                    && ToFromNamez!=null
+                                                    && ToFromNamez.Any())
+                                                {
+                                                    var Name = ToFromNamez.FirstOrDefault(n => n.NameID == document.ToNameID);
+                                                    if (Name!=null)
+                                                    {   
+                                                        toFromName = Name.FirstName + " " + Name.LastName;
+                                                        if (Name.Organization!=null
+                                                                && ToFromOrganization!=null
+                                                                && ToFromOrganization.Any())
+                                                        {
+                                                            var Organization = ToFromOrganization.FirstOrDefault(o => Name.Organization == o.ORGANIZATION_ID);
+                                                            if (Organization != null)
+                                                                toFromName += ";" + Organization.NAME;
+                                                        }
+                                                    }
+                                                }
+                                                Response.Write(toFromName);
+                                            %>
+                                        </td>
+                                        <td><%=CMAHelper.GetValue(document.FromUserID) %></td>
+                                        <td><%=CMAHelper.GetValue(document.ByUserID) %></td>
+                                        <td><%=CMAHelper.GetValue(document.DocType) %></td>
+                                        <td><%=CMAHelper.GetValue(document.DocName) %></td>
+                                        <td><input type="checkbox" class="checkbox" disabled <%=(document.Return_.HasValue && document.Return_.Value == 1 ? " checked " : "") %> /></td>
+                                        <td><%=document.Received.HasValue ? 
+                                                document.Received.Value.ToShortDateString():
+                                                string.Empty
+                                        %></td>
+                                        <td><%=CMAHelper.GetValue(document.Description) %></td>
+                                        <td><%=CMAHelper.GetValue(document.File_) %></td>
+                                        <td><%
+                                                Response.Write(Episodes != null && Episodes.Any() ? CMAHelper.GetValue(Episodes.FirstOrDefault().Description) : string.Empty);
+                                        %>
+                                        </td>
+
+                                    </tr>
+                                <%
+                                        }
+                                    }
+                                %>
                               </tbody>
                             </table>
                         </div>
@@ -223,3 +179,7 @@
         </div>
     </div>
 </div>
+
+<% 
+    }
+%>

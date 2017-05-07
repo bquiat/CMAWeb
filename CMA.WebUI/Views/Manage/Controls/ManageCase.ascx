@@ -323,6 +323,8 @@
                                                                     <th>Last Name</th>
                                                                     <th>First Name</th>
                                                                     <th>Organization</th>
+                                                                    <th>Phone</th>
+                                                                    <th>Ext</th>
                                                                 </tr>
                                                             </thead>
                                                               <tbody>
@@ -362,6 +364,8 @@
 
                                                                                     %>
                                                                                     <td><%=orgName %></td>
+                                                                                    <td><%=CMAHelper.GetValue(episodeTeamName.Phone1) %></td>
+                                                                                    <td><%=CMAHelper.GetValue(episodeTeamName.Phone1Ext) %></td>
                                                                             <%
                                                                                 }
                                                                                 else
@@ -422,7 +426,7 @@
                                                                                         Response.Write(ServiceType);
                                                                                     %>
                                                                                 </td>
-                                                                                <td><%=servicePhase.Status %></td>
+                                                                                <td><%=CMAHelper.GetValue(servicePhase.Status) %></td>
                                                                                 <td><%=servicePhase.BeginDate.HasValue ? 
                                                                                         servicePhase.BeginDate.Value.ToShortDateString() :
                                                                                         string.Empty
@@ -433,7 +437,7 @@
                                                                                         string.Empty
                                                                                     %>
                                                                                 </td>
-                                                                                <td><%=servicePhase.CasePhaseMgr %></td>
+                                                                                <td><%=CMAHelper.GetValue(servicePhase.CasePhaseMgr) %></td>
                                                                                 <td>
                                                                                     <% 
                                                                                         string Reason = string.Empty;
@@ -504,7 +508,7 @@
                                                                                 %>
                                                                             </td>
                                                                             <td>
-                                                                                <%=levelOfCare.LOCStatus %>
+                                                                                <%=CMAHelper.GetValue(levelOfCare.LOCStatus) %>
                                                                             </td>
                                                                             <td><%=levelOfCare.LOCStatusDate.HasValue ? 
                                                                                     levelOfCare.LOCStatusDate.Value.ToShortDateString() :

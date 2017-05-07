@@ -180,10 +180,14 @@ $(".menu-item").click(function () {
 });
 
 function OpenMenu(type,tableName,id,menuName,subQuery)
-{
+{   
     //Going to reset these vars so we open the find case since there is no global case id.
     //Might have to do this for other windows as well. 
-    if (type == "manage-case" && global_case_Id == 0) {
+    if ((type == "manage-case"
+                || type == "manage-document"
+                || type == "manage-review"
+                || type == "manage-activity")
+            && global_case_Id == 0) {
         type = "list";
         tableName = "find_case";
         subQuery = "";

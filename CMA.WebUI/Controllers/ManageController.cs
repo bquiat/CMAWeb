@@ -24,19 +24,7 @@ namespace CMA.WebUI.Controllers
         {
             return View();
         }
-
-        //[HttpPost]
-        //[Authorize]
-        //public ActionResult Case()
-        //{
-        //    return View();
-        //}
-
-        [Authorize]
-        public ActionResult Documents()
-        {
-            return View();
-        }
+       
         [Authorize]
         public ActionResult Notes()
         {
@@ -163,6 +151,7 @@ namespace CMA.WebUI.Controllers
             }
             else if (string.Equals(type, "manage-document", StringComparison.InvariantCultureIgnoreCase))
             {
+                InitializeDocumentWindow(NameID);
                 string searchText = Request.Form["searchText"] != null ? Request.Form["searchText"].ToString().Trim() : string.Empty;
                 viewModel.Caption = "Manage " + CMAHelper.ConvertSentenceCase(inputParam.Menu);
                 viewModel.SearchText = searchText.Trim();
@@ -170,6 +159,7 @@ namespace CMA.WebUI.Controllers
             }
             else if (string.Equals(type, "manage-activity", StringComparison.InvariantCultureIgnoreCase))
             {
+                InitializeActivityWindow(NameID);
                 string searchText = Request.Form["searchText"] != null ? Request.Form["searchText"].ToString().Trim() : string.Empty;
                 viewModel.Caption = "Manage " + CMAHelper.ConvertSentenceCase(inputParam.Menu);
                 viewModel.SearchText = searchText.Trim();
@@ -329,6 +319,32 @@ namespace CMA.WebUI.Controllers
         }
 
         #region "Private Functions"
+
+        private void InitializeDocumentWindow(int NameID)
+        {
+            var dataContext = new CMADataContext();
+            Namez name = dataContext.Namezs.Where(_ => _.Names_ID == NameID).FirstOrDefault();
+            if (name != null)
+            {
+                var episodes = dataContext.Episodes.Where(_ => _.NameID == name.NameID.Trim()).ToList();
+                List<Document> Documents = dataContext.Documents.Where(_ => episodes.Select(e => e.EpisodeID.Trim()).ToArray().Contains(_.EpisodeID)).ToList();
+                List<string> NameIDs = Documents.Where(_ => _.ToNameID != null).Select(_ => _.ToNameID).ToList();
+                List<Namez> ToFromNames = dataContext.Namezs.Where(_ => NameIDs.Contains(_.NameID)).ToList();
+                List<ORGANIZATION> ToFromOrganization = dataContext.ORGANIZATIONs.Where(_ => ToFromNames.Where(n => n.Organization != null).Select(n => n.Organization).ToList().Contains(_.ORGANIZATION_ID)).ToList();
+
+                ViewData["Name"] = name;
+                ViewData["Episodes"] = episodes;
+                ViewData["Documents"] = Documents;
+                ViewData["ToFromNames"] = ToFromNames;
+                ViewData["ToFromOrganization"] = ToFromOrganization;
+            }
+            dataContext.Dispose();
+        }
+
+        private void InitializeActivityWindow(int NameID)
+        {
+
+        }
 
         private void InitializeCaseWindow(int NameID)
         {
