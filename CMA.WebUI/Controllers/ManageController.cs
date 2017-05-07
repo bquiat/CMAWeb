@@ -25,15 +25,19 @@ namespace CMA.WebUI.Controllers
             return View();
         }
 
-        public ActionResult Case()
-        {
-            return View();
-        }
+        //[HttpPost]
+        //[Authorize]
+        //public ActionResult Case()
+        //{
+        //    return View();
+        //}
 
+        [Authorize]
         public ActionResult Documents()
         {
             return View();
         }
+        [Authorize]
         public ActionResult Notes()
         {
             return View();
@@ -335,18 +339,29 @@ namespace CMA.WebUI.Controllers
                 var episodes = dataContext.Episodes.Where(_ => _.NameID == name.NameID.Trim()).ToList();
                 var episodeTeams = dataContext.EPI_TEAMs.Where(_ => episodes.Select(e=>e.EpisodeID.Trim()).ToArray().Contains(_.EpisodeID)).ToList();
                 List<string> EpisodeTeamNameIDs = episodeTeams.Select(_ => _.NameID.Trim()).ToList();
-                var servicePhase = dataContext.SERVICEs.Where(_ => episodes.Select(e => e.EpisodeID).ToArray().Contains(_.EpisodeID)).ToList();
                 List<Namez> EpisodeTeamNames = dataContext.Namezs.Where(_ => EpisodeTeamNameIDs.Contains(_.NameID.Trim())).ToList();
                 List<ORGANIZATION> organizations = dataContext.ORGANIZATIONs.Where(_ => EpisodeTeamNames.Select(e => e.Organization).ToArray().Contains(_.ORGANIZATION_ID)).ToList();
                 List<BENEFIT> benefits = dataContext.BENEFITs.Where(_ => episodes.Select(e => e.EpisodeID).ToArray().Contains(_.EpisodeID)).ToList();
+                List<CODE> relationCodes = dataContext.CODEs.Where(_ => _.Type.ToUpper() == "TREL").ToList();
+                List<Epi_CasePhase> servicePhase = dataContext.Epi_CasePhases.Where(_ => episodes.Select(e => e.EpisodeID.Trim()).ToArray().Contains(_.EpisodeID)).ToList();
+                List<CODE> servicePhaseServiceTypeCodes = dataContext.CODEs.Where(_ => _.Type.ToUpper() == "ET").ToList();
+                List<CODE> servicePhaseReasonCodes = dataContext.CODEs.Where(_ => _.Type.ToUpper() == "DECL").ToList();
+                List<Epi_Acuity> levelOfCare = dataContext.Epi_Acuities.Where(_ => episodes.Select(e => e.EpisodeID.Trim()).ToArray().Contains(_.EpisodeID)).ToList();
+                List<CODE> levelOfCareCodes = dataContext.CODEs.Where(_ => _.Type.ToUpper() == "INT").ToList();
+
 
                 ViewData["Name"] = name;
                 ViewData["Episodes"] = episodes;
                 ViewData["EpisodeTeam"] = episodeTeams;
-                ViewData["ServicePhase"] = servicePhase;
                 ViewData["EpisodeTeamNames"] = EpisodeTeamNames;
                 ViewData["EpisodeOrganizations"] = organizations;
                 ViewData["Benefits"] = benefits;
+                ViewData["RelationCodes"] = relationCodes;
+                ViewData["ServicePhase"] = servicePhase;
+                ViewData["ServicePhaseServiceTypeCodes"] = servicePhaseServiceTypeCodes;
+                ViewData["ServicePhaseReasonCodes"] = servicePhaseReasonCodes;
+                ViewData["LevelOfCare"] = levelOfCare;
+                ViewData["LevelOfCareCodes"] = levelOfCareCodes;
             }
             dataContext.Dispose();
         }

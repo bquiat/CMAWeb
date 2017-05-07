@@ -567,7 +567,7 @@ th {
 /* <!-- WebhtmlVersion - 0008 - Start --> */
 .inner--body__manage--case {
     float: left;
-    min-height: 600px;
+    min-height: 800px;
     height:100%;
     width: 100%;
     min-width:800px;
@@ -591,12 +591,12 @@ th {
 	border-color:#aaa #fff #fff #aaa;
 }
 .block__height--sm {
-	height:80px;
+	height:160px;
 	overflow:auto;
 	overflow-y:scroll;
 }
 .block__height--md {
-	height:160px;
+	height:220px;
 	overflow:auto;
 	overflow-y:scroll;
 }

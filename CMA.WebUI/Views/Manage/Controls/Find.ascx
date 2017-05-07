@@ -6,9 +6,9 @@
         <h1><span class="header-icon"></span><%=Model.Caption%></h1>
         <div class="header-window-btn">
             <ul>
-                <li class="w-minimz" onclick="classMinimize($(this));"><a href="#">Minimize</a></li>
-                <li class="w-maxmiz" onclick="classMaximize($(this));"><a href="#">Maximize</a></li>
-                <li class="w-close" onclick="classcloseWin($(this));"><a href="#">Close</a></li>
+                <%--<li class="w-minimz" onclick="classMinimize($(this));"><a href="#">Minimize</a></li>
+                <li class="w-maxmiz" onclick="classMaximize($(this));"><a href="#">Maximize</a></li>--%>
+                <li class="w-close" onclick="classcloseWin('find-case');"><a href="#">Close</a></li>
             </ul>
         </div>
     </header>

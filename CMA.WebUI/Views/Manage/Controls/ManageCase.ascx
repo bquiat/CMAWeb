@@ -7,10 +7,16 @@
     {
         List<Episode> Episodes = (List<Episode>)ViewData["Episodes"];
         List<EPI_TEAM> EpisodeTeam = (List<EPI_TEAM>)ViewData["EpisodeTeam"];
-        List<SERVICE> Services = (List<SERVICE>)ViewData["ServicePhase"];
+        List<CODE> RelationCodes = (List<CODE>)ViewData["RelationCodes"];
         List<Namez> EpisodeTeamNames = (List<Namez>)ViewData["EpisodeTeamNames"];
         List<ORGANIZATION> Organizations = (List<ORGANIZATION>)ViewData["EpisodeOrganizations"];
         List<BENEFIT> Benefits = (List<BENEFIT>)ViewData["Benefits"];
+        List<Epi_CasePhase> ServicePhase = (List<Epi_CasePhase>)ViewData["ServicePhase"];
+        List<CODE> ServicePhaseServiceTypeCodes = (List<CODE>)ViewData["ServicePhaseServiceTypeCodes"];
+        List<CODE> ServicePhaseReasonCodes = (List<CODE>)ViewData["ServicePhaseReasonCodes"];
+        List<Epi_Acuity> LevelOfCare = (List<Epi_Acuity>)ViewData["LevelOfCare"];
+        List<CODE> LevelOfCareCodes = (List<CODE>)ViewData["LevelOfCareCodes"];
+
         string episodeId = string.Empty;
 %>
 
@@ -20,9 +26,9 @@
         <h1><span class="header-icon"></span>Manage Case</h1>
         <div class="header-window-btn">
             <ul>
-                <li class="w-minimz" onclick="classMinimize($(this));"><a href="#">minimize</a></li>
-                <li class="w-maxmiz" onclick="classMaximize($(this));"><a href="#" >Maximize</a></li>
-                <li class="w-close" onclick="classcloseWin($(this));"><a href="#">Close</a></li>
+                <%--<li class="w-minimz" onclick="classMinimize($(this));"><a href="#">minimize</a></li>
+                <li class="w-maxmiz" onclick="classMaximize($(this));"><a href="#" >Maximize</a></li>--%>
+                <li class="w-close" onclick="classcloseWin('manage-case');"><a href="#">Close</a></li>
             </ul>
         </div>
     </header>
@@ -283,7 +289,7 @@
                                                                     <td style="cursor:pointer;" onclick="return UpdateCaseComment('<%=episode.EpisodeID.Trim()%>')"><%=CMAHelper.GetValue(episode.EpisodeNo) %></td>
                                                                     <td style="cursor:pointer;" onclick="return UpdateCaseComment('<%=episode.EpisodeID.Trim()%>')"><%=CMAHelper.GetValue(episode.Region) %></td>
                                                                     <td style="cursor:pointer;" onclick="return UpdateCaseComment('<%=episode.EpisodeID.Trim()%>')"><%=CMAHelper.GetValue(episode.EpisodeMgr) %></td>
-                                                                    <td></td><!--TODO-->
+                                                                    <td></td><!--TODO  Member No--> 
                                                                 </tr>
                                                                 <input type="hidden" id="case-episode-comment-<%=episode.EpisodeID.Trim() %>" value="<%=CMAHelper.GetValue(episode.Comment)%>"/>
                                                             <% 
@@ -328,7 +334,14 @@
                                                                 %>
                                                                         <tr>
                                                                             <td></td>
-                                                                            <td><%=epiTeam.RelationCode %></td> <!--TODO -- Need to know the defination -->
+                                                                            <td>
+                                                                                <% 
+                                                                                    string RelationShip = RelationCodes.Any() && RelationCodes.Where(_ => _.Code1 == epiTeam.RelationCode).Any() ?
+                                                                                                            RelationCodes.FirstOrDefault(_ => _.Code1 == epiTeam.RelationCode).Description
+                                                                                                            : string.Empty;
+                                                                                %>
+                                                                                <%=RelationShip %>
+                                                                            </td>
                                                                             <% 
                                                                                 var episodeTeamName = EpisodeTeamNames.Any() ? EpisodeTeamNames.Where(_ => _.NameID == epiTeam.NameID).FirstOrDefault() : null;
                                                                                 if (episodeTeamName!=null)
@@ -375,7 +388,7 @@
                                                 <div class="mng--inner--block__header">Service Phase</div>
                                                 <div class="mng--inner--block block__height--md">
                                                 	<div class="app-table">
-                                                        <table class="table table-bordered"><!--TODO-->
+                                                        <table class="table table-bordered">
                                                             <thead>
                                                                 <tr>
                                                                     <th></th>
@@ -385,10 +398,60 @@
                                                                     <th>End Date</th>
                                                                     <th>Mgr</th>
                                                                     <th>Reason</th>
+                                                                    <th>Referred By</th>
                                                                 </tr>
                                                             </thead>
                                                               <tbody>
-                                                                
+                                                                    <% 
+                                                                        if (ServicePhase != null && ServicePhase.Any())
+                                                                        {
+                                                                            foreach (var servicePhase in ServicePhase)
+                                                                            {
+                                                                    %>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td>
+                                                                                    <% 
+                                                                                        string ServiceType = string.Empty;
+                                                                                        ServiceType = !string.IsNullOrEmpty(servicePhase.CaseType)
+                                                                                                        && ServicePhaseServiceTypeCodes != null
+                                                                                                        && ServicePhaseServiceTypeCodes.Any()
+                                                                                                        && ServicePhaseServiceTypeCodes.Where(_ => _.Code1 == servicePhase.CaseType).Any() ?
+                                                                                                        ServicePhaseServiceTypeCodes.FirstOrDefault(_ => _.Code1 == servicePhase.CaseType).Description :
+                                                                                                        string.Empty;
+                                                                                        Response.Write(ServiceType);
+                                                                                    %>
+                                                                                </td>
+                                                                                <td><%=servicePhase.Status %></td>
+                                                                                <td><%=servicePhase.BeginDate.HasValue ? 
+                                                                                        servicePhase.BeginDate.Value.ToShortDateString() :
+                                                                                        string.Empty
+                                                                                    %>
+                                                                                </td>
+                                                                                <td><%=servicePhase.EndDate.HasValue ? 
+                                                                                        servicePhase.EndDate.Value.ToShortDateString() :
+                                                                                        string.Empty
+                                                                                    %>
+                                                                                </td>
+                                                                                <td><%=servicePhase.CasePhaseMgr %></td>
+                                                                                <td>
+                                                                                    <% 
+                                                                                        string Reason = string.Empty;
+                                                                                        Reason = !string.IsNullOrEmpty(servicePhase.Reason)
+                                                                                                        && ServicePhaseReasonCodes != null
+                                                                                                        && ServicePhaseReasonCodes.Any()
+                                                                                                        && ServicePhaseReasonCodes.Where(_ => _.Code1 == servicePhase.Reason).Any() ?
+                                                                                                        ServicePhaseReasonCodes.FirstOrDefault(_ => _.Code1 == servicePhase.Reason).Description :
+                                                                                                        string.Empty;
+                                                                                        Response.Write(Reason);
+                                                                                    %>
+                                                                                </td>
+                                                                                <td></td><!--TODO Referred By -->
+                                                                            </tr>
+                                                                    <%
+                                                                            }
+                                                                        }
+                                                                    %>
                                                               </tbody>
                                                         </table>
                                                     </div>
@@ -402,13 +465,57 @@
                                                             <thead>
                                                                 <tr>
                                                                     <th></th>
-                                                                    <th>Date/Time</th>
+                                                                    <th>Level of Care</th>
                                                                     <th>Begin Date</th>
                                                                     <th>End Date</th>
-                                                                    <th></th>
+                                                                    <th>Case Status</th>
+                                                                    <th>Status Date</th>
                                                                 </tr>
                                                             </thead>
                                                               <tbody>
+                                                                    <% 
+                                                                        if (LevelOfCare!=null && LevelOfCare.Any())
+                                                                        {
+                                                                            foreach(var levelOfCare in LevelOfCare)
+                                                                            {
+                                                                    %>
+                                                                        <tr>
+                                                                            <td></td>
+                                                                            <td>
+                                                                                <% 
+                                                                                    string levelOfCareDesc = string.Empty;
+                                                                                    levelOfCareDesc = !string.IsNullOrEmpty(levelOfCare.LevelOfCare)
+                                                                                                        && LevelOfCareCodes != null
+                                                                                                        && LevelOfCareCodes.Any()
+                                                                                                        && LevelOfCareCodes.Where(_ => _.Code1 == levelOfCare.LevelOfCare).Any() ?
+                                                                                                        LevelOfCareCodes.FirstOrDefault(_ => _.Code1 == levelOfCare.LevelOfCare).Description :
+                                                                                                        string.Empty;
+                                                                                    Response.Write(levelOfCareDesc);
+                                                                                %>
+                                                                            </td>
+                                                                           <td><%=levelOfCare.BeginDate.HasValue ? 
+                                                                                        levelOfCare.BeginDate.Value.ToShortDateString() :
+                                                                                        string.Empty
+                                                                                %>
+                                                                            </td>
+                                                                            <td><%=levelOfCare.EndDate.HasValue ? 
+                                                                                    levelOfCare.EndDate.Value.ToShortDateString() :
+                                                                                    string.Empty
+                                                                                %>
+                                                                            </td>
+                                                                            <td>
+                                                                                <%=levelOfCare.LOCStatus %>
+                                                                            </td>
+                                                                            <td><%=levelOfCare.LOCStatusDate.HasValue ? 
+                                                                                    levelOfCare.LOCStatusDate.Value.ToShortDateString() :
+                                                                                    string.Empty
+                                                                                %>
+                                                                            </td>
+                                                                        </tr>
+                                                                    <%
+                                                                            }
+                                                                        }
+                                                                    %>
                                                               </tbody>
                                                         </table>
                                                     </div>
