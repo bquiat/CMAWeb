@@ -343,7 +343,27 @@ namespace CMA.WebUI.Controllers
 
         private void InitializeActivityWindow(int NameID)
         {
+            var dataContext = new CMADataContext();
+            Namez name = dataContext.Namezs.Where(_ => _.Names_ID == NameID).FirstOrDefault();
+            if (name != null)
+            {
+                var episodes = dataContext.Episodes.Where(_ => _.NameID == name.NameID.Trim()).ToList();
+                List<Activity> Activity = dataContext.Activities.Where(_ => episodes.Select(e => e.EpisodeID.Trim()).ToArray().Contains(_.EpisodeID)).ToList();
+                List<ACTCODE> ActivityCodes = dataContext.ACTCODEs.ToList();
+                List<CODE> ServiceCodes = dataContext.CODEs.Where(_ => _.Type.ToUpper() == "SVCS").ToList();
+                List<Namez> PayorNames = dataContext.Namezs.Where(_ => Activity.Select(a => a.PayorID).Distinct().ToList().Contains(_.NameID)).ToList();
+                List<ORGANIZATION> Organizations = dataContext.ORGANIZATIONs.Where(_ => PayorNames.Select(p => p.Organization).ToList().Contains(_.ORGANIZATION_ID)).ToList();
 
+
+                ViewData["Name"] = name;
+                ViewData["Episodes"] = episodes;
+                ViewData["Activity"] = Activity;
+                ViewData["ActivityCodes"] = ActivityCodes;
+                ViewData["ServiceCodes"] = ServiceCodes;
+                ViewData["PayorNames"] = PayorNames;
+                ViewData["Organizations"] = Organizations;
+            }
+            dataContext.Dispose();
         }
 
         private void InitializeCaseWindow(int NameID)
