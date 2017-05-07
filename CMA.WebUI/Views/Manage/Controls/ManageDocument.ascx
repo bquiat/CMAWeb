@@ -18,9 +18,9 @@
         <h1><span class="header-icon"></span>Manage Documents</h1>
         <div class="header-window-btn">
             <ul>
-                <%--<li class="w-minimz" onclick="clasMinimaiz($(this));"><a href="#">minimize</a></li>
-                <li class="w-maxmiz" onclick="clasMaximaiz($(this));"><a href="#" >Maximize</a></li>--%>
-                <li class="w-close" onclick="classcloseWin('manage-document');"><a href="#">Close</a></li>
+                <li class="w-minimz" onclick="Minimize('manage-document');"><a href="#">minimize</a></li>
+                <li class="w-maxmiz" onclick="Maximize('manage-document');"><a href="#" >Maximize</a></li>
+                <li class="w-close" onclick="CloseWindow('manage-document');"><a href="#">Close</a></li>
             </ul>
         </div>
     </header>
@@ -116,7 +116,7 @@
                                 <%
                                     if (Documents!=null && Documents.Any())
                                     {
-                                        foreach(var document in Documents)
+                                        foreach(var document in Documents.OrderByDescending(o=>o.Date_.HasValue ? o.Date_.Value : DateTime.MinValue))
                                         {
                                 %>
                                     <tr>

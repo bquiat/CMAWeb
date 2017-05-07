@@ -19,9 +19,9 @@
         <h1><span class="header-icon"></span>Manage Activity</h1>
         <div class="header-window-btn">
             <ul>
-                <%--<li class="w-minimz" onclick="clasMinimaiz($(this));"><a href="#">minimize</a></li>
-                <li class="w-maxmiz" onclick="clasMaximaiz($(this));"><a href="#">Maximize</a></li>--%>
-                <li class="w-close" onclick="classcloseWin('manage-activity');"><a href="#">Close</a></li>
+                <li class="w-minimz" onclick="Minimize('manage-activity');"><a href="#">minimize</a></li>
+                <li class="w-maxmiz" onclick="Maximize('manage-activity');"><a href="#">Maximize</a></li>
+                <li class="w-close" onclick="CloseWindow('manage-activity');"><a href="#">Close</a></li>
             </ul>
         </div>
     </header>
@@ -125,7 +125,7 @@
                                 <% 
                                     if (Activities!=null && Activities.Any())
                                     {
-                                        foreach (var activity in Activities)
+                                        foreach (var activity in Activities.OrderByDescending(a=>a.ActivityDate.HasValue ? a.ActivityDate.Value : DateTime.MinValue))
                                         {
                                 %>
                                     <tr>
