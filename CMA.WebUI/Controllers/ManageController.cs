@@ -21,7 +21,7 @@ namespace CMA.WebUI.Controllers
     {
         [Authorize]
         public ActionResult Home()
-        {
+        {   
             return View();
         }
        
@@ -144,6 +144,7 @@ namespace CMA.WebUI.Controllers
             else if (string.Equals(type, "manage-case", StringComparison.InvariantCultureIgnoreCase))
             {
                 InitializeCaseWindow(NameID);
+                SetEpisodeIDForName(NameID);
                 string searchText = Request.Form["searchText"] != null ? Request.Form["searchText"].ToString().Trim() : string.Empty;
                 viewModel.Caption = "Manage " + CMAHelper.ConvertSentenceCase(inputParam.Menu);
                 viewModel.SearchText = searchText.Trim();
@@ -320,6 +321,27 @@ namespace CMA.WebUI.Controllers
 
         #region "Private Functions"
 
+        private void SetEpisodeIDForName(int NameID)
+        {
+            var dataContext = new CMADataContext();
+            Namez name = dataContext.Namezs.Where(_ => _.Names_ID == NameID).FirstOrDefault();
+            if (name != null)
+            {
+                var episodes = dataContext.Episodes.Where(_ => _.NameID == name.NameID.Trim()).ToList();
+                if (episodes!=null && episodes.Any() && Session["AuthUserID"]!=null)
+                {
+                    string UserId = Session["AuthUserID"].ToString();
+                    var user = dataContext.USER_s.FirstOrDefault(u => u.User_ID == UserId);
+                    if (user != null)
+                    {
+                        // Commenting this out till we are ready.
+                        //user.Episode1 = episodes.FirstOrDefault().EpisodeID;
+                        //dataContext.SubmitChanges();
+                    }
+                }
+            }
+            dataContext.Dispose();
+        }
         private void InitializeDocumentWindow(int NameID)
         {
             var dataContext = new CMADataContext();

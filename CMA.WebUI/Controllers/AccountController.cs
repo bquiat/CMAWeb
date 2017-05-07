@@ -89,7 +89,41 @@ namespace CMA.WebUI.Controllers
                 CMADataContext dataContext = new CMADataContext();
                 var user = dataContext.USER_s.Where(_ => _.User_ID == userName && _.IsActive.HasValue && _.IsActive.Value == 1).FirstOrDefault();
                 if (user != null && !string.IsNullOrEmpty(user.Password_) && string.Equals(user.Password_, Password, StringComparison.CurrentCulture))
+                {
+                    List<string> EpisodeIds = new List<string>();
+                    if (!string.IsNullOrEmpty(user.Episode1))
+                        EpisodeIds.Add(user.Episode1);
+                    if (!string.IsNullOrEmpty(user.Episode2))
+                        EpisodeIds.Add(user.Episode2);
+                    if (!string.IsNullOrEmpty(user.Episode3))
+                        EpisodeIds.Add(user.Episode3);
+                    if (!string.IsNullOrEmpty(user.Episode4))
+                        EpisodeIds.Add(user.Episode4);
+                    if (!string.IsNullOrEmpty(user.Episode5))
+                        EpisodeIds.Add(user.Episode5);
+
+                    if (EpisodeIds.Any() && EpisodeIds.Count > 0)
+                    {
+                        var episodes = dataContext.Episodes.Where(e => EpisodeIds.Contains(e.EpisodeID)).ToList();
+                        if (episodes!=null && episodes.Any())
+                        {
+                            List<string> NamesIds = new List<string>();
+                            foreach (var episode in episodes.Distinct())
+                                NamesIds.Add(episode.NameID);
+
+                            if (NamesIds!=null && NamesIds.Count > 0)
+                            {
+                                var names = dataContext.Namezs.Where(n => NamesIds.Contains(n.NameID)).ToList();
+                                if (names!=null && names.Any())
+                                {
+                                    Session["AuthUserID"] = user.User_ID;
+                                    Session["AuthNameID"] = names.FirstOrDefault().Names_ID;
+                                }
+                            }
+                        }
+                    }
                     isValid = true;
+                }
 
                 dataContext.Dispose();
             }
@@ -99,6 +133,7 @@ namespace CMA.WebUI.Controllers
         public ActionResult LogOff()
         {
             FormsService.SignOut();
+            Session["AuthUserID"] = Session["AuthNameID"] = null;
             Response.Redirect("/Account/LogOn", true);
             return null;
         }

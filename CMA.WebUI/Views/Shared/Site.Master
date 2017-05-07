@@ -55,6 +55,16 @@
     <script src="/content/js/modernizr.min.js"></script>
     <script type="text/javascript" src="/content/js/jquery-migrate-1.2.1.min.js"></script>
     <script src="/content/js/cma.js"></script>
+    <% 
+        if (Session["AuthUserID"] != null && Session["AuthNameID"] != null)
+        { 
+    %>
+    <script type="text/javascript">
+        global_case_Id = '<%=Session["AuthNameID"]%>';
+    </script>
+    <% 
+        }    
+    %>
     <script>
         $(function () {
             $(".resizable").resizable();
@@ -148,44 +158,30 @@
                 $(".resizable").resizable();
             }
         }
-        function classMaximize(obj) {
-            var obj2 = obj.parent().parent().parent().parent();
-            var style2 = obj2.attr("style");
-            if (style2 != undefined) {
-                obj2.css("width", "100%");
-                obj2.css("left", "0px");
-                obj2.css("top", "0px");
-                style2 = obj2.attr("style");
-                style2 = style2.replace("width: 100%;", "");
-                obj2.attr("style", style2);
-            }
-            if (!obj2.hasClass("window--maximize")) {
+        function Maximize(obj) {
+            var obj2 = $("#" + obj);
+            var style = obj2.attr('style');
+            if (style != undefined) {
+                if (style.indexOf("; width: 100% !important;") > 0)
+                    Minimize(obj);
+                else {
 
-                obj2.addClass("window--maximize");
+                    style = style + "; width: 100% !important;"
+                    obj2.attr('style', style);
+                }
             }
         }
-        function classMinimize(obj) {
-            var obj2 = obj.parent().parent().parent().parent();
-            var style2 = obj2.attr("style");
-            if (style2 != undefined) {
-                obj2.css("width", "100%");
-                style2 = obj2.attr("style");
-                style2 = style2.replace("width: 100%;", "");
-                obj2.attr("style", style2);
-            }
-            if (obj2.hasClass("window--maximize")) {
-
-                obj2.removeClass("window--maximize");
+        function Minimize(obj) {
+            var obj2 = $("#" + obj);
+            var style = obj2.attr('style');
+            if (style != undefined) {
+                style = style.replace("; width: 100% !important;", "");
+                obj2.attr('style', style);
             }
         }
-        function classcloseWin(obj) {
+        function CloseWindow(obj) {
             $("#" + obj).remove();
             $("#" + obj + "-tab").remove();
-            //var obj2 = obj.parent().parent().parent().parent();
-            //var attrid = obj2.attr("id");
-            //alert(attrid);
-            //$("#" + attrid).remove();
-            //$("#" + attrid + "-tab").remove();
         }
         function clickbytab(obj) {
             var obj2 = obj.parent();
