@@ -1363,16 +1363,16 @@
     <MaxRecords>10</MaxRecords>
     <DataColumns>
       <DataColumn>
-        <DBColumnName>Organization_ID</DBColumnName>
-        <DisplayName>Organization_ID</DisplayName>
+        <DBColumnName>ORGANIZATION_ID</DBColumnName>
+        <DisplayName>ORGANIZATION_ID</DisplayName>
         <MaxLength>5</MaxLength>
         <IsPrimaryKey>true</IsPrimaryKey>
         <Width>50</Width>
         <IsSearchAble>true</IsSearchAble>
       </DataColumn>
       <DataColumn>
-        <DBColumnName>Name</DBColumnName>
-        <DisplayName>Name</DisplayName>
+        <DBColumnName>NAME</DBColumnName>
+        <DisplayName>NAME</DisplayName>
         <MaxLength>50</MaxLength>
         <IsRequired>false</IsRequired>
         <Width>250</Width>
@@ -1455,7 +1455,7 @@
         <Width>100</Width>
       </DataColumn>
       <DataColumn>
-        <DBColumnName>Secondary_Address2</DBColumnName>
+        <DBColumnName>Secondary_Address_2</DBColumnName>
         <DisplayName>Secondary_Address2</DisplayName>
         <MaxLength>30</MaxLength>
         <IsRequired>false</IsRequired>

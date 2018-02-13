@@ -61,8 +61,8 @@
                             <li>
                                 <a class="menu-item" href="#" data-type="list" data-table="codes" data-query="int" data-container-name="level-of-care-bed-type" data-container-caption="Level of Care/Bed Type">Level of Care/Bed Type</a>
                             </li>
-                            <li><a href="#">Profile Type</a></li>
-                            <li><a href="#">Profile</a></li>
+                            <%--<li><a href="#">Profile Type</a></li>
+                            <li><a href="#">Profile</a></li>--%>
                             <li>
                                 <a class="menu-item" href="#" data-type="list" data-table="codes" data-query="pend" data-container-name="pended-reason" data-container-caption="Pended Reason">Pended Reason</a>
                             </li>
@@ -89,12 +89,12 @@
                             <li>
                                 <a class="menu-item" href="#" data-type="list" data-table="codes" data-query="ctry" data-container-name="countries" data-container-caption="Countries">Countries</a>
                             </li>
-                            <li><a href="#">Ethencity</a></li>
-                            <li><a href="#">Exception Criteria</a></li>
+                            <%--<li><a href="#">Ethencity</a></li>
+                            <li><a href="#">Exception Criteria</a></li>--%>
                             <li>
                                 <a class="menu-item" href="#" data-type="list" data-table="codes" data-query="fs" data-container-name="fee-schedule" data-container-caption="Fee Schedule">Fee Schedule</a>
                             </li>
-                            <li><a href="#">Group/Client LOB</a></li>
+                            <%--<li><a href="#">Group/Client LOB</a></li>--%>
                             <li>
                                 <a class="menu-item" href="#" data-type="list" data-table="codes" data-query="ppt" data-container-name="group-client-type" data-container-caption="Group/Client Type">Group/Client Type</a>
                             </li>
@@ -119,7 +119,7 @@
                             <li>
                                 <a class="menu-item" href="#" data-type="list" data-table="codes" data-query="lobt" data-container-name="plan-lob-type" data-container-caption="Plan/LOB Type">Plan/LOB Type</a>
                             </li>
-                            <li><a href="#">Plan/LOB Contract Status</a></li>
+                            <%--<li><a href="#">Plan/LOB Contract Status</a></li>--%>
                             <li>
                                 <a class="menu-item" href="#" data-type="list" data-table="codes" data-query="pss" data-container-name="psychlogical-stressors" data-container-caption="Psychological Stressors">Psychological Stressors</a>
                             </li>
@@ -158,7 +158,7 @@
                             <li><a href="#">Second Review Reason</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown">
+                    <%--<li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Maternity Codes <span class="caret"></span></a>
                         <ul role="menu" class="dropdown-submenu">
                             <li><a href="#">Manage Case</a></li>
@@ -176,11 +176,11 @@
                             <li><a href="#">Add Note</a></li>
                             <li><a href="#">Add Task</a></li>
                         </ul>
-                    </li>
+                    </li>--%>
                     <li>
                         <a class="menu-item" href="#" data-type="list" data-table="cpt" data-query="" data-container-name="cpt-4-cm" data-container-caption="CPT-4-CM">CPT-4-CM</a>
                     </li>
-                    <li><a href="#">HCPC</a></li>
+                    <%--<li><a href="#">HCPC</a></li>--%>
                     <li>
                         <a class="menu-item" href="#" data-type="list" data-table="dsm" data-query="" data-container-name="dsm-4" data-container-caption="DSM-4">DSM-4</a>
                     </li>

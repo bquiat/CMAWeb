@@ -1,0 +1,15 @@
+﻿<Properties StartupConfiguration="{C51231CE-88F7-4C78-BC83-78A83448E43D}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="CMA.WebUI/CMA.WebUI.csproj">
+    <Files>
+      <File FileName="CMA.WebUI/Global.asax" Line="1" Column="1" />
+      <File FileName="CMA.WebUI/Global.asax.cs" Line="1" Column="1" />
+      <File FileName="CMA.WebUI/CMA.WebUI.csproj" Line="206" Column="3" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>

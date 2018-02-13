@@ -26,9 +26,9 @@
         <h1><span class="header-icon"></span>Manage Case</h1>
         <div class="header-window-btn">
             <ul>
-                <%--<li class="w-minimz" onclick="classMinimize($(this));"><a href="#">minimize</a></li>
-                <li class="w-maxmiz" onclick="classMaximize($(this));"><a href="#" >Maximize</a></li>--%>
-                <li class="w-close" onclick="classcloseWin('manage-case');"><a href="#">Close</a></li>
+                <li class="w-minimz" onclick="Minimize('manage-case');"><a href="#">minimize</a></li>
+                <li class="w-maxmiz" onclick="Maximize('manage-case');"><a href="#" >Maximize</a></li>
+                <li class="w-close" onclick="CloseWindow('manage-case');"><a href="#">Close</a></li>
             </ul>
         </div>
     </header>

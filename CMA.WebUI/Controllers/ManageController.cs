@@ -534,7 +534,7 @@ namespace CMA.WebUI.Controllers
             }
 
             var dbTabName = dataContext.Mapping.GetTables().Where(_ => _.TableName.ToLower() == "dbo." + viewModel.TableName.ToLower()).FirstOrDefault();
-            var output = dataContext.ExecuteQuery(dbTabName.RowType.Type, sql);
+                var output = dataContext.ExecuteQuery(dbTabName.RowType.Type, sql);
             viewModel.TableData = JsonConvert.SerializeObject(output, new JsonSerializerSettings{
                                                                     ReferenceLoopHandling = ReferenceLoopHandling.Ignore});
             dataContext.Dispose();
