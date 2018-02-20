@@ -15,7 +15,7 @@
         </thead>
         <tbody>
 
-            <%foreach (var result in results.OrderBy(_=>_.FirstName))
+            <%foreach (var result in results)
                 {
             %>
             <tr>

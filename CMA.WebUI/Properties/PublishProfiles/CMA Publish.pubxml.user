@@ -10,7 +10,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/CMA.WebUI.dll">
-      <publishTime>02/12/2018 21:42:49</publishTime>
+      <publishTime>02/19/2018 23:31:57</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>06/15/2015 01:06:24</publishTime>
@@ -79,7 +79,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/28/2016 16:03:22</publishTime>
     </File>
     <File Include="content/css/cma.css">
-      <publishTime>05/06/2017 11:15:30</publishTime>
+      <publishTime>02/19/2018 22:25:16</publishTime>
     </File>
     <File Include="content/css/jquery-ui.css">
       <publishTime>07/14/2016 17:42:46</publishTime>
@@ -169,7 +169,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/24/2015 10:37:04</publishTime>
     </File>
     <File Include="content/js/cma.js">
-      <publishTime>05/07/2017 09:38:57</publishTime>
+      <publishTime>02/19/2018 23:05:28</publishTime>
     </File>
     <File Include="content/js/jquery-1.10.2.js">
       <publishTime>07/14/2016 17:44:30</publishTime>
@@ -179,6 +179,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="content/js/jquery-ui.js">
       <publishTime>07/14/2016 17:45:34</publishTime>
+    </File>
+    <File Include="content/js/jquery.tablesorter.min.js">
+      <publishTime>10/15/2010 11:55:44</publishTime>
     </File>
     <File Include="content/js/modernizr.min.js">
       <publishTime>07/14/2016 17:46:28</publishTime>
@@ -202,19 +205,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/07/2016 14:22:43</publishTime>
     </File>
     <File Include="Views/Manage/Controls/Find-Case-Result.ascx">
-      <publishTime>10/15/2016 14:22:33</publishTime>
+      <publishTime>02/19/2018 23:00:05</publishTime>
     </File>
     <File Include="Views/Manage/Controls/Find.ascx">
-      <publishTime>05/07/2017 09:13:29</publishTime>
+      <publishTime>02/19/2018 21:52:20</publishTime>
     </File>
     <File Include="Views/Manage/Controls/List.ascx">
       <publishTime>08/29/2017 16:30:35</publishTime>
     </File>
     <File Include="Views/Manage/Controls/ManageActivity.ascx">
-      <publishTime>05/07/2017 09:53:18</publishTime>
+      <publishTime>02/19/2018 23:30:45</publishTime>
     </File>
     <File Include="Views/Manage/Controls/ManageCase.ascx">
-      <publishTime>05/07/2017 08:59:35</publishTime>
+      <publishTime>02/19/2018 22:22:31</publishTime>
     </File>
     <File Include="Views/Manage/Controls/ManageDocument.ascx">
       <publishTime>05/07/2017 09:52:42</publishTime>

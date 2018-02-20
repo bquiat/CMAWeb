@@ -39,26 +39,34 @@ namespace CMA.WebUI.Controllers
         {
             var searchText = Request.Form["SearchText"] != null ? Request.Form["SearchText"].ToString().Trim().ToLower() : string.Empty;
             bool includeFirstName = false;
-            if (Request.Form["IncludeFirstName"]!=null)
-            {
-                bool.TryParse(Request.Form["IncludeFirstName"].ToString(), out includeFirstName);
-            }
+            if (Request.Form["IncludeFirstName"] != null && Request.Form["IncludeFirstName"].ToString() == "1")
+                includeFirstName = true;
 
             if (!string.IsNullOrEmpty(searchText))
             {
                 var dataContext = new CMADataContext();
+                string lastName = string.Empty;
+                string firstName = string.Empty;
+                if (includeFirstName && searchText.Contains(" "))
+                {
+                    lastName = searchText.Substring(0, searchText.IndexOf(" "));
+                    firstName = searchText.Substring(searchText.IndexOf(" ") + 1);
+                }
+                else
+                    lastName = searchText;
+
                 var query = dataContext.Namezs.Where(_ =>
                                  _.NameIs.HasValue &&
                                  _.NameIs.Value == 1
                                  && (
-                                    SqlMethods.Like(_.LastName, "%" + searchText + "%"))
+                                    SqlMethods.Like(_.LastName, "%" + lastName + "%"))
                             );
                 if (includeFirstName)
                     query = query.Where(_ =>
-                                SqlMethods.Like(_.FirstName, "%" + searchText + "%")
+                                SqlMethods.Like(_.FirstName, "%" + firstName + "%")
                             );
 
-                var results = query.OrderBy(_=>_.FirstName).ThenBy(_=>_.LastName).ToList();
+                var results = query.OrderBy(_=>_.LastName).ThenBy(_=>_.FirstName).ToList();
 
                 ViewData["FindCaseSearchOutput"] = results;
                 dataContext.Dispose();

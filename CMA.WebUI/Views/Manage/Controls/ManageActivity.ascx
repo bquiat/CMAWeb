@@ -121,76 +121,76 @@
                             </tr>
                         </thead>
                         <tbody>
-                                <% 
-                                    if (Activities!=null && Activities.Any())
+                            <% 
+                                if (Activities != null && Activities.Any())
+                                {
+                                    foreach (var activity in Activities.OrderByDescending(a => a.ActivityDate.HasValue ? a.ActivityDate.Value : DateTime.MinValue))
                                     {
-                                        foreach (var activity in Activities.OrderByDescending(a=>a.ActivityDate.HasValue ? a.ActivityDate.Value : DateTime.MinValue))
+                            %>
+                            <tr>
+                                <td style="white-space: nowrap;"><%=activity.ActivityDate.HasValue ? activity.ActivityDate.Value.ToShortDateString() + " " + activity.ActivityDate.Value.ToShortTimeString() : string.Empty %></td>
+                                <td><%=CMAHelper.GetValue(activity.UserID) %></td>
+                                <td>
+                                    <% 
+                                        if (Episodes != null && Episodes.Any())
                                         {
-                                %>
-                                    <tr>
-                                        <td style="white-space:nowrap;"><%=activity.ActivityDate.HasValue ? activity.ActivityDate.Value.ToShortDateString() + " " + activity.ActivityDate.Value.ToShortTimeString() : string.Empty %></td>
-                                        <td><%=CMAHelper.GetValue(activity.UserID) %></td>
-                                        <td>
-                                            <% 
-                                                if (Episodes != null && Episodes.Any())
-                                                {
-                                                    var episode = Episodes.Where(_ => _.EpisodeID == activity.EpisodeID);
-                                                    if (episode.Any())
-                                                        Response.Write(episode.FirstOrDefault().Description);
-                                                }
-                                            %>
-                                        </td>
-                                        <td><%=CMAHelper.GetValue(activity.Description) %></td>
-                                        <td><%=activity.ActivityTotal.HasValue ? String.Format("{0:C}",activity.ActivityTotal.Value) : "$0.00" %></td>
-                                        <td><%=activity.InvoiceNo.HasValue ? CMAHelper.GetValue(activity.InvoiceNo.Value.ToString()) : string.Empty %></td>
-                                        <td><%=CMAHelper.GetValue(activity.BillingStatus) %></td>
-                                        <td><%=activity.Time_.HasValue ? CMAHelper.GetValue(activity.Time_.Value.ToString()) : string.Empty %></td>
-                                        <td><%=CMAHelper.GetValue(activity.ActivityCode) %></td>
-                                        <td>
-                                            <% 
-                                                if (ActivityCodes != null && ActivityCodes.Any() && !string.IsNullOrEmpty(activity.ActivityCode))
-                                                {
-                                                    var activityCode = ActivityCodes.Where(_ => _.ActivityCode == activity.ActivityCode);
-                                                    if (activityCode != null)
-                                                        Response.Write(activityCode.FirstOrDefault().Description);
-                                                }
-                                            %>
-                                        </td>
-                                        <td>
-                                            <%
-                                                if (!string.IsNullOrEmpty(activity.ServiceCode)
-                                                    && ServiceCodes != null
-                                                    && ServiceCodes.Any()
-                                                    && ServiceCodes.Where(_ => _.Code1 == activity.ServiceCode).Any()
-                                                )
-                                                    Response.Write(ServiceCodes.FirstOrDefault(_ => _.Code1 == activity.ServiceCode).Description);
-                                            %>
-
-                                        </td>
-                                        <td>AA<%=CMAHelper.GetValue(activity.Reference)%></td>
-                                        <td><%
-                                                if (PayorNamez != null && PayorNamez.Any() && !string.IsNullOrEmpty(activity.PayorID))
-                                                {
-                                                    var PayorName = PayorNamez.Where(_ => _.NameID == activity.PayorID);
-                                                    if (PayorName!=null)
-                                                    {
-                                                        if (PayorName.FirstOrDefault().Organization!=null
-                                                                && Organizations!=null
-                                                                && Organizations.Any())
-                                                        {
-                                                            var Organization = Organizations.FirstOrDefault(o => PayorName.FirstOrDefault().Organization == o.ORGANIZATION_ID);
-                                                            if (Organization != null)
-                                                                Response.Write(Organization.NAME + ";");
-                                                        }
-                                                        Response.Write(PayorName.FirstOrDefault().FirstName + " " + PayorName.FirstOrDefault().LastName);
-                                                    }
-                                                }
-                                        %></td>
-                                    </tr>
-                                <%
+                                            var episode = Episodes.Where(_ => _.EpisodeID == activity.EpisodeID);
+                                            if (episode.Any())
+                                                Response.Write(episode.FirstOrDefault().Description);
                                         }
+                                    %>
+                                </td>
+                                <td><%=CMAHelper.GetValue(activity.Description) %></td>
+                                <td><%=activity.ActivityTotal.HasValue ? String.Format("{0:C}",activity.ActivityTotal.Value) : "$0.00" %></td>
+                                <td><%=activity.InvoiceNo.HasValue ? CMAHelper.GetValue(activity.InvoiceNo.Value.ToString()) : string.Empty %></td>
+                                <td><%=CMAHelper.GetValue(activity.BillingStatus) %></td>
+                                <td><%=activity.Time_.HasValue ? CMAHelper.GetValue(activity.Time_.Value.ToString()) : string.Empty %></td>
+                                <td><%=CMAHelper.GetValue(activity.ActivityCode) %></td>
+                                <td>
+                                    <% 
+                                        if (ActivityCodes != null && ActivityCodes.Any() && !string.IsNullOrEmpty(activity.ActivityCode))
+                                        {
+                                            var activityCode = ActivityCodes.Where(_ => _.ActivityCode == activity.ActivityCode);
+                                            if (activityCode != null)
+                                                Response.Write(activityCode.FirstOrDefault().Description);
+                                        }
+                                    %>
+                                </td>
+                                <td>
+                                    <%
+                                        if (!string.IsNullOrEmpty(activity.ServiceCode)
+                                            && ServiceCodes != null
+                                            && ServiceCodes.Any()
+                                            && ServiceCodes.Where(_ => _.Code1 == activity.ServiceCode).Any()
+                                        )
+                                            Response.Write(ServiceCodes.FirstOrDefault(_ => _.Code1 == activity.ServiceCode).Description);
+                                    %>
+
+                                </td>
+                                <td><%=CMAHelper.GetValue(activity.Reference)%></td>
+                                <td><%
+                                        if (PayorNamez != null && PayorNamez.Any() && !string.IsNullOrEmpty(activity.PayorID))
+                                        {
+                                            var PayorName = PayorNamez.Where(_ => _.NameID == activity.PayorID);
+                                            if (PayorName != null)
+                                            {
+                                                if (PayorName.FirstOrDefault().Organization != null
+                                                        && Organizations != null
+                                                        && Organizations.Any())
+                                                {
+                                                    var Organization = Organizations.FirstOrDefault(o => PayorName.FirstOrDefault().Organization == o.ORGANIZATION_ID);
+                                                    if (Organization != null)
+                                                        Response.Write(Organization.NAME + ";");
+                                                }
+                                                Response.Write(PayorName.FirstOrDefault().FirstName + " " + PayorName.FirstOrDefault().LastName);
+                                            }
+                                        }
+                                %></td>
+                            </tr>
+                            <%
                                     }
-                                %>
+                                }
+                            %>
                         </tbody>
                     </table>
                 </div>
@@ -200,7 +200,9 @@
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#tbl-activity").tablesorter();
+        setTimeout(function () {
+            $("#tbl-activity").tablesorter();
+        }, 2000);
     });
 </script>
 <% 
