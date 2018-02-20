@@ -53,6 +53,7 @@
     <script src="/content/js/jquery-ui.js"></script>
     <script src="/content/js/bootstrap.min.js"></script>
     <script src="/content/js/modernizr.min.js"></script>
+    <script src="/content/js/jquery.tablesorter.min.js"></script>
     <script type="text/javascript" src="/content/js/jquery-migrate-1.2.1.min.js"></script>
     <script src="/content/js/cma.js"></script>
     <% 

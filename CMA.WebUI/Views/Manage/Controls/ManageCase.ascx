@@ -26,8 +26,8 @@
         <h1><span class="header-icon"></span>Manage Case</h1>
         <div class="header-window-btn">
             <ul>
-                <li class="w-minimz" onclick="Minimize('manage-case');"><a href="#">minimize</a></li>
-                <li class="w-maxmiz" onclick="Maximize('manage-case');"><a href="#" >Maximize</a></li>
+                <%--<li class="w-minimz" onclick="Minimize('manage-case');"><a href="#">minimize</a></li>
+                <li class="w-maxmiz" onclick="Maximize('manage-case');"><a href="#" >Maximize</a></li>--%>
                 <li class="w-close" onclick="CloseWindow('manage-case');"><a href="#">Close</a></li>
             </ul>
         </div>
@@ -101,12 +101,12 @@
                         	<div class="manage--case__tabbing">
                             	<ul class="nav nav-tabs">
                                   <li class="active"><a href="#Case" data-toggle="tab" aria-expanded="false">Case</a></li>
-                                  <li class=""><a href="#Benefits" data-toggle="tab" aria-expanded="true">Benefits</a></li>
+                                  <%--<li class=""><a href="#Benefits" data-toggle="tab" aria-expanded="true">Benefits</a></li>
                                   <li class=""><a href="#Diagnose" data-toggle="tab" aria-expanded="false">Diagnose</a></li>
                                   <li class=""><a href="#Assesments" data-toggle="tab" aria-expanded="false">Assesments</a></li>
                                   <li class=""><a href="#Care-Cost" data-toggle="tab" aria-expanded="false">Care and Cost</a></li>
                                   <li class=""><a href="#Guidlines" data-toggle="tab" aria-expanded="false">Guidlines</a></li>
-                                  <li class=""><a href="#Profile" data-toggle="tab" aria-expanded="false">Profile</a></li>
+                                  <li class=""><a href="#Profile" data-toggle="tab" aria-expanded="false">Profile</a></li>--%>
                                 </ul>
                                 <div id="myTabContent" class="manage--case__tabbing__content tab-content">
                                 	<!-- tab_1 -->
@@ -319,10 +319,10 @@
                                                             <thead>
                                                                 <tr>
                                                                     <th></th>
-                                                                    <th>Relation</th>
-                                                                    <th>Last Name</th>
-                                                                    <th>First Name</th>
-                                                                    <th>Organization</th>
+                                                                    <th style="width:100px;">Relation</th>
+                                                                    <th style="width:100px;">Last Name</th>
+                                                                    <th style="width:100px;">First Name</th>
+                                                                    <th style="width:150px;">Organization</th>
                                                                     <th>Phone</th>
                                                                     <th>Ext</th>
                                                                 </tr>

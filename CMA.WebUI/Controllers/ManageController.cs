@@ -38,16 +38,28 @@ namespace CMA.WebUI.Controllers
         public ActionResult GetCaseSearch()
         {
             var searchText = Request.Form["SearchText"] != null ? Request.Form["SearchText"].ToString().Trim().ToLower() : string.Empty;
+            bool includeFirstName = false;
+            if (Request.Form["IncludeFirstName"]!=null)
+            {
+                bool.TryParse(Request.Form["IncludeFirstName"].ToString(), out includeFirstName);
+            }
+
             if (!string.IsNullOrEmpty(searchText))
             {
                 var dataContext = new CMADataContext();
-                var results = dataContext.Namezs.Where(_ =>
-                                 _.NameIs.HasValue && 
+                var query = dataContext.Namezs.Where(_ =>
+                                 _.NameIs.HasValue &&
                                  _.NameIs.Value == 1
                                  && (
-                                    SqlMethods.Like(_.FirstName, "%" + searchText + "%") ||
                                     SqlMethods.Like(_.LastName, "%" + searchText + "%"))
-                            ).ToList();
+                            );
+                if (includeFirstName)
+                    query = query.Where(_ =>
+                                SqlMethods.Like(_.FirstName, "%" + searchText + "%")
+                            );
+
+                var results = query.OrderBy(_=>_.FirstName).ThenBy(_=>_.LastName).ToList();
+
                 ViewData["FindCaseSearchOutput"] = results;
                 dataContext.Dispose();
                 return PartialView("~/Views/Manage/Controls/Find-Case-Result.ascx");

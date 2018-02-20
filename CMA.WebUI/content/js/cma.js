@@ -254,11 +254,14 @@ function searchCase()
         alert('Please enter the Search Criteria');
         return false;
     }
-
+    var includeFirstName = 0;
+    if ($("#chk-firstname-manage-case").is(':checked')) {
+        includeFirstName = 1;
+    }
     $overlayText = $("#overlayText");
     $overlay = $("#ajax-Page-overlay");
     $overlay.fadeIn();
-    var serializedData = "SearchText=" + searchText;
+    var serializedData = "SearchText=" + searchText + "&IncludeFirstName=" + includeFirstName;
 
     $overlayText.text('Searching the Case ' + searchText + '....');
     $.ajax({

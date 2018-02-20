@@ -27,7 +27,7 @@
                                 </div>
                                 <div class="col-xs-11">
                                     <span class="txtbx--1">
-                                        <label>Search Text</label>
+                                        <label>Last Name</label>
                                         <input 
                                                 type="text" 
                                                 class="form-control searchText" 
@@ -45,6 +45,18 @@
                                             id="btn-search" 
                                             onclick="javascript:return searchCase();">Search</button>
                                     </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                 <div class="col-xs-1">
+                                </div>
+                                <div class="col-xs-11">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" id="chk-firstname-manage-case" name="chk-firstname-manage-case">
+                                            Include First Name
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>

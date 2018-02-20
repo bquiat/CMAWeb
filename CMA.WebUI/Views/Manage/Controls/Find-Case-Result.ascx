@@ -6,11 +6,11 @@
     {
 %>
 <div class="app-table">
-    <table class="table table-bordered">
+    <table class="table table-bordered tablesorter" id="manage-case-find">
         <thead>
             <tr>
-                <td>First Name</td>
-                <td>Last Name</td>
+                <th>Last Name</th>
+                <th>First Name</th>
             </tr>
         </thead>
         <tbody>
@@ -19,8 +19,8 @@
                 {
             %>
             <tr>
-                <td style="cursor:pointer;" onclick="return OpenManageCase('<%=result.NameID.Trim()%>','<%=result.Names_ID %>');"><%=result.FirstName %></td>
                 <td style="cursor:pointer;" onclick="return OpenManageCase('<%=result.NameID.Trim()%>','<%=result.Names_ID %>');"><%=result.LastName %></td>
+                <td style="cursor:pointer;" onclick="return OpenManageCase('<%=result.NameID.Trim()%>','<%=result.Names_ID %>');"><%=result.FirstName %></td>
             </tr>
             <%
                 }
@@ -28,7 +28,12 @@
         </tbody>
     </table>
 </div>
-
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#manage-case-find").tablesorter();
+    }
+);
+</script>
 <% 
     }
 %>

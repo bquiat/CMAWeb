@@ -118,6 +118,7 @@
     <Content Include="content\js\jquery-1.10.2.js" />
     <Content Include="content\js\jquery-migrate-1.2.1.min.js" />
     <Content Include="content\js\jquery-ui.js" />
+    <Content Include="content\js\jquery.tablesorter.min.js" />
     <Content Include="content\js\modernizr.min.js" />
     <Content Include="Global.asax" />
     <Content Include="Models\DataMapping.xml">

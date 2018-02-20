@@ -19,8 +19,8 @@
         <h1><span class="header-icon"></span>Manage Activity</h1>
         <div class="header-window-btn">
             <ul>
-                <li class="w-minimz" onclick="Minimize('manage-activity');"><a href="#">minimize</a></li>
-                <li class="w-maxmiz" onclick="Maximize('manage-activity');"><a href="#">Maximize</a></li>
+                <%--<li class="w-minimz" onclick="Minimize('manage-activity');"><a href="#">minimize</a></li>
+                <li class="w-maxmiz" onclick="Maximize('manage-activity');"><a href="#">Maximize</a></li>--%>
                 <li class="w-close" onclick="CloseWindow('manage-activity');"><a href="#">Close</a></li>
             </ul>
         </div>
@@ -102,10 +102,9 @@
             </section>
             <section class="inner-window-body">
                 <div class="app-table">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered tablesorter" id="tbl-activity">
                         <thead>
                             <tr>
-                                <th></th>
                                 <th>Date/Time</th>
                                 <th>User</th>
                                 <th>Case/Episode</th>
@@ -129,8 +128,7 @@
                                         {
                                 %>
                                     <tr>
-                                        <td></td>
-                                        <td><%=activity.ActivityDate.HasValue ? activity.ActivityDate.Value.ToLongDateString() + " " + activity.ActivityDate.Value.ToShortTimeString() : string.Empty %></td>
+                                        <td style="white-space:nowrap;"><%=activity.ActivityDate.HasValue ? activity.ActivityDate.Value.ToShortDateString() + " " + activity.ActivityDate.Value.ToShortTimeString() : string.Empty %></td>
                                         <td><%=CMAHelper.GetValue(activity.UserID) %></td>
                                         <td>
                                             <% 
@@ -169,7 +167,7 @@
                                             %>
 
                                         </td>
-                                        <td><%=CMAHelper.GetValue(activity.Reference) %></td>
+                                        <td>AA<%=CMAHelper.GetValue(activity.Reference)%></td>
                                         <td><%
                                                 if (PayorNamez != null && PayorNamez.Any() && !string.IsNullOrEmpty(activity.PayorID))
                                                 {
@@ -200,6 +198,11 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#tbl-activity").tablesorter();
+    });
+</script>
 <% 
 
     }

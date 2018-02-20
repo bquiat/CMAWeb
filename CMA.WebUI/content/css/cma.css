@@ -7,7 +7,7 @@
     left: 0;  
     background-color:rgba(255,255,255,0.8);
     text-align:center;
-    z-index:99999999!important;
+    z-index:999!important;
     display:none;
 }
 .resizable {
@@ -26,6 +26,10 @@
 #manage-case
 {
     min-height:600px;
-    min-width:1200px!important;
+    width:100%!important;
+}
+#manage-activity
+{
+    width:100%!important;
 }
 
