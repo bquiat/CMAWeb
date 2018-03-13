@@ -245,7 +245,7 @@
                                                         	<div class="mng-btns--right text-right">
                                                             	<button type="button">Edit Names</button>
                                                                 <button type="button">Manage Notes</button>
-                                                                <button type="button">Maternity Outcomes</button>
+                                                                <%--<button type="button">Maternity Outcomes</button>--%>
                                                             </div>
                                                         </div>
                                                     </div>
