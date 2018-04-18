@@ -60,7 +60,7 @@
     <Menu>Declined/Closed Reason</Menu>
     <TableName>codes</TableName>
     <SubQuery>DECL</SubQuery>
-    <MaxRecords>10</MaxRecords>
+    <MaxRecords>100</MaxRecords>
     <DataColumns>
       <DataColumn>
         <DBColumnName>Code</DBColumnName>

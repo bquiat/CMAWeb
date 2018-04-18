@@ -10,6 +10,7 @@
     <link href="/content/css/style.css" rel="stylesheet" />
     <link rel="stylesheet" href="/content/css/jquery-ui.css" />
     <link rel="stylesheet" href="/content/css/cma.css" />
+    <link rel="stylesheet" href="/content/css/theme.blue.css" />
     <asp:ContentPlaceHolder ID="HeadContent" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -50,10 +51,11 @@
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="/content/js/jquery-1.10.2.js"></script>
-    <script src="/content/js/jquery-ui.js"></script>
-    <script src="/content/js/bootstrap.min.js"></script>
-    <script src="/content/js/modernizr.min.js"></script>
-    <script src="/content/js/jquery.tablesorter.min.js"></script>
+    <script type="text/javascript" src="/content/js/jquery-ui.js"></script>
+    <script type="text/javascript" src="/content/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/content/js/modernizr.min.js"></script>
+    <script type="text/javascript" src="/content/js/jquery.tablesorter.min.js"></script>
+    <script type="text/javascript" src="/content/js/jquery.tablesorter.widgets.js"></script>
     <script type="text/javascript" src="/content/js/jquery-migrate-1.2.1.min.js"></script>
     <script src="/content/js/cma.js"></script>
     <% 

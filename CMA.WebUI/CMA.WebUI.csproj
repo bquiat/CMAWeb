@@ -97,6 +97,7 @@
     <Content Include="content\css\cma.css" />
     <Content Include="content\css\jquery-ui.css" />
     <Content Include="content\css\style.css" />
+    <Content Include="content\css\theme.blue.css" />
     <Content Include="content\fonts\roboto\roboto-black.svg" />
     <Content Include="content\fonts\roboto\roboto-light.svg" />
     <Content Include="content\fonts\roboto\Roboto-Regular-webfont.svg" />

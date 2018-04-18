@@ -54,7 +54,7 @@
             %>
             <section class="inner-window-body">
                 <div class="app-table">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered tablesorter-blue" id="<%=Model.InputParam.ContainerId%>-table">
                         <thead>
                             <tr>
                                 <% 
@@ -65,8 +65,8 @@
                                 <%
                                     }
                                 %>
-                                <th></th>
-                                <th></th>
+                                <th class="sorter-false"></th>
+                                <th class="sorter-false"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -113,6 +113,18 @@
                             %>
                         </tbody>
                     </table>
+                    <script type="text/javascript">
+                        $(document).ready(function () {
+                            $("#<%=Model.InputParam.ContainerId%>-table").tablesorter({
+                                theme: 'blue',
+                                sortList: [[0, 0]],
+                                widgets: ["zebra", "resizable"],
+                                widgetOptions: {
+                                    resizable: true
+                                }
+                            });
+                        });
+                    </script>
                 </div>
             </section>
         </div>

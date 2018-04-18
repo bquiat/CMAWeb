@@ -283,12 +283,6 @@ function searchCase()
 function searchText(type, menu, tableName, subQuery, id)
 {
     var $searchText = $("#txt-" + id + "-search");
-    if ($searchText.val().trim() == "")
-    {
-        alert('Please enter the Search Text');
-        $searchText.focus();
-        return false;
-    }
 
     $overlayText = $("#overlayText");
     $overlay = $("#ajax-Page-overlay");
