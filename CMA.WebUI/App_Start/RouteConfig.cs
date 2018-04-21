@@ -13,7 +13,7 @@ namespace CMA.WebUI
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.MapRoute(
-                name: "ManageLists",
+                name: "DefaultRoute",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Manage", action = "Home", id = UrlParameter.Optional }
             );
