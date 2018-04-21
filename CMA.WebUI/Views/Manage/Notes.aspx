@@ -11,8 +11,8 @@
                 <h1><span class="header-icon"></span>Manage Notes</h1>
                 <div class="header-window-btn">
                     <ul>
-                        <li class="w-minimz"><a href="#">minimize</a></li>
-                        <li class="w-maxmiz"><a href="#">Maximize</a></li>
+                        <%--<li class="w-minimz"><a href="#">minimize</a></li>
+                        <li class="w-maxmiz"><a href="#">Maximize</a></li>--%>
                         <li class="w-close"><a href="#">Close</a></li>
                     </ul>
                 </div>

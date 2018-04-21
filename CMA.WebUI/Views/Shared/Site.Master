@@ -10,6 +10,7 @@
     <link href="/content/css/style.css" rel="stylesheet" />
     <link rel="stylesheet" href="/content/css/jquery-ui.css" />
     <link rel="stylesheet" href="/content/css/cma.css" />
+    <link rel="stylesheet" href="/content/css/theme.blue.css" />
     <asp:ContentPlaceHolder ID="HeadContent" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -19,8 +20,8 @@
             <h1><span class="header-icon"></span>Case Management Assistant</h1>
             <div class="header-window-btn" style="display: none;">
                 <ul>
-                    <li class="w-minimz"><a href="#">minimize</a></li>
-                    <li class="w-maxmiz"><a href="#">Maximize</a></li>
+                    <%--<li class="w-minimz"><a href="#">minimize</a></li>
+                    <li class="w-maxmiz"><a href="#">Maximize</a></li>--%>
                     <li class="w-close"><a href="#">Close</a></li>
                 </ul>
             </div>
@@ -50,10 +51,11 @@
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="/content/js/jquery-1.10.2.js"></script>
-    <script src="/content/js/jquery-ui.js"></script>
-    <script src="/content/js/bootstrap.min.js"></script>
-    <script src="/content/js/modernizr.min.js"></script>
-    <script src="/content/js/jquery.tablesorter.min.js"></script>
+    <script type="text/javascript" src="/content/js/jquery-ui.js"></script>
+    <script type="text/javascript" src="/content/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/content/js/modernizr.min.js"></script>
+    <script type="text/javascript" src="/content/js/jquery.tablesorter.min.js"></script>
+    <script type="text/javascript" src="/content/js/jquery.tablesorter.widgets.js"></script>
     <script type="text/javascript" src="/content/js/jquery-migrate-1.2.1.min.js"></script>
     <script src="/content/js/cma.js"></script>
     <% 

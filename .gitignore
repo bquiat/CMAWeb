@@ -1,5 +1,4 @@
 /CMA.WebUI/bin
 /CMA.WebUI/obj
 /.vs/config/applicationhost.config
-/.vs/CMA/v15/Server/sqlite3
-*.suo
+/.vs/CMA/v15/.suo
