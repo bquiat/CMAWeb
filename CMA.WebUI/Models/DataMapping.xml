@@ -783,7 +783,6 @@
       </DataColumn>
     </DataColumns>
   </DataMapping>
-  
   <DataMapping>
     <Menu>CPT-4-CM</Menu>
     <TableName>CPT</TableName>

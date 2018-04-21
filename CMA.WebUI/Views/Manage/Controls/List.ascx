@@ -6,8 +6,8 @@
         <h1><span class="header-icon"></span><%=Model.Caption%></h1>
         <div class="header-window-btn">
             <ul>
-                <li class="w-minimz" onclick="Minimize('<%=Model.InputParam.ContainerId%>');"><a href="#">Minimize</a></li>
-                <li class="w-maxmiz" onclick="Maximize('<%=Model.InputParam.ContainerId%>');"><a href="#">Maximize</a></li>
+                <%--<li class="w-minimz" onclick="Minimize('<%=Model.InputParam.ContainerId%>');"><a href="#">Minimize</a></li>
+                <li class="w-maxmiz" onclick="Maximize('<%=Model.InputParam.ContainerId%>');"><a href="#">Maximize</a></li>--%>
                 <li class="w-close" onclick="CloseWindow('<%=Model.InputParam.ContainerId%>');"><a href="#">Close</a></li>
             </ul>
         </div>

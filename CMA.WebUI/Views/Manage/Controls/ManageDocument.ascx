@@ -18,8 +18,8 @@
         <h1><span class="header-icon"></span>Manage Documents</h1>
         <div class="header-window-btn">
             <ul>
-                <li class="w-minimz" onclick="Minimize('manage-document');"><a href="#">minimize</a></li>
-                <li class="w-maxmiz" onclick="Maximize('manage-document');"><a href="#" >Maximize</a></li>
+                <%--<li class="w-minimz" onclick="Minimize('manage-document');"><a href="#">minimize</a></li>
+                <li class="w-maxmiz" onclick="Maximize('manage-document');"><a href="#" >Maximize</a></li>--%>
                 <li class="w-close" onclick="CloseWindow('manage-document');"><a href="#">Close</a></li>
             </ul>
         </div>
