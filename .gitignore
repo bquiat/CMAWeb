@@ -2,3 +2,7 @@
 /CMA.WebUI/obj
 /.vs/config/applicationhost.config
 /.vs/CMA/v15/.suo
+/.vs/CMA/v15/Server/sqlite3/storage.ide-wal
+/.vs/CMA/v15/Server/sqlite3/storage.ide-shm
+/.vs/CMA/v15/Server/sqlite3/storage.ide
+/.vs/CMA/v15/Server/sqlite3/db.lock
