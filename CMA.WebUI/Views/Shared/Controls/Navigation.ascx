@@ -53,7 +53,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Episode Codes <span class="caret"></span></a>
                         <ul role="menu" class="dropdown-submenu">
                             <li>
-                                <a class="menu-item" href="#" data-type="list" data-table="codes" data-query="decl" data-container-name="declined-closed-reason" data-container-caption="Declined/Closed Reason">Declined/Closed Reason</a>
+                                <a class="menu-item" href="#" data-type="list" data-css="width60" data-table="codes" data-query="decl" data-container-name="declined-closed-reason" data-container-caption="Declined/Closed Reason">Declined/Closed Reason</a>
                             </li>
                             <li>
                                 <a class="menu-item" href="#" data-type="list" data-table="codes" data-query="diag" data-container-name="diagnosis-category" data-container-caption="Diagnosis Category">Diagnosis Category</a>

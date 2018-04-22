@@ -16,6 +16,13 @@
         <div class="inner-window window-fluid inner-window-style" id="addeditview-<%=Model.InputParam.ContainerId%>">
         </div>
         <div class="inner-window window-fluid inner-window-style" id="lstview-<%=Model.InputParam.ContainerId%>">
+            <% 
+                string type = Model.InputParam.Type;
+                string menu = Model.InputParam.Menu;
+                string tablename = Model.TableName;
+                string subquery = Model.InputParam.SubQuery;
+                string id = Model.InputParam.ContainerId;    
+            %>
             <section class="window-inner-header">
                 <div class="wdw-hdr-block">
                     <div class="wdw-hdr-block-title">Filter / Sort</div>
@@ -41,7 +48,10 @@
                                             id="btn-<%=Model.InputParam.ContainerId %>-search" 
                                             onclick="javascript:return searchText('<%=Model.InputParam.Type %>','<%=Model.InputParam.Menu %>','<%=Model.TableName %>','<%=Model.InputParam.SubQuery %>','<%=Model.InputParam.ContainerId %>');"
                                             >Search</button>
-                                        <button type="button" onclick="javascript:addNewRecord('<%=Model.InputParam.Type %>','<%=Model.InputParam.Menu %>','<%=Model.TableName %>','<%=Model.InputParam.SubQuery %>','<%=Model.InputParam.ContainerId %>');">Add New Record</button>
+                                        <% 
+                                            string addUrl = "/Manage/CodeEditAdd?edit=0&type=" + type + "&menu=" + menu.Replace("/","//").Replace(" ","|") + "&table=" + tablename + "&subquery=" + subquery + "&id=" + id;    
+                                        %>
+                                        <button type="button" data-fancybox data-type="ajax" data-src="<%=addUrl%>">Add New Record</button>
                                     </span>
                                 </div>
                             </div>
@@ -51,6 +61,7 @@
             </section>
             <% 
                 var obj = Newtonsoft.Json.JsonConvert.DeserializeObject<Newtonsoft.Json.Linq.JArray>(Model.TableData);    
+                
             %>
             <section class="inner-window-body">
                 <div class="app-table">
@@ -91,11 +102,15 @@
                                     <td><%=record[CMAHelper.ReplaceWithLINQName(col.DBColumnName)].ToString() %></td>
                             <%
                                 }
+                               
+                                string key = primaryKeyCol;
+                                string value = primaryKeyVal;
+                                string editUrl = "/Manage/CodeEditAdd?edit=1&type=" + type + "&key=" + key + "&val=" + value + "&menu=" + menu.Replace("/","//").Replace(" ","|") + "&table=" + tablename + "&subquery=" + subquery + "&id=" + id;
                             %>
                                 <td><a 
                                     href="#"
                                     class="activelink" 
-                                    onclick="javascript:editRecord('<%=Model.InputParam.Type %>','<%=primaryKeyCol %>','<%=primaryKeyVal %>','<%=Model.InputParam.Menu %>','<%=Model.TableName %>','<%=Model.InputParam.SubQuery %>','<%=Model.InputParam.ContainerId %>');">
+                                    data-fancybox data-type="ajax" data-src="<%=editUrl%>">
                                         Edit
                                     </a></td>
                                 <td>

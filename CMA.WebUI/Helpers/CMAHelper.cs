@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 using System.Text.RegularExpressions;
 namespace CMA.WebUI.Helpers
 {
@@ -39,6 +40,38 @@ namespace CMA.WebUI.Helpers
                 return input;
             else
                 return string.Empty;
+        }
+
+        public static string RequestForm(string key)
+        {
+            if (HttpContext.Current.Request.QueryString[key] != null)
+                return HttpContext.Current.Request.QueryString[key];
+            else if (HttpContext.Current.Request.Form[key] != null)
+                return HttpContext.Current.Request.Form[key];
+            else
+                return string.Empty;
+        }
+
+        public static int RequestFormInt(string key)
+        {
+            int o = 0;
+            int.TryParse(RequestForm(key), out o);
+            return o;
+        }
+
+        public static bool RequestFormBool(string key)
+        {
+            bool o = false;
+            string s = RequestForm(key);
+
+            if (s == "1" || s == "0")
+            {
+                return s.Equals("1");
+            }
+            else
+                bool.TryParse(s, out o);
+
+            return o;
         }
     }
 }

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/content/css/jquery-ui.css" />
     <link rel="stylesheet" href="/content/css/cma.css" />
     <link rel="stylesheet" href="/content/css/theme.blue.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" />
     <asp:ContentPlaceHolder ID="HeadContent" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -50,14 +51,14 @@
 
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="/content/js/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="/content/js/jquery-ui.js"></script>
-    <script type="text/javascript" src="/content/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/content/js/modernizr.min.js"></script>
     <script type="text/javascript" src="/content/js/jquery.tablesorter.min.js"></script>
     <script type="text/javascript" src="/content/js/jquery.tablesorter.widgets.js"></script>
     <script type="text/javascript" src="/content/js/jquery-migrate-1.2.1.min.js"></script>
     <script src="/content/js/cma.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
     <% 
         if (Session["AuthUserID"] != null && Session["AuthNameID"] != null)
         { 
@@ -69,12 +70,7 @@
         }    
     %>
     <script>
-        $(function () {
-            $(".resizable").resizable();
-        });
-        $(function () {
-            $(".draggable").draggable();
-        });
+      
 
         $(document).ready(function () {
             var a = 3;
@@ -120,15 +116,16 @@
         });
     </script>
     <script type="text/javascript">
-        function openNewTab(objID) {
+        function openNewTab(objID, objCSS) {
             if ($("#dragZone").find("#" + objID).length <= 1) {
                 var objIDtabHeading = objID.replace("-", " ").toLowerCase().replace(/\b[a-z]/g, function (letter) { return letter.toUpperCase(); });
                 var htmlTab = "<li class=\"\" id=\"" + objID + "-tab\"><a href=\"#" + objID + "\" data-toggle=\"tab\" aria-expanded=\"false\">" + objIDtabHeading + "</a><a href=\"#\" onClick=\"clickbytab($(this))\" class=\"close\">&#10060;</a></li>"
                 $("#ul_tabcontainer11").append(htmlTab);
                 var my_var = $("#" + objID + "-window").html();
-                var htmlWindow = "<div id=\"" + objID + "\" class=\"resizable ui-widget-content draggable window--container\">" + my_var + "</div>";
+                var htmlWindow = "<div id=\"" + objID + "\" class=\"ui-widget-content draggable window--container " + objCSS + " \">" + my_var + "</div>";
                 $("#dragZone").append(htmlWindow);
                 var a = $("#dragZone").children().length;
+                
                 $('#' + objID).draggable({ handle: 'header', start: function (event, ui) { $(this).css("z-index", a++); } });
                 $('#dragZone div').click(function () {
                     $('#dragZone div').each(function () {
@@ -158,28 +155,6 @@
                     $(this).css("z-index", "" + zindexf + "");
                     zindexf = zindexf + 2;
                 });
-                $(".resizable").resizable();
-            }
-        }
-        function Maximize(obj) {
-            var obj2 = $("#" + obj);
-            var style = obj2.attr('style');
-            if (style != undefined) {
-                if (style.indexOf("; width: 100% !important;") > 0)
-                    Minimize(obj);
-                else {
-
-                    style = style + "; width: 100% !important;"
-                    obj2.attr('style', style);
-                }
-            }
-        }
-        function Minimize(obj) {
-            var obj2 = $("#" + obj);
-            var style = obj2.attr('style');
-            if (style != undefined) {
-                style = style.replace("; width: 100% !important;", "");
-                obj2.attr('style', style);
             }
         }
         function CloseWindow(obj) {

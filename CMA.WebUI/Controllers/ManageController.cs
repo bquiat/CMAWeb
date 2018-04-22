@@ -74,18 +74,53 @@ namespace CMA.WebUI.Controllers
             }
             return null;
         }
+
+
+        [HttpGet]
+        [Authorize]
+        public ActionResult CodeEditAdd()
+        {
+            ListInput inputParam = new ListInput();
+            bool isEdit = CMAHelper.RequestFormBool("edit");
+            var type = CMAHelper.RequestForm("type");
+            string key = CMAHelper.RequestForm("key");
+            string value = CMAHelper.RequestForm("val");
+            inputParam.Menu = CMAHelper.RequestForm("menu").Replace("//","/").Replace("|"," ");
+            inputParam.TableName = CMAHelper.RequestForm("table");
+            inputParam.SubQuery = CMAHelper.RequestForm("subquery");
+            inputParam.Type = type;
+            inputParam.ContainerId = Request.Form["id"] != null ? Request.Form["id"].ToString() : string.Empty;
+            ListViewModel viewModel = new ListViewModel();
+            viewModel.InputParam = inputParam;
+            int MaxListRecord = 0;
+            viewModel.TableName = inputParam.TableName;
+            if (isEdit)
+                viewModel.Caption = "Edit Record for " + CMAHelper.ConvertSentenceCase(inputParam.Menu);
+            else
+                viewModel.Caption = "Add Record for " + CMAHelper.ConvertSentenceCase(inputParam.Menu);
+            viewModel.DataColumns = InitializeDataMapping(inputParam, out MaxListRecord);
+            viewModel.MaxListRecords = MaxListRecord;
+
+            if (isEdit)
+                viewModel.TableData = GetDataFromDB(viewModel, value);
+
+            return View(viewModel);
+
+        }
+
+
         [HttpPost]
         [Authorize]
         public ActionResult GetEdit()
         {
             ListInput inputParam = new ListInput();
-            bool isEdit = Request.Form["edit"] != null ? Request.Form["edit"].ToString() == "1" : false;
-            var type = Request.Form["type"] != null ? Request.Form["type"].ToString() : string.Empty;
-            string key = Request.Form["key"] != null ? Request.Form["key"].ToString() : string.Empty;
-            string value = Request.Form["val"] != null ? Request.Form["val"].ToString() : string.Empty;
-            inputParam.Menu = Request.Form["menu"] != null ? Request.Form["menu"].ToString() : string.Empty;
-            inputParam.TableName = Request.Form["table"] != null ? Request.Form["table"].ToString() : string.Empty;
-            inputParam.SubQuery = Request.Form["subquery"] != null ? Request.Form["subquery"].ToString() : string.Empty;
+            bool isEdit             = CMAHelper.RequestFormBool("edit");
+            var type                = CMAHelper.RequestForm("type");
+            string key              = CMAHelper.RequestForm("key");
+            string value            = CMAHelper.RequestForm("val");
+            inputParam.Menu         = CMAHelper.RequestForm("menu");
+            inputParam.TableName    = CMAHelper.RequestForm("table");
+            inputParam.SubQuery     = CMAHelper.RequestForm("subquery");
             inputParam.Type = type;
             inputParam.ContainerId = Request.Form["id"] != null ? Request.Form["id"].ToString() : string.Empty;
             ListViewModel viewModel = new ListViewModel();

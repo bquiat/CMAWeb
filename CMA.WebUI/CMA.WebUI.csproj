@@ -127,6 +127,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Account\LogOn.aspx" />
+    <Content Include="Views\Manage\CodeEditAdd.aspx" />
     <Content Include="Views\Manage\Controls\Edit.ascx" />
     <Content Include="Views\Manage\Controls\Find-Case-Result.ascx" />
     <Content Include="Views\Manage\Controls\Find.ascx" />

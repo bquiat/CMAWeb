@@ -175,11 +175,15 @@ $(".menu-item").click(function () {
     var id = $(this).data('container-name');
     var menuName = $(this).data('container-caption');
     var subQuery = $(this).data('query');
-    OpenMenu(type, tableName, id, menuName, subQuery);
+    var css = '';
+    if ($(this).data('css'))
+        css = $(this).data('css');
+
+    OpenMenu(type, tableName, id, css, menuName, subQuery);
     return false;
 });
 
-function OpenMenu(type,tableName,id,menuName,subQuery)
+function OpenMenu(type, tableName, id, css, menuName, subQuery)
 {   
     //Going to reset these vars so we open the find case since there is no global case id.
     //Might have to do this for other windows as well. 
@@ -221,7 +225,7 @@ function OpenMenu(type,tableName,id,menuName,subQuery)
                 refreshWindow(id);
             } else
                 $("#pageContent").append(content);
-            openNewTab(id);
+            openNewTab(id,css);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             alert(jqXHR.responseText);
