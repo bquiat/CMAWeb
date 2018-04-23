@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>Y:\Earth\Barry\CMAPublish</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/CMA.WebUI.dll">
+      <publishTime>04/22/2018 21:04:33</publishTime>
+    </File>
+    <File Include="bin/CMA.WebUI.pdb">
+      <publishTime>04/22/2018 21:04:33</publishTime>
+    </File>
+    <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.exe">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.dll">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CSharp.Core.targets">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.VisualBasic.Core.targets">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Collections.Immutable.dll">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Reflection.Metadata.dll">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.exe">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe.config">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.Deployment.dll">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.dll">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.Razor.dll">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="content/css/bootstrap.css">
+      <publishTime>03/12/2018 21:57:33</publishTime>
+    </File>
+    <File Include="content/css/cma.css">
+      <publishTime>04/21/2018 12:50:21</publishTime>
+    </File>
+    <File Include="content/css/jquery-ui.css">
+      <publishTime>03/12/2018 21:57:33</publishTime>
+    </File>
+    <File Include="content/css/style.css">
+      <publishTime>03/12/2018 21:57:33</publishTime>
+    </File>
+    <File Include="content/css/theme.blue.css">
+      <publishTime>04/21/2018 11:52:02</publishTime>
+    </File>
+    <File Include="content/fonts/roboto/roboto-black.otf">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="content/fonts/roboto/roboto-black.svg">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="content/fonts/roboto/roboto-black.ttf">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="content/fonts/roboto/roboto-black.woff">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="content/fonts/roboto/roboto-light.eot">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="content/fonts/roboto/roboto-light.otf">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="content/fonts/roboto/roboto-light.svg">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="content/fonts/roboto/roboto-light.ttf">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="content/fonts/roboto/roboto-light.woff">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="content/fonts/roboto/Roboto-Regular-webfont.eot">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="content/fonts/roboto/Roboto-Regular-webfont.svg">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="content/fonts/roboto/Roboto-Regular-webfont.ttf">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="content/fonts/roboto/Roboto-Regular-webfont.woff">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="content/images/2.gif">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="content/images/folder.png">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="content/images/icn-close-white.png">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="content/images/icn-edit.png">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="content/images/icn-file-search.png">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="content/images/icn-file1.png">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="content/images/icn-folder1.png">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="content/images/icn-maximize-window-wht.png">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="content/images/icn-maximize-window.png">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="content/images/icn-minimize-window-wht.png">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="content/images/icn-minimize-window.png">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="content/images/icn-notes.png">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="content/images/icn-print.png">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="content/js/bootstrap.min.js">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="content/js/cma.js">
+      <publishTime>04/21/2018 12:53:54</publishTime>
+    </File>
+    <File Include="content/js/jquery-1.10.2.js">
+      <publishTime>03/12/2018 21:57:33</publishTime>
+    </File>
+    <File Include="content/js/jquery-migrate-1.2.1.min.js">
+      <publishTime>03/12/2018 21:57:33</publishTime>
+    </File>
+    <File Include="content/js/jquery-ui.js">
+      <publishTime>03/12/2018 21:57:33</publishTime>
+    </File>
+    <File Include="content/js/jquery.tablesorter.min.js">
+      <publishTime>04/21/2018 11:52:02</publishTime>
+    </File>
+    <File Include="content/js/modernizr.min.js">
+      <publishTime>03/12/2018 21:57:33</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="Models/CMA.dbml">
+      <publishTime>03/12/2018 21:57:33</publishTime>
+    </File>
+    <File Include="Models/DataMapping.xml">
+      <publishTime>04/21/2018 12:06:48</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="Views/Account/LogOn.aspx">
+      <publishTime>03/12/2018 21:57:33</publishTime>
+    </File>
+    <File Include="Views/Manage/CodeEditAdd.aspx">
+      <publishTime>04/21/2018 13:51:29</publishTime>
+    </File>
+    <File Include="Views/Manage/Controls/Edit.ascx">
+      <publishTime>04/21/2018 12:06:48</publishTime>
+    </File>
+    <File Include="Views/Manage/Controls/Find-Case-Result.ascx">
+      <publishTime>04/21/2018 12:06:48</publishTime>
+    </File>
+    <File Include="Views/Manage/Controls/Find.ascx">
+      <publishTime>04/21/2018 12:06:48</publishTime>
+    </File>
+    <File Include="Views/Manage/Controls/List.ascx">
+      <publishTime>04/21/2018 20:11:38</publishTime>
+    </File>
+    <File Include="Views/Manage/Controls/ManageActivity.ascx">
+      <publishTime>04/21/2018 12:06:48</publishTime>
+    </File>
+    <File Include="Views/Manage/Controls/ManageCase.ascx">
+      <publishTime>04/21/2018 12:06:48</publishTime>
+    </File>
+    <File Include="Views/Manage/Controls/ManageDocument.ascx">
+      <publishTime>04/21/2018 12:06:48</publishTime>
+    </File>
+    <File Include="Views/Manage/Home.aspx">
+      <publishTime>04/21/2018 12:51:31</publishTime>
+    </File>
+    <File Include="Views/Manage/List.aspx">
+      <publishTime>04/21/2018 12:36:08</publishTime>
+    </File>
+    <File Include="Views/Manage/Notes.aspx">
+      <publishTime>04/21/2018 12:06:48</publishTime>
+    </File>
+    <File Include="Views/Shared/Controls/Navigation.ascx">
+      <publishTime>04/21/2018 12:52:39</publishTime>
+    </File>
+    <File Include="Views/Shared/Site.Master">
+      <publishTime>04/22/2018 21:02:42</publishTime>
+    </File>
+    <File Include="Views/web.config">
+      <publishTime>03/12/2018 21:52:49</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>04/22/2018 21:04:33</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

@@ -185,6 +185,7 @@
     <Content Include="content\fonts\roboto\Roboto-Regular-webfont.ttf" />
     <Content Include="content\fonts\roboto\Roboto-Regular-webfont.woff" />
     <None Include="Properties\PublishProfiles\CMA Publish.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
