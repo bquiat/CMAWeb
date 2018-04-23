@@ -122,7 +122,7 @@
                 var htmlTab = "<li class=\"\" id=\"" + objID + "-tab\"><a href=\"#" + objID + "\" data-toggle=\"tab\" aria-expanded=\"false\">" + objIDtabHeading + "</a><a href=\"#\" onClick=\"clickbytab($(this))\" class=\"close\">&#10060;</a></li>"
                 $("#ul_tabcontainer11").append(htmlTab);
                 var my_var = $("#" + objID + "-window").html();
-                var htmlWindow = "<div id=\"" + objID + "\" class=\"ui-widget-content draggable window--container " + objCSS + " \">" + my_var + "</div>";
+                var htmlWindow = "<div id=\"" + objID + "\" style=\"position:absolute;top:0px;\" class=\"ui-widget-content draggable window--container " + objCSS + " \">" + my_var + "</div>";
                 $("#dragZone").append(htmlWindow);
                 var a = $("#dragZone").children().length;
                 
