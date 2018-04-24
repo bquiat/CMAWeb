@@ -117,6 +117,7 @@
     </script>
     <script type="text/javascript">
         function openNewTab(objID, objCSS) {
+            
             if ($("#dragZone").find("#" + objID).length <= 1) {
                 var objIDtabHeading = objID.replace("-", " ").toLowerCase().replace(/\b[a-z]/g, function (letter) { return letter.toUpperCase(); });
                 var htmlTab = "<li class=\"\" id=\"" + objID + "-tab\"><a href=\"#" + objID + "\" data-toggle=\"tab\" aria-expanded=\"false\">" + objIDtabHeading + "</a><a href=\"#\" onClick=\"clickbytab($(this))\" class=\"close\">&#10060;</a></li>"

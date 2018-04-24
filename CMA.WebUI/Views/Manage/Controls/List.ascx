@@ -81,7 +81,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <% 
+                            <%  
                                 if (obj != null && obj.Any())
                                 {
                                     foreach (var record in obj)
@@ -133,9 +133,9 @@
                             $("#<%=Model.InputParam.ContainerId%>-table").tablesorter({
                                 theme: 'blue',
                                 sortList: [[0, 0]],
-                                widgets: ["zebra", "resizable"],
+                                widgets: ["zebra", "resizable","stickyHeaders"],
                                 widgetOptions: {
-                                    resizable: true
+                                    resizable: false,
                                 }
                             });
                         });

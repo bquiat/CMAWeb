@@ -215,7 +215,7 @@
     <Menu>Service Type</Menu>
     <TableName>codes</TableName>
     <SubQuery>ET</SubQuery>
-    <MaxRecords>10</MaxRecords>
+    <MaxRecords>100</MaxRecords>
     <DataColumns>
       <DataColumn>
         <DBColumnName>Code</DBColumnName>

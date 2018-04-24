@@ -89,7 +89,7 @@ namespace CMA.WebUI.Controllers
             inputParam.TableName = CMAHelper.RequestForm("table");
             inputParam.SubQuery = CMAHelper.RequestForm("subquery");
             inputParam.Type = type;
-            inputParam.ContainerId = Request.Form["id"] != null ? Request.Form["id"].ToString() : string.Empty;
+            inputParam.ContainerId = CMAHelper.RequestForm("id");// Request.Form["id"] != null ? Request.Form["id"].ToString() : string.Empty;
             ListViewModel viewModel = new ListViewModel();
             viewModel.InputParam = inputParam;
             int MaxListRecord = 0;
@@ -315,7 +315,7 @@ namespace CMA.WebUI.Controllers
                         if (isUpdate)
                         {
                             sql = "update dbo." + viewModel.TableName + Environment.NewLine + "set ";
-                            foreach (var col in viewModel.DataColumns)
+                            foreach (var col in viewModel.DataColumns.Where(_=>_.IsVisible))
                             {
                                 sql += col.DBColumnName + "=" + SQLHelper.MakeSQLSafe(Request.Form["txt-" + viewModel.InputParam.ContainerId + "-" + col.DBColumnName]) + ",";
                             }
@@ -334,7 +334,7 @@ namespace CMA.WebUI.Controllers
                         else
                         {
                             sql = "insert into " + viewModel.TableName + " (";
-                            foreach (var col in viewModel.DataColumns)
+                            foreach (var col in viewModel.DataColumns.Where(_ => _.IsVisible))
                                 sql += col.DBColumnName + ",";
                             if (!string.IsNullOrEmpty(viewModel.InputParam.SubQuery))
                                 sql += "type,";
@@ -342,8 +342,10 @@ namespace CMA.WebUI.Controllers
                             if (sql.EndsWith(","))
                                 sql = sql.Substring(0, sql.Length - 1);
                             sql += ") values(";
-                            foreach (var col in viewModel.DataColumns)
+                            foreach (var col in viewModel.DataColumns.Where(_=>_.IsVisible))
+                            {
                                 sql += SQLHelper.MakeSQLSafe(Request.Form["txt-" + viewModel.InputParam.ContainerId + "-" + col.DBColumnName]) + ",";
+                            }
                             if (!string.IsNullOrEmpty(viewModel.InputParam.SubQuery))
                                 sql += SQLHelper.MakeSQLSafe(viewModel.InputParam.SubQuery);
                             sql = sql.Trim();

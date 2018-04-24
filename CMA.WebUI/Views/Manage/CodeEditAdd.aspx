@@ -11,7 +11,7 @@
     <section class="window-inner-header">
         <div class="wdw-hdr-block">
             <div class="wdw-hdr-block-title"><%=Model.Caption %></div>
-            <form id="frm-<%=Model.InputParam.ContainerId %>-edit" method="post">
+            <form id="frm-<%=Model.InputParam.ContainerId %>-edit" method="post" autocomplete="off">
                 <%
                     var obj = Model.TableData != null ?
                                 Newtonsoft.Json.JsonConvert.DeserializeObject<Newtonsoft.Json.Linq.JArray>(Model.TableData) != null ? Newtonsoft.Json.JsonConvert.DeserializeObject<Newtonsoft.Json.Linq.JArray>(Model.TableData).FirstOrDefault() : null

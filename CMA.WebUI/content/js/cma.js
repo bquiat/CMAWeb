@@ -106,7 +106,7 @@ function editRecord(type,key,value,menu,tablename,subquery,id)
     return false;
 }
 function saveRecord(id,type,menu,tablename,subquery,id)
-{
+{   
     bError = false;
     $("#frm-" + id + "-edit").find(".required").each(function () {
         if (!bError) {
@@ -132,17 +132,8 @@ function saveRecord(id,type,menu,tablename,subquery,id)
             data: serializedData,
             success: function (response, textStatus, jqXHR) {
                 alert(menu + ' Updated successfully');
-                var id = response.substring(0, response.indexOf('||')).trim();
-                var content = response.substring(response.indexOf('||') + 2).trim();
-                if ($("#pageContent").find("#" + id + "-window").length > 0) {
-                    $("#pageContent").find("#" + id + "-window").html(content);
-                    $("#lstview-" + id).slideDown(100);
-                    $("#addeditview-" + id).slideUp(100);
-                    refreshWindow(id);
-                } else
-                    $("#pageContent").append(content);
-                openNewTab(id);
-
+                $.fancybox.close();
+                $("#btn-" + id + "-search").click();
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 alert(jqXHR.responseText);

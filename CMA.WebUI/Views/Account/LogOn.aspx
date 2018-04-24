@@ -6,6 +6,9 @@
 <asp:Content ID="MainContent" ContentPlaceHolderID="MainContent" runat="server">
     <form method="post" id="CMALogon" name="CMALogon" action="/Account/LogOn">
         <div style="margin:auto; width:300px;padding-top:150px;">
+            <div style="text-align:center;margin:auto; width:450px;">
+                <h1>CASE MANAGEMENT ASSISTANT</h1>
+            </div>
             <table style="border:solid 1px #6badf6;width:400px;padding:10px;">
                 <%
                     if (ViewData["ErrorMessage"]!=null && ViewData["ErrorMessage"].ToString().Length > 0)
