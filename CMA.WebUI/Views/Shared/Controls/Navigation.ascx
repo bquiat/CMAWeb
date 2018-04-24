@@ -148,7 +148,13 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Item Codes <span class="caret"></span></a>
                                 <ul role="menu" class="dropdown-submenu-inner">
-                                    <li><a href="#">AAA</a></li>
+                                    <li><a href="#">Guideline Source</a></li>
+                                    <li><a href="#">Place of Service</a></li>
+                                    <li><a href="#">QI/QA Reason</a></li>
+                                    <li><a href="#">QA/QA Response</a></li>
+                                    <li><a href="#">Response Reason</a></li>
+                                    <li><a href="#">Request Response</a></li>
+                                    <li><a href="#">Service Type</a></li>
                                 </ul>
                             </li>
                             <li><a href="#">Mode</a></li>
@@ -158,29 +164,23 @@
                             <li><a href="#">Second Review Reason</a></li>
                         </ul>
                     </li>
-                    <%--<li class="dropdown">
+                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Maternity Codes <span class="caret"></span></a>
                         <ul role="menu" class="dropdown-submenu">
-                            <li><a href="#">Manage Case</a></li>
-                            <li><a href="#">Manage Review</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Add Document <span class="caret"></span></a>
-                                <ul role="menu" class="dropdown-submenu-inner">
-                                    <li><a href="#">Manage Case</a></li>
-                                    <li><a href="#">Manage Review</a></li>
-                                    <li><a href="#">Add Document</a></li>
-                                    <li><a href="#">Add Note</a></li>
-                                    <li><a href="#">Add Task</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Add Note</a></li>
-                            <li><a href="#">Add Task</a></li>
+                            <li><a href="#">Antepartal Complications</a></li>
+                            <li><a href="#">Induction Reason</a></li>
+                            <li><a href="#">Labor/Postpartal Complications</a></li>
+                            <li><a href="#">Medication/Anesthesia</a></li>
+                            <li><a href="#">Newborn Complications</a></li>
+                            <li><a href="#">Onset of Labor</a></li>
+                            <li><a href="#">C Section Reason</a></li>
                         </ul>
-                    </li>--%>
+                    </li>
+                    
                     <li>
                         <a class="menu-item" href="#" data-type="list" data-table="cpt" data-query="" data-container-name="cpt-4-cm" data-container-caption="CPT-4-CM">CPT-4-CM</a>
                     </li>
-                    <%--<li><a href="#">HCPC</a></li>--%>
+                    <li><a href="#">HCPC</a></li>
                     <li>
                         <a class="menu-item" href="#" data-type="list" data-table="dsm" data-query="" data-container-name="dsm-4" data-container-caption="DSM-4">DSM-4</a>
                     </li>
